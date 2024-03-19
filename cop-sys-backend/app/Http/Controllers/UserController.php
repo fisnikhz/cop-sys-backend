@@ -10,7 +10,39 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class UserController extends Controller
-{
+{   
+    public function login(Request $request): JsonResponse
+    {
+        $request->validate([
+            'username' => 'required|string',
+            'password' => 'required|string',
+        ]);
+
+        try {
+            // Find the user by email
+            $user = User::where('username', $request->username)->first();
+
+            if (!$user || !$this->validatePassword($request->password, $user->password, $user->salt)) {
+                return response()->json(['message' => 'Invalid credentials'], 401);
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'User not found!'], 401);
+        }
+
+        // Generate a token for the authenticated user
+        $token = $user->createToken('auth_token')->plainTextToken;
+
+        return response()->json(['token' => $token, 'user' => $user], 200);
+    }
+
+    private function validatePassword($password, $hashedPassword, $salt): bool
+    {
+        // Hash the provided password with the salt
+        $saltedPassword = $password . $salt;
+
+        // Compare the hashed password with the hashed concatenated string
+        return hash('sha256', $saltedPassword) === $hashedPassword;
+    }
     public function addUser(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -66,5 +98,7 @@ class UserController extends Controller
 
         return response()->json(['message' => 'User registered successfully', 'token' => $token, 'user' => $user], 201);
     }
+
+    
 
 }

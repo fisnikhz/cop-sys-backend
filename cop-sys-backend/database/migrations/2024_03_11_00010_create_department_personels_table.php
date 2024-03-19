@@ -11,20 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('Roles', function (Blueprint $table) {
+        Schema::create('Department_Personnels', function (Blueprint $table) {
 
-            $table->uuid('role_id');
-            $table->text('role_title')->nullable();
-            $table->text('role_description');
-            $table->primary('role_id');
+            $table->foreignUuid('department_id')->constrained('Departments','department_id');
+            $table->foreignUuid('personnel_id')->constrained('Personnels','personnel_id');;
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('Roles');
+        Schema::dropIfExists('Department_Personnels');
     }
 };

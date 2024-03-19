@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Vehicle', function (Blueprint $table) {
 
-            $table->uuid('vehicle_id');
+            $table->uuid('vehicle_id')->primary();
             $table->text('vehicle_registration');
             $table->text('manufacture_name');
             $table->text('serie');
@@ -21,12 +21,9 @@ return new class extends Migration
             $table->date('produced_date');
             $table->date('purchased_date');
             $table->date('registration_date');
-            $table->uuid('designated_driver',);
+            $table->foreignUuid('designated_driver')->constrained('Personnels','personnel_id');
             $table->text('car_picture');
-            $table->uuid('car_location');
-            $table->primary('vehicle_id');
-            $table->foreign('car_location')->references('location_id')->on('Locations');
-            $table->foreign('designated_driver')->references('personnel_id')->on('Personnels');
+            $table->foreignUuid('car_location')->constrained('Locations','location_id');
         });
     }
 

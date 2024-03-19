@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Departments extends Model
 {
-    use HasFactory;
+    use HasFactory,HasUuids;
 
 //$table->uuid('department_id');
 //$table->text('department_name');

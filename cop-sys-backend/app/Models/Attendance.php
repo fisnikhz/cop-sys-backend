@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Attendance extends Model
 {
-    use HasFactory;
+    use HasFactory,HasUuids;
 
 //$table->uuid('attendance_id',36);
 //$table->uuid('personnel_id',36);

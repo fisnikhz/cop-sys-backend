@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('Attendances', function (Blueprint $table) {
 
-            $table->uuid('attendance_id',36);
-            $table->uuid('personnel_id',36);
+            $table->uuid('attendance_id')->primary();
+            $table->foreignUuid('personnel_id')->constrained('Personnels','personnel_id');;
             $table->date('attendance_date');
             $table->datetime('entry_time');
             $table->datetime('exit_time');
-            $table->boolean('missed_entry')->default('false');
-            $table->foreign('personnel_id')->references('personnel_id')->on('Personnels');
+            $table->boolean('missed_entry');
         });
     }
 

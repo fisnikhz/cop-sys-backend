@@ -13,11 +13,10 @@ return new class extends Migration
     {
         Schema::create('Shift_Schedules', function (Blueprint $table) {
 
-            $table->uuid('schedule_id',);
-            $table->uuid('personnel_id');
+            $table->uuid('schedule_id')->primary();
+            $table->foreignUuid('personnel_id')->constrained('Personnels','personnel_id');;
             $table->datetime('shift_start_time');
             $table->datetime('shift_end_time');
-            $table->foreign('personnel_id')->references('personnel_id')->on('Personnels');
         });
     }
 

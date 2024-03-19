@@ -9,16 +9,14 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up() : void
+    public function up(): void
     {
-        Schema::create('News', function (Blueprint $table) {
+        Schema::create('Conversations', function (Blueprint $table) {
 
-            $table->uuid('news_id');
-            $table->bigInteger('post_title',);
-            $table->bigInteger('thumbnail',);
-            $table->text('description');
+            $table->uuid('conversation_id')->primary();
+            $table->text('conversation_name');
+            $table->text('conversation_picture');
             $table->timestamps();
-            $table->json('tags');
 
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('News');
+        Schema::dropIfExists('Conversations');
     }
 };

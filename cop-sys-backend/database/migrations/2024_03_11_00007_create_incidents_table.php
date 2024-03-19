@@ -13,17 +13,14 @@ return new class extends Migration
     {
         Schema::create('Incidents', function (Blueprint $table) {
 
-            $table->uuid('incident_id');
+            $table->uuid('incident_id')->primary();
             $table->text('incident_type');
             $table->text('description');
-            $table->uuid('location');
+            $table->foreignUuid('location')->constrained('Locations','location_id')->nullable();
             $table->timestamp('report_date_time');
-            $table->uuid('reporter_id');
+            $table->foreignUuid('reporter_id')->constrained('Personnels','personnel_id');
             $table->json('participants_id')->nullable();
             $table->json('vehicles_number')->nullable();
-            $table->primary('incident_id');
-            $table->foreign('reporter_id')->references('personnel_id')->on('Personnels');
-            $table->foreign('location')->references('location_id')->on('Locations');
         });
     }
 

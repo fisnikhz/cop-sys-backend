@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class EmergencyCall extends Model
 {
-    use HasFactory;
+    use HasFactory,HasUuids;
 
 
     protected $fillable = [
@@ -25,6 +26,6 @@ class EmergencyCall extends Model
     public function responder():HasOne{
         return $this->hasOne(Personnel::class, 'personnel_id','responder');
     }
-   
+
 
 }

@@ -13,14 +13,12 @@ return new class extends Migration
     {
         Schema::create('Cases', function (Blueprint $table) {
 
-            $table->uuid('case_id');
+            $table->uuid('case_id')->primary();
             $table->text('status');
             $table->datetime('open_date');
             $table->datetime('close_date')->nullable();
-            $table->uuid('investigator_id');
+            $table->foreignUuid('investigator_id')->constrained('Personnels','personnel_id');;
             $table->json('incidents_id');
-            $table->primary('case_id');
-            $table->foreign('investigator_id')->references('personnel_id')->on('Personnels');
         });
     }
 

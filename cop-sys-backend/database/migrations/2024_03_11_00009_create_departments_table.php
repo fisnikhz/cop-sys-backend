@@ -13,13 +13,11 @@ return new class extends Migration
     {
         Schema::create('Departments', function (Blueprint $table) {
 
-            $table->uuid('department_id');
+            $table->uuid('department_id')->primary();
             $table->text('department_name');
             $table->text('department_logo');
             $table->text('description');
-            $table->uuid('hq_location');
-            $table->primary('department_id');
-            $table->foreign('hq_location')->references('location_id')->on('Locations');
+            $table->foreignUuid('hq_location')->constrained('Locations','location_id');
         });
     }
     /**

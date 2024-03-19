@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::create('Users', function (Blueprint $table) {
 
-            $table->uuid('user_id');
+            $table->uuid('user_id')->primary();
             $table->text('name');
             $table->text('email');
-            $table->text('salt');
             $table->text('password');
+            $table->text('salt');
             $table->text('username');
             $table->text('device_id');
-            $table->text('profile_image');
-            $table->uuid('role');
+            $table->text('profile_image')->nullable();
+            $table->foreignId('role')->nullable()->constrained('Roles','role_id');
             $table->uuid('personnel_id')->nullable();
-            $table->primary('user_id');
             $table->timestamps();
-            $table->foreign('role')->references('role_id')->on('Roles');
             $table->foreign('personnel_id')->references('personnel_id')->on('Personnels');
         });
     }

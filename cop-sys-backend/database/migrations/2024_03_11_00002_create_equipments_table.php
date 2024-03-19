@@ -13,13 +13,12 @@ return new class extends Migration
     {
         Schema::create('Equipments', function (Blueprint $table) {
 
-            $table->uuid('equipment_id');
+            $table->uuid('equipment_id')->primary();
             $table->string('name');
-            $table->integer('quantity',);
+            $table->integer('quantity');
             $table->string('description');
             $table->uuid('location_id');
             $table->foreign('location_id')->references('location_id')->on('Locations');
-
         });
     }
 

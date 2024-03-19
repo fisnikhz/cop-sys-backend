@@ -13,16 +13,13 @@ return new class extends Migration
     {
         Schema::create('Emergency_Calls', function (Blueprint $table) {
 
-            $table->uuid('call_id');
+            $table->uuid('call_id')->primary();
             $table->text('caller_name');
             $table->text('phone_number');
             $table->text('incident_type');
-            $table->uuid('location')->nullable();
+            $table->foreignUuid('location')->constrained('Locations','location_id')->nullable();
             $table->datetime('time');
-            $table->uuid('responder');
-            $table->primary('call_id');
-            $table->foreign('location')->references('location_id')->on('Locations');
-            $table->foreign('responder')->references('personnel_id')->on('Personnels');
+            $table->foreignUuid('responder')->constrained('Personnels','personnel_id');
 
         });
     }

@@ -13,10 +13,8 @@ return new class extends Migration
     {
         Schema::create('Conversation_Users', function (Blueprint $table) {
 
-            $table->uuid('user_id');
-            $table->uuid('conversation_id');
-            $table->foreign('user_id')->references('user_id')->on('Users');
-            $table->foreign('conversation_id')->references('conversation_id')->on('Conversations');
+            $table->foreignUuid('sender_id')->constrained('Users','user_id');
+            $table->foreignUuid('conversation_id')->constrained('Conversations','conversation_id');
         });
     }
 

@@ -11,6 +11,10 @@ class Personnel extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'personnel_id';
+
+    public $timestamps = false;
+
     protected $fillable = [
         'first_name',
         'last_name',

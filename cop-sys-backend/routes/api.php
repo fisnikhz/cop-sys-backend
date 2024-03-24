@@ -25,3 +25,7 @@ Route::post('/addUser', [UserController::class, 'addUser']);
 Route::post('/login', [UserController::class, 'login']);
 
 Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
+
+Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
+
+Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);

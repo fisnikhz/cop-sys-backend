@@ -11,7 +11,7 @@ class Vehicle extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'vehicles'; // Specify the correct table name
+    protected $table = 'vehicle'; // Specify the correct table name
     protected $primaryKey = 'vehicle_id'; // Specify the primary key column
     public $timestamps = false;
 

@@ -1,10 +1,9 @@
 <?php
 
-use App\Http\Controllers\EquipmentsController;
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\PersonnelController;
+use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonnelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,9 +32,10 @@ Route::middleware('auth:sanctum')->group(function (){
 
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
-});
 
-Route::post('/addUser', [UserController::class, 'addUser']);
+})->prefix('v1');
 
-Route::post('/login', [UserController::class, 'login']);
+Route::post('/addUser', [UserController::class, 'addUser'])->prefix("v1");
+
+Route::post('/login', [UserController::class, 'login'])->prefix("v1");
 

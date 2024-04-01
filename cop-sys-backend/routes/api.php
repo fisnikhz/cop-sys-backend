@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\PersonnelController;
+use App\Http\Controllers\API\V1\UserController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PersonnelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,16 +16,26 @@ use App\Http\Controllers\PersonnelController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::middleware('auth:sanctum')->group(function (){
 
-Route::post('/addUser', [UserController::class, 'addUser']);
 
-Route::post('/login', [UserController::class, 'login']);
+    //Personnel API
+    Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
+    Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
+    Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
 
-Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
 
-Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
+    // Equipments API
+    Route::post('/addEquipment', [EquipmentsController::class, 'addEquipment']);
+    Route::put('/updateEquipment', [EquipmentsController::class, 'updateEquipment']);
+    Route::delete('/removeEquipment', [EquipmentsController::class, 'removeEquipment']);
 
-Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
+
+    Route::post('/addNewUser', [UserController::class, 'addUser']);
+
+})->prefix('v1');
+
+Route::post('/addUser', [UserController::class, 'addUser'])->prefix("v1");
+
+Route::post('/login', [UserController::class, 'login'])->prefix("v1");
+

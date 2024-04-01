@@ -22,20 +22,17 @@ Route::middleware('auth:sanctum')->group(function (){
 
     //Personnel API
     Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
-
     Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
-
     Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
 
 
     // Equipments API
     Route::post('/addEquipment', [EquipmentsController::class, 'addEquipment']);
+    Route::put('/updateEquipment', [EquipmentsController::class, 'updateEquipment']);
+    Route::delete('/removeEquipment', [EquipmentsController::class, 'removeEquipment']);
 
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
-
-
-
 });
 
 Route::post('/addUser', [UserController::class, 'addUser']);

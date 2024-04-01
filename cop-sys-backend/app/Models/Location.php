@@ -10,6 +10,11 @@ class Location extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'location_id'; // Specify the primary key column
+    public $timestamps = false;
+
+
+
     protected $fillable = [
         'name',
         'address',

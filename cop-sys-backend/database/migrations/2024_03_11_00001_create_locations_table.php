@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('Locations', function (Blueprint $table) {
             $table->uuid('location_id')->primary();
-            $table->bigInteger('name');
+            $table->text('name');
             $table->text('address');
             $table->text('longitude');
             $table->text('latitude');

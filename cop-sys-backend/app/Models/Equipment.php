@@ -11,6 +11,10 @@ class Equipment extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $table = 'Equipments'; // Specify the correct table name
+    protected $primaryKey = 'equipment_id'; // Specify the primary key column
+    public $timestamps = false;
+
 
     protected $fillable = [
         'name',

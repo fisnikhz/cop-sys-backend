@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\EquipmentsController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -16,16 +17,28 @@ use App\Http\Controllers\PersonnelController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::middleware('auth:sanctum')->group(function (){
+
+
+    //Personnel API
+    Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
+
+    Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
+
+    Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
+
+
+    // Equipments API
+    Route::post('/addEquipment', [EquipmentsController::class, 'addEquipment']);
+
+
+    Route::post('/addNewUser', [UserController::class, 'addUser']);
+
+
+
 });
 
 Route::post('/addUser', [UserController::class, 'addUser']);
 
 Route::post('/login', [UserController::class, 'login']);
 
-Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
-
-Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
-
-Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);

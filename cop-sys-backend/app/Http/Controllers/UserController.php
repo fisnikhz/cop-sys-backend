@@ -9,8 +9,46 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
+
+
+
+
+
 class UserController extends Controller
-{   
+{
+
+    /**
+     * @OA\Post(
+     *      path="/login",
+     *      operationId="login",
+     *      tags={"Authentication"},
+     *      summary="Login a user",
+     *      description="Logs in a user with username and password.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="User credentials",
+     *          @OA\JsonContent(
+     *              required={"username", "password"},
+     *              @OA\Property(property="username", type="string", example="john_doe"),
+     *              @OA\Property(property="password", type="string", example="password123")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=200,
+     *          description="Login successful",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=401,
+     *          description="Unauthorized",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="Invalid credentials")
+     *          )
+     *      )
+     * )
+     */
     public function login(Request $request): JsonResponse
     {
         $request->validate([
@@ -43,6 +81,52 @@ class UserController extends Controller
         // Compare the hashed password with the hashed concatenated string
         return hash('sha256', $saltedPassword) === $hashedPassword;
     }
+
+
+
+    /**
+     * @OA\Post(
+     *      path="/addUser",
+     *      operationId="addUser",
+     *      tags={"Authentication"},
+     *      summary="Register a new user",
+     *      description="Registers a new user with the provided information.",
+     *      @OA\RequestBody(
+     *          required=true,
+     *          description="User data",
+     *          @OA\JsonContent(
+     *              required={"name", "email", "password", "username", "device_id"},
+     *              @OA\Property(property="name", type="string", example="John Doe"),
+     *              @OA\Property(property="email", type="string", format="email", example="john@example.com"),
+     *              @OA\Property(property="password", type="string", example="password123"),
+     *              @OA\Property(property="username", type="string", example="john_doe"),
+     *              @OA\Property(property="device_id", type="integer", example="123456")
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=201,
+     *          description="User registered successfully",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="User registered successfully"),
+     *              @OA\Property(property="token", type="string", example="eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9..."),
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=422,
+     *          description="Validation error",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="errors", type="object", example={"name": {"The name field is required."}, "email": {"The email field is required."}})
+     *          )
+     *      ),
+     *      @OA\Response(
+     *          response=409,
+     *          description="Conflict",
+     *          @OA\JsonContent(
+     *              @OA\Property(property="message", type="string", example="User with the provided email or username already exists")
+     *          )
+     *      )
+     * )
+     */
     public function addUser(Request $request): JsonResponse
     {
         $validator = Validator::make($request->all(), [
@@ -99,6 +183,6 @@ class UserController extends Controller
         return response()->json(['message' => 'User registered successfully', 'token' => $token, 'user' => $user], 201);
     }
 
-    
+
 
 }

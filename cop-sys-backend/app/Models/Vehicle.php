@@ -11,11 +11,16 @@ class Vehicle extends Model
 {
     use HasFactory, HasUuids;
 
+    protected $table = 'vehicles'; // Specify the correct table name
+    protected $primaryKey = 'vehicle_id'; // Specify the primary key column
+    public $timestamps = false;
+
 
     protected $fillable = [
         'vehicle_registration',
         'manufacture_name',
         'serie',
+        'type',
         'produced_date',
         'purchased_date',
         'registration_date',

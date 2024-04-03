@@ -3,6 +3,7 @@
 use App\Http\Controllers\API\V1\EquipmentsController;
 use App\Http\Controllers\API\V1\PersonnelController;
 use App\Http\Controllers\API\V1\UserController;
+use App\Http\Controllers\API\V1\DepartmentsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,12 +31,15 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::put('/updateEquipment', [EquipmentsController::class, 'updateEquipment']);
     Route::delete('/removeEquipment', [EquipmentsController::class, 'removeEquipment']);
 
+    //Departments API
+    Route::post('/addDepartment', [DepartmentsController::class, 'addDepartment']);
+    Route::put('/updateDepartment', [DepartmentsController::class, 'updateDepartment']);
+    Route::delete('/removeDepartment', [DepartmentsController::class, 'removeDepartment']);
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
 
 })->prefix('v1');
 
-Route::post('/addUser', [UserController::class, 'addUser'])->prefix("v1");
+Route::post('/addUser', [UserController::class, 'addUser'])->prefix('v1');
 
-Route::post('/login', [UserController::class, 'login'])->prefix("v1");
-
+Route::post('/login', [UserController::class, 'login'])->prefix('v1');

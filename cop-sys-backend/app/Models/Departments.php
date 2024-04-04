@@ -11,6 +11,10 @@ class Departments extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'department_id';
+    
+    public $timestamps = false;
+
 //$table->uuid('department_id');
 //$table->text('department_name');
 //$table->text('department_logo');

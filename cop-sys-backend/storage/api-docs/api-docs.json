@@ -1190,6 +1190,115 @@
                     }
                 }
             }
+        },
+        "/api/addVehicle": {
+            "post": {
+                "tags": [
+                    "Vehicles"
+                ],
+                "summary": "Add a new vehicle",
+                "description": "Add a new vehicle.",
+                "operationId": "e252c925c312a3addee940003b10fd39",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "vehicle_registration": {
+                                        "type": "string"
+                                    },
+                                    "manufacture_name": {
+                                        "type": "string"
+                                    },
+                                    "serie": {
+                                        "type": "string"
+                                    },
+                                    "type": {
+                                        "type": "string"
+                                    },
+                                    "produced_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "purchased_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "registration_date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    },
+                                    "designated_driver": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    },
+                                    "car_picture": {
+                                        "type": "string"
+                                    },
+                                    "car_location": {
+                                        "type": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Vehicle added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vehicle added successfully"
+                                        },
+                                        "vehicle": {
+                                            "$ref": "#/components/schemas/Vehicle"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Database error or server error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Database error: ..."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "components": {
@@ -1314,6 +1423,63 @@
                     "updated_at": {
                         "type": "string",
                         "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "Vehicle": {
+                "title": "Vehicle",
+                "description": "Vehicle model",
+                "properties": {
+                    "vehicle_id": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "123e4567-e89b-12d3-a456-426614174000"
+                    },
+                    "vehicle_registration": {
+                        "type": "string",
+                        "example": "ABC123"
+                    },
+                    "manufacture_name": {
+                        "type": "string",
+                        "example": "Toyota"
+                    },
+                    "serie": {
+                        "type": "string",
+                        "example": "Corolla"
+                    },
+                    "type": {
+                        "type": "string",
+                        "example": "Sedan"
+                    },
+                    "produced_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-01-01"
+                    },
+                    "purchased_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-02-01"
+                    },
+                    "registration_date": {
+                        "type": "string",
+                        "format": "date",
+                        "example": "2023-03-01"
+                    },
+                    "designated_driver": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "123e4567-e89b-12d3-a456-426614174000"
+                    },
+                    "car_picture": {
+                        "type": "string",
+                        "example": "https://example.com/car.jpg"
+                    },
+                    "car_location": {
+                        "type": "string",
+                        "format": "uuid",
+                        "example": "123e4567-e89b-12d3-a456-426614174000"
                     }
                 },
                 "type": "object"

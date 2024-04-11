@@ -68,7 +68,7 @@ class DepartmentsController extends Controller
      *     )
      * )
      */
-    public function addDepartment(Request $request) : JsonResponse
+    public function addDepartment(Request $request): JsonResponse
     {
         try {
             $validator = Validator::make($request->all(), [
@@ -85,12 +85,13 @@ class DepartmentsController extends Controller
             $department = Departments::create($request->all());
 
             return response()->json(['message' => 'Department added successfully', 'department' => $department], 201);
-        }catch (QueryException $e) {
-            return response()->json(['message' => 'Database error: ' . $e->getMessage()], 500);
         } catch (QueryException $e) {
+            return response()->json(['message' => 'Database error: ' . $e->getMessage()], 500);
+        } catch (\Exception $e) {
             return response()->json(['message' => 'An error occurred: ' . $e->getMessage()], 500);
         }
-    } 
+    }
+
 
     /**
      * Update an existing department.
@@ -216,7 +217,7 @@ class DepartmentsController extends Controller
     {
         try {
             $validator = Validator::make($request->all(), [
-                'department_id' => 'required|string', 
+                'department_id' => 'required|string',
             ]);
 
             if ($validator->fails()) {

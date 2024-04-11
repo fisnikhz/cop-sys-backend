@@ -17,6 +17,7 @@
   </component>
   <component name="PhpIncludePathManager">
     <include_path>
+      <path value="$PROJECT_DIR$/cop-sys-backend" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/string" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/guzzlehttp/guzzle" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/yaml" />
@@ -129,6 +130,11 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/guzzlehttp/psr7" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/cache" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/doctrine/annotations" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/darkaonline/l5-swagger" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/swagger-api/swagger-ui" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

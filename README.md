@@ -48,6 +48,7 @@ Within each migration file, schema changes are defined using Laravel's Schema Bu
 
 # Example: Defining schema changes in a migration file
 
+```
 return new class extends Migration
 {
     /**
@@ -71,6 +72,7 @@ return new class extends Migration
         Schema::dropIfExists('roles');
     }
 };
+```
 
 # Executing Migrations:
 
@@ -107,6 +109,7 @@ PHPUnit tests play a crucial role in ensuring the robustness and reliability of 
 
 Let's take a look at an example PHPUnit test for the EquipmentsController:
 
+```
 class EquipmentsControllerTest extends TestCase
 {
     use RefreshDatabase;
@@ -151,6 +154,7 @@ class EquipmentsControllerTest extends TestCase
 
     }
 }
+```
 
 This PHPUnit test validates the addEquipment method of the EquipmentsController. It sets up the test environment, creates mock requests, and asserts the expected behavior of the controller method.
 
@@ -166,13 +170,13 @@ This PHPUnit test validates the addEquipment method of the EquipmentsController.
 
 **Setup**
 
-Clone the repository from GitHub.
-Install Composer dependencies using ``composer install``.
-Configure the database connection in the .env file.
-Run database migrations with ``php artisan migrate``.
-Serve the application with ``php artisan serve``.
+1. Clone the repository from GitHub.
+2. Install Composer dependencies using ``composer install``.
+3. Configure the database connection in the .env file.
+4. Run database migrations with ``php artisan migrate``.
+5. Serve the application with ``php artisan serve``.
 
 **Running Tests**
 
-Ensure PHPUnit is installed.
-Run tests using ``phpunit``.
+1. Ensure PHPUnit is installed.
+2. Run tests using ``phpunit``.

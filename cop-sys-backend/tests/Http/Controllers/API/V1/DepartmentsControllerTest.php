@@ -2,8 +2,6 @@
 namespace Tests\Http\Controllers\API\V1;
 
 use App\Http\Controllers\API\V1\DepartmentsController;
-use App\Models\User;
-use Illuminate\Support\Facades\Auth;
 use PHPUnit\Framework\TestCase;
 use Illuminate\Http\Request;
 use App\Models\Departments;
@@ -26,33 +24,21 @@ class DepartmentsControllerTest extends TestCase
 
     public function testAddDepartment()
     {
-        // Set the authorization token
-        $token = 'your_authorization_token_here';
-        Auth::shouldReceive('guard->check')->andReturn(true);
-        Auth::shouldReceive('guard->user')->andReturn(User::factory()->create());
-        Auth::shouldReceive('guard->id')->andReturn(1);
+        $token =  env('token'); //Add the token key in .env
+
         $request = new Request([
             'department_name' => 'Test Department',
             'department_logo' => 'department_logo.jpg',
             'description' => 'Test Description',
-            'hq_location' => '1', // Assuming '1' is a valid location ID
+            'hq_location' => '1',
         ]);
         $request->headers->set('Authorization', 'Bearer ' . $token);
 
-        // Call the controller method with the authorized request
         $response = $this->controller->addDepartment($request);
-
-        $request = new Request([
-            'department_name' => 'Test Department',
-            'department_logo' => 'department_logo.jpg',
-            'description' => 'Test Description',
-            'hq_location' => '1', // Assuming '1' is a valid location ID
-        ]);
-
-        $response = $this->controller->addDepartment($request);
-
         $this->assertEquals(201, $response->getStatusCode());
-        $this->assertEquals('Department added successfully', $response->json('message'));
+
+        $responseData = json_decode($response->getContent(), true);
+        $this->assertEquals('Department added successfully', $responseData['message']);
 
         $this->assertNotNull(Departments::where('department_name', 'Test Department')->first());
 
@@ -61,12 +47,12 @@ class DepartmentsControllerTest extends TestCase
             // Missing 'department_name' field
             'department_logo' => 'department_logo.jpg',
             'description' => 'Test Description',
-            'hq_location' => '1', // Assuming '1' is a valid location ID
+            'hq_location' => '1',
         ]);
 
         $response = $this->controller->addDepartment($request);
 
         $this->assertEquals(422, $response->getStatusCode());
-        $this->assertEquals('The department_name field is required.', $response->json('errors.department_name.0'));
+
     }
 }

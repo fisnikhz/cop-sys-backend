@@ -82,7 +82,7 @@ class PersonnelController extends Controller
                 'badge_number' => 'required|string',
                 'hire_date' => 'required|date',
                 'profile_image' => 'nullable|string',
-                'role' => 'required|exists:roles,role_id',
+                'role' => 'required',
             ]);
 
             if ($validator->fails()) {

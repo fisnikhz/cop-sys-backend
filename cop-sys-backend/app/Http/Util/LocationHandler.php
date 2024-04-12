@@ -4,13 +4,14 @@ namespace App\Http\Util;
 
 
 use App\Models\Location;
+use function PHPUnit\Framework\isNull;
 
 class LocationHandler
 {
 
    public function handle($location_id,$location_name,$longitude,$latitude,$radius): String
     {
-        if (!$location_id.isEmptyOrNullString()) {
+        if (is_null($location_id)) {
             $location = new Location();
             $location->name = $location_name;
             $location->longitude = $longitude;

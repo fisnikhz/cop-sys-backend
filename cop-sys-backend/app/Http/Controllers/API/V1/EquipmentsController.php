@@ -68,7 +68,7 @@ class EquipmentsController extends Controller
     public function addEquipment(Request $request) : JsonResponse
     {
         try {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 'name' => 'required|string',
                 'quantity' => 'required|int',
                 'description' => 'string',
@@ -78,6 +78,9 @@ class EquipmentsController extends Controller
                 'latitude' => 'string',
                 'radius' => 'int'
             ]);
+            if ($validator->fails()) {
+                return response()->json(['errors' => $validator->errors()], 422);
+            }
 
             $locationHandler = new LocationHandler();
 

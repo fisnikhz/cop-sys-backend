@@ -5,6 +5,7 @@
       <tool tool_name="PHPUnit">
         <cache>
           <versions>
+            <info id="Local/Users/fisnikhazrolli/Desktop/COP/cop-sys/cop-sys-backend/vendor/autoload.php" version="10.5.12" />
             <info id="Local/Users/fisnikhazrolli/Documents/GitHub/FIEK/cop-sys-backend/cop-sys-backend/vendor/autoload.php" version="10.5.17" />
           </versions>
         </cache>

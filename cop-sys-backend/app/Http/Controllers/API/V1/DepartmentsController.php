@@ -5,7 +5,7 @@ namespace App\Http\Controllers\API\V1;
 use App\Http\Controllers\API\APIController;
 use App\Http\Requests\API\V1\Department\CreateDepartmentRequest;
 use App\Http\Requests\API\V1\Department\UpdateDepartmentRequest;
-use App\Http\Resources\DepartmentsResource;
+use App\Http\Resources\API\V1\DepartmentsResource;
 use App\Models\Departments;
 use Illuminate\Http\JsonResponse;
 

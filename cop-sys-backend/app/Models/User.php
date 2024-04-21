@@ -15,25 +15,7 @@ class User extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable, HasUuids;
     protected $primaryKey = 'user_id';
 
-
-    /**
-     * The attributes that are mass assignable.
-     *
-//     * @var array<int, string>
-     */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'salt',
-        'username',
-        'device_id',
-        'profile_image',
-        'role',
-        'personnel_id',
-    ];
-
-
+    protected $guarded = [];
     public function personnel():HasOne
     {
         return $this->hasOne(Personnel::class, 'personnel_id','personnel_id');
@@ -45,11 +27,7 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id','role');
     }
 
-    /**
-     * The attributes that should be hidden for serialization.
-//     *
-//     * @var array<int, string>
-//     */
+
 //    protected $hidden = [
 //        'password',
 //        'remember_token',

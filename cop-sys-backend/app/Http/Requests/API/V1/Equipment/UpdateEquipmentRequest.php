@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests\API\V1\Equipment;
 
+use App\Http\Requests\API\APIRequest;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateEquipmentRequest extends FormRequest
+class UpdateEquipmentRequest extends APIRequest
 {
     public function authorize(): bool
     {

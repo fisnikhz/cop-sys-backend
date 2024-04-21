@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\API\APIController;
 use App\Http\Requests\API\V1\Equipment\CreateEquipmentRequest;
+use App\Http\Requests\API\V1\Equipment\UpdateEquipmentRequest;
 use App\Http\Resources\API\V1\EquipmentsResource;
 use App\Http\Util\LocationHandler;
 use App\Models\Equipment;
@@ -21,7 +22,7 @@ class EquipmentsController extends APIController
         return $this->respondWithSuccess(EquipmentsResource::make($equipmentData));
     }
 
-    public function updateEquipment(Request $request, Equipment $equipment): JsonResponse
+    public function updateEquipment(UpdateEquipmentRequest $request, Equipment $equipment): JsonResponse
     {
         $data = $request->validated();
 

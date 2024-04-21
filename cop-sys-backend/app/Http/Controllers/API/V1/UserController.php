@@ -41,7 +41,6 @@ class UserController extends APIController
             ->orWhere('username', $data['username'])
             ->first();
 
-
         if ($existingUser) {
             return $this->respondWithError(__('auth.failed'), __('app.register.failed'));
         }

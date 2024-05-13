@@ -12,16 +12,8 @@ class Departments extends Model
     use HasFactory,HasUuids;
 
     protected $primaryKey = 'department_id';
-    
-    public $timestamps = false;
 
-//$table->uuid('department_id');
-//$table->text('department_name');
-//$table->text('department_logo');
-//$table->text('description');
-//$table->uuid('hq_location');
-//$table->primary('department_id');
-//$table->foreign('hq_location')->references('location_id')->on('Locations');
+    public $timestamps = false;
 
     protected $fillable = [
         'department_name',

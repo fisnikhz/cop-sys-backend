@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->group(function (){
+Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api.'], function () {
 
 
     //Personnel API
@@ -38,21 +38,25 @@ Route::middleware('auth:sanctum')->group(function (){
     Route::post('/addDepartment', [DepartmentsController::class, 'addDepartment']);
     Route::put('/updateDepartment', [DepartmentsController::class, 'updateDepartment']);
     Route::delete('/removeDepartment', [DepartmentsController::class, 'removeDepartment']);
-  
-  
+
+
     //Vehicles API
     Route::post('/addVehicle', [VehiclesController::class, 'addVehicle']);
     Route::put('/updateVehicle', [VehiclesController::class, 'updateVehicle']);
     Route::delete('/removeVehicle', [VehiclesController::class, 'removeVehicle']);
-  
+
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
 
-})->prefix('v1');
+});
 
-Route::post('/addUser', [UserController::class, 'addUser'])->prefix('v1');
+Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
 
-Route::post('/login', [UserController::class, 'login'])->prefix('v1');
+    Route::post('/register', [UserController::class, 'register']);
+
+    Route::post('/login', [UserController::class, 'login']);
+
+});
 
 
-Route::post('/login', [UserController::class, 'login'])->prefix('v1');
+//Route::post('/login', [UserController::class, 'login'])->prefix('v1');

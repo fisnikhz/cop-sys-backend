@@ -39,4 +39,13 @@ class VehiclesController extends APIController
         return $this->respondWithSuccess(null, __('app.vehicle.deleted'));
     }
 
+    public function getVehicle(Int $vehicle): JsonResponse{
+
+        return $this->respondWithSuccess(Vehicle::find($vehicle)->firstOrFail);
+    }
+    public function getAllVehicles(): JsonResponse{
+
+        return $this->respondWithSuccess(Vehicle::all());
+    }
+
 }

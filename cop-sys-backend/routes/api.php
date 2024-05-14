@@ -27,26 +27,36 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
     Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
     Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
+    Route::get('/getPersonnel', [PersonnelController::class, 'getPersonnel']);
+    Route::get('/getAllPersonnel', [PersonnelController::class, 'getAllPersonnel']);
 
 
     //Equipments API
     Route::post('/addEquipment', [EquipmentsController::class, 'addEquipment']);
     Route::put('/updateEquipment', [EquipmentsController::class, 'updateEquipment']);
     Route::delete('/removeEquipment', [EquipmentsController::class, 'removeEquipment']);
+    Route::get('/getEquipment', [EquipmentsController::class, 'getEquipment']);
+    Route::get('/getAllEquipment', [EquipmentsController::class, 'getAllEquipment']);
 
     //Departments API
     Route::post('/addDepartment', [DepartmentsController::class, 'addDepartment']);
     Route::put('/updateDepartment', [DepartmentsController::class, 'updateDepartment']);
     Route::delete('/removeDepartment', [DepartmentsController::class, 'removeDepartment']);
+    Route::get('/getDepartment', [DepartmentsController::class, 'getDepartment']);
+    Route::get('/getAllDepartments', [DepartmentsController::class, 'getAllDepartments']);
 
-
+    
     //Vehicles API
     Route::post('/addVehicle', [VehiclesController::class, 'addVehicle']);
     Route::put('/updateVehicle', [VehiclesController::class, 'updateVehicle']);
     Route::delete('/removeVehicle', [VehiclesController::class, 'removeVehicle']);
+    Route::get('/getVehicle',[VehiclesController::class, 'getVehicle']);
+    Route::get('.getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
 
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
+
+
 
 });
 

@@ -7,6 +7,7 @@ use App\Http\Requests\API\V1\Personnel\CreatePersonnelRequest;
 use App\Http\Requests\API\V1\Personnel\UpdatePersonnelRequest;
 use App\Http\Resources\API\V1\PersonnelsResource;
 use App\Models\Personnel;
+use Faker\Provider\Person;
 use Illuminate\Http\JsonResponse;
 
 class PersonnelController extends APIController
@@ -36,5 +37,14 @@ class PersonnelController extends APIController
         $personnel->delete();
 
         return $this->respondWithSuccess(null, __('app.personnel.deleted'));
+    }
+
+    public function getPersonnel(Int $personnel): JsonResponse{
+
+        return $this->respondWithSuccess(Personnel::find($personnel)->firstOrFail);
+    }
+    public function getAllPersonnel(): JsonResponse{
+
+        return $this->respondWithSuccess(Personnel::all());
     }
 }

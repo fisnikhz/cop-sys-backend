@@ -39,4 +39,13 @@ class EquipmentsController extends APIController
 
         return $this->respondWithSuccess(null, __('app.equipment.deleted'));
     }
+
+    public function getEquipment(Int $equipment): JsonResponse{
+
+        return $this->respondWithSuccess(Equipment::find($equipment)->firstOrFail);
+    }
+    public function getAllEquipment(): JsonResponse{
+
+        return $this->respondWithSuccess(Equipment::all());
+    }
 }

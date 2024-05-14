@@ -48,4 +48,13 @@ class DepartmentsController extends APIController
 
         return $this->respondWithSuccess(null, __('app.department.deleted'));
     }
+
+    public function getDepartment(Int $department): JsonResponse{
+
+        return $this->respondWithSuccess(Departments::find($department)->firstOrFail);
+    }
+    public function getAllDepartments(): JsonResponse{
+
+        return $this->respondWithSuccess(Departments::all());
+    }
 }

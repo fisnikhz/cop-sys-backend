@@ -25,9 +25,9 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
     //Personnel API
     Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
-    Route::put('/updatePersonnel', [PersonnelController::class, 'updatePersonnel']);
-    Route::delete('/removePersonnel', [PersonnelController::class, 'removePersonnel']);
-    Route::get('/getPersonnel', [PersonnelController::class, 'getPersonnel']);
+    Route::put('/updatePersonnel/{personnel}', [PersonnelController::class, 'updatePersonnel']);
+    Route::delete('/removePersonnel/{personnel}', [PersonnelController::class, 'removePersonnel']);
+    Route::get('/getPersonnel/{personnel}', [PersonnelController::class, 'getPersonnel']);
     Route::get('/getAllPersonnel', [PersonnelController::class, 'getAllPersonnel']);
 
 
@@ -45,7 +45,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getDepartment', [DepartmentsController::class, 'getDepartment']);
     Route::get('/getAllDepartments', [DepartmentsController::class, 'getAllDepartments']);
 
-    
+
     //Vehicles API
     Route::post('/addVehicle', [VehiclesController::class, 'addVehicle']);
     Route::put('/updateVehicle', [VehiclesController::class, 'updateVehicle']);

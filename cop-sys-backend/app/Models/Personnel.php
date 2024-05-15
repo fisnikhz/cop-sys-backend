@@ -23,6 +23,7 @@ class Personnel extends Model
         'hire_date',
         'profile_image',
         'role',
+        'salary',
     ];
 
     public function role(): HasOne

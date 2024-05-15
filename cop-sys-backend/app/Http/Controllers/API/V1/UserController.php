@@ -16,13 +16,13 @@ class UserController extends APIController
     {
         $user = User::query()->where('username', $request->username)->first();
 
-        if (!$user || !Hash::check($request->password, $user->password)) {
+        if (!$user || !Hash::check($request->password . $user->salt, $user->password)) {
             return $this->respondWithError(__('auth.failed'), __('app.login.failed'));
         }
 
         $response = [
             'token' => $user->createToken('auth_token')->plainTextToken,
-            'user' => $user->makeHidden('password'),
+            'user' => $user->makeHidden('password','salt'),
         ];
 
         return $this->respondWithSuccess($response, __('app.login.success'));
@@ -48,7 +48,7 @@ class UserController extends APIController
         $user = User::create($data);
 
         $response = [
-            'user' => $user->makeHidden('password'),
+            'user' => $user->makeHidden('password','salt'),
         ];
 
         return $this->respondWithSuccess($response, __('app.success'), 201);

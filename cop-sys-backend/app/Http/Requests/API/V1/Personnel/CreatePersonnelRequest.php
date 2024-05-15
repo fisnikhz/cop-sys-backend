@@ -18,7 +18,7 @@ class CreatePersonnelRequest extends APIRequest
             'last_name' => 'required|string',
             'rank' => 'required|string',
             'badge_number' => 'required|string',
-            'hire_date' => 'required|date',
+            'hire_date' => 'date',
             'profile_image' => 'nullable|string',
             'role' => 'required|exists:roles,role_id',
         ];

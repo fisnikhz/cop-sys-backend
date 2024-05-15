@@ -25,7 +25,7 @@ class PersonnelController extends APIController
     {
         $data = $request->validated();
 
-        $personnel = Personnel::find($personnel->id)->firstOrFail();
+        $personnel = Personnel::find($personnel->personnel_id)->firstOrFail();
 
         $personnel->update($data);
 
@@ -39,9 +39,9 @@ class PersonnelController extends APIController
         return $this->respondWithSuccess(null, __('app.personnel.deleted'));
     }
 
-    public function getPersonnel(Int $personnel): JsonResponse{
+    public function getPersonnel(Personnel $personnel): JsonResponse{
 
-        return $this->respondWithSuccess(Personnel::find($personnel)->firstOrFail);
+        return $this->respondWithSuccess($personnel);
     }
     public function getAllPersonnel(): JsonResponse{
 

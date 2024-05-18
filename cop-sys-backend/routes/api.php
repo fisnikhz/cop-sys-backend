@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\UserController;
 
 use App\Http\Controllers\API\V1\DepartmentsController;
 use App\Http\Controllers\API\V1\VehiclesController;
+use App\Http\Controllers\API\V1\LocationController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -52,6 +53,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeVehicle', [VehiclesController::class, 'removeVehicle']);
     Route::get('/getVehicle',[VehiclesController::class, 'getVehicle']);
     Route::get('.getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
+
+
+    //Location API
+    Route::post('/addLocation', [LocationController::class, 'addLocation']);
+    Route::put('/updateLocation', [LocationController::class, 'updateLocation']);
+    Route::delete('/removeLocation', [LocationController::class, 'removeLocation']);
+    Route::get('/getLocation',[LocationController::class, 'getLocation']);
+    Route::get('.getAllLocations',[LocationController::class, 'getAllLocation']);
 
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);

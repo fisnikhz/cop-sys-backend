@@ -11,12 +11,17 @@ class EmergencyCall extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'call_id';
+    
+    public $timestamps = false;
 
     protected $fillable = [
         'caller_name',
         'phone_number',
+        'incident_type',
         'location',
-        'responder',
+        'time',
+        'responder'
     ];
 
     public function location(): HasOne

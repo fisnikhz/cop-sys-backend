@@ -51,13 +51,40 @@ class NewsController extends APIController
 
     public function allNews(): JsonResponse
     {
-        $news = News::all();
+        $news = News::orderBy('created_at', 'desc')->paginate(12);
 
         return $this->respondWithSuccess(NewsResource::collection($news));
     }
+//    public function allNews(): JsonResponse
+//    {
+//        $perPage = 8;
+//        $news = News::orderBy('created_at', 'desc')->get();
+//
+//        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+//        $currentItems = $news->slice(($currentPage - 1) * $perPage, $perPage);
+//        $paginator = new LengthAwarePaginator($currentItems, $news->count(), $perPage, $currentPage, [
+//            'path' => LengthAwarePaginator::resolveCurrentPath(),
+//        ]);
+//
+//        return $this->respondWithSuccess(
+//            NewsResource::collection($paginator),
+//            ['pagination' => $paginator]
+//        );
+//    }
 
     public function viewNews(News $news): JsonResponse
     {
+        $news->increment('views');
+
+        $news->refresh();
+
         return $this->respondWithSuccess(new NewsResource($news));
+    }
+
+    public function getTopViewedNews(): JsonResponse
+    {
+        $topNews = News::orderBy('views', 'desc')->take(3)->get();
+
+        return $this->respondWithSuccess(NewsResource::collection($topNews));
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\CasesController;
 use App\Http\Controllers\API\V1\DepartmentsController;
 use App\Http\Controllers\API\V1\VehiclesController;
+use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
 
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,13 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeVehicle', [VehiclesController::class, 'removeVehicle']);
     Route::get('/getVehicle',[VehiclesController::class, 'getVehicle']);
     Route::get('.getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
+
+    //EmergencyCall API
+    Route::post('/addEmergencyCall', [EmergencyCallController::class, 'addEmergencyCall']);
+    Route::put('/updateEmergencyCall', [EmergencyCallController::class, 'updateEmergencyCall']);
+    Route::delete('/removeEmergencyCall', [EmergencyCallController::class, 'removeEmergencyCall']);
+    Route::get('/getEmergencyCall',[EmergencyCallController::class, 'getEmergencyCall']);
+    Route::get('.getAllEmergencyCalls',[EmergencyCallController::class, 'getAllEmergencyCalls']);
 
 
     //Location API

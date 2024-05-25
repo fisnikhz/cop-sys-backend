@@ -3,7 +3,7 @@
 use App\Http\Controllers\API\V1\EquipmentsController;
 use App\Http\Controllers\API\V1\PersonnelController;
 use App\Http\Controllers\API\V1\UserController;
-
+use App\Http\Controllers\API\V1\CasesController;
 use App\Http\Controllers\API\V1\DepartmentsController;
 use App\Http\Controllers\API\V1\VehiclesController;
 use App\Http\Controllers\API\V1\LocationController;
@@ -61,6 +61,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeLocation', [LocationController::class, 'removeLocation']);
     Route::get('/getLocation',[LocationController::class, 'getLocation']);
     Route::get('.getAllLocations',[LocationController::class, 'getAllLocation']);
+  
+    //Cases API
+    Route::post('/addCase', [CasesController::class, 'addCase']);
+    Route::put('/updateCase', [CasesController::class, 'updateCase']);
+    Route::delete('/removeCase', [CasesController::class, 'removeCase']);
+    Route::get('/getCase',[CasesController::class, 'getCase']);
+    Route::get('.getAllCases',[CasesController::class, 'getAllCases']);
+
 
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);

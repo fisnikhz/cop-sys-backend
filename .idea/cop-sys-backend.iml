@@ -120,6 +120,8 @@
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/webmozart/assert" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/setasign/fpdf" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/setasign/fpdi" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

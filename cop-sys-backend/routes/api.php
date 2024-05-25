@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\API\V1\CampaignController;
 use App\Http\Controllers\API\V1\EquipmentsController;
 use App\Http\Controllers\API\V1\NewsController;
 use App\Http\Controllers\API\V1\PersonnelController;
@@ -57,10 +58,16 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
 
+    //News API
     Route::post('news', [NewsController::class, 'addNews'])->name('news.add');
     Route::put('news/{news}', [NewsController::class, 'updateNews'])->name('news.update');
     Route::delete('news/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
 
+    //Campaign API
+    Route::post('campaigns', [CampaignController::class, 'addCampaign']);
+    Route::put('campaigns/{campaign}', [CampaignController::class, 'updateCampaign']);
+    Route::delete('campaigns/{campaign}', [CampaignController::class, 'removeCampaign']);
+    Route::get('campaigns/{campaign}', [CampaignController::class, 'viewCampaign']);
 
 });
 
@@ -73,6 +80,8 @@ Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
     Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
     Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
     Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
+    Route::get('campaigns', [CampaignController::class, 'allCampaigns']);
+
 
 
 

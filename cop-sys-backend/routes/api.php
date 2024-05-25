@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\NewsController;
 use App\Http\Controllers\API\V1\PersonnelController;
 use App\Http\Controllers\API\V1\UserController;
 
@@ -56,6 +57,10 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
     Route::post('/addNewUser', [UserController::class, 'addUser']);
 
+    Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
+    Route::post('news', [NewsController::class, 'addNews'])->name('news.add');
+    Route::put('news/{news}', [NewsController::class, 'updateNews'])->name('news.update');
+    Route::delete('news/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
 
 
 });
@@ -65,6 +70,9 @@ Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
     Route::post('/register', [UserController::class, 'register']);
 
     Route::post('/login', [UserController::class, 'login']);
+
+    Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
+
 
 });
 

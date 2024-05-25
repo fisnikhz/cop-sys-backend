@@ -5,18 +5,26 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\HasMedia;
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class News extends Model
+class News extends Model implements HasMedia
 {
-    use HasFactory,HasUuids;
+    use HasFactory,HasUuids, InteractsWithMedia;
 
-    protected $fillable = [
-        'news_id',
-        'post_title',
-        'thumbnail',
-        'description',
-        'tags'
+    protected $primaryKey = 'news_id';
+
+    protected $guarded = [];
+
+    protected $casts = [
+        'tags' => 'array',
     ];
+
+    public function registerMediaConversions(Media $media = null): void
+    {
+        $this->addMediaConversion('news');
+    }
 
 
 }

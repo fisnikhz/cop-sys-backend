@@ -10,6 +10,7 @@ use App\Http\Controllers\API\V1\VehiclesController;
 use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
 use App\Http\Controllers\API\V1\AttendanceController;
+use App\Http\Controllers\API\V1\RolesController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -104,6 +105,12 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getUserProfile/{user}', [UserController::class, 'getUserProfile']);
     Route::post('/changePassword', [UserController::class, 'changePassword']);
 
+    //Roles API
+    Route::post('/addRole', [RolesController::class, 'addRole']);
+    Route::put('/updateRole/{role}', [RolesController::class, 'updateRole']);
+    Route::delete('/removeRole/{role}', [RolesController::class, 'removeRole']);
+    Route::get('/getRole/{role}',[RolesController::class, 'getRole']);
+    Route::get('/getAllRoles',[RolesController::class, 'getAllRoles']);
 
 
 });

@@ -15,6 +15,7 @@ use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
 use App\Http\Controllers\API\V1\AttendanceController;
 use App\Http\Controllers\API\V1\RolesController;
+use App\Http\Controllers\API\V1\TicketsController;
 use App\Http\Controllers\API\V1\PersonController;
 
 
@@ -138,12 +139,21 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/conversations/{conversation}/messages', [MessageController::class, 'index']);
     Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store']);
 
-      //Person API
-      Route::post('/addPerson', [PersonController::class, 'addPerson']);
-      Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
-      Route::delete('/removePerson/{person}', [PersonController::class, 'removePerson']);
-      Route::get('/getPerson/{person}',[PersonController::class, 'getPerson']);
-      Route::get('/getAllPersons',[PersonController::class, 'getAllPersons']);
+
+    //Tickets API
+    Route::post('/addTicket', [TicketsController::class, 'addTicket']);
+    Route::put('/updateTicket/{ticket}', [TicketsController::class, 'updateTicket']);
+    Route::delete('/removeTicket/{ticket}', [TicketsController::class, 'removeTicket']);
+    Route::get('/getTicket/{ticket}',[TicketsController::class, 'getTicket']);
+    Route::get('/getAllTickets',[TicketsController::class, 'getAllTickets']);
+  
+  
+    //Person API
+    Route::post('/addPerson', [PersonController::class, 'addPerson']);
+    Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
+    Route::delete('/removePerson/{person}', [PersonController::class, 'removePerson']);
+    Route::get('/getPerson/{person}',[PersonController::class, 'getPerson']);
+    Route::get('/getAllPersons',[PersonController::class, 'getAllPersons']);
 
 });
 

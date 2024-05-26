@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
 
 class Ticket extends Model
 {
-    use HasFactory;
-
+    use HasFactory,HasUuids;
 
     protected $primaryKey = 'ticket_id';
 
@@ -16,20 +16,19 @@ class Ticket extends Model
 
 
     protected $fillable = [
-        'ticket_id',
         'description',
         'title',
-        'vehicle',
-        'person',
+        // 'vehicle',
+        // 'person',
     ];
 
-    public function vehicle()
-    {
-        return $this->hasOne(Vehicle::class, 'vehicle', 'vehicle_id');
-    }
+    // public function vehicle()
+    // {
+    //     return $this->hasOne(Vehicle::class, 'vehicle', 'vehicle_id');
+    // }
 
-    public function person()
-    {
-        return $this->hasOne(Person::class, 'person', 'person_id');
-    }
+    // public function person()
+    // {
+    //     return $this->hasOne(Person::class, 'person', 'person_id');
+    // }
 }

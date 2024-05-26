@@ -16,6 +16,7 @@ use App\Http\Controllers\API\V1\LocationController;
 use App\Http\Controllers\API\V1\AttendanceController;
 use App\Http\Controllers\API\V1\RolesController;
 use App\Http\Controllers\API\V1\TicketsController;
+use App\Http\Controllers\API\V1\PersonController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -145,6 +146,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeTicket/{ticket}', [TicketsController::class, 'removeTicket']);
     Route::get('/getTicket/{ticket}',[TicketsController::class, 'getTicket']);
     Route::get('/getAllTickets',[TicketsController::class, 'getAllTickets']);
+  
+  
+    //Person API
+    Route::post('/addPerson', [PersonController::class, 'addPerson']);
+    Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
+    Route::delete('/removePerson/{person}', [PersonController::class, 'removePerson']);
+    Route::get('/getPerson/{person}',[PersonController::class, 'getPerson']);
+    Route::get('/getAllPersons',[PersonController::class, 'getAllPersons']);
 
 });
 

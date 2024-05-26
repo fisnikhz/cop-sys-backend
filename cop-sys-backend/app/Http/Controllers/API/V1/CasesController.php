@@ -10,7 +10,7 @@ use App\Models\Cases;
 use Illuminate\Http\JsonResponse;
 
 
-class CasesController extends APIController 
+class CasesController extends APIController
 {
     public function addCase(CreateCaseRequest $request): JsonResponse
     {
@@ -25,7 +25,7 @@ class CasesController extends APIController
     {
         $data = $request->validated();
 
-        $case = Cases::find($case->id)->firstOrFail();
+        $case = Cases::find($case->case_id)->firstOrFail();
 
         $case->update($data);
 

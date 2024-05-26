@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\API\APIController;
+use App\Http\Requests\API\V1\Auth\ChangePasswordRequest;
 use App\Http\Requests\API\V1\Auth\LoginRequest;
 use App\Http\Requests\API\V1\Auth\RegisterRequest;
+use App\Models\Personnel;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
@@ -53,4 +56,33 @@ class UserController extends APIController
 
         return $this->respondWithSuccess($response, __('app.success'), 201);
     }
+    public function getUserProfile(User $user): JsonResponse
+    {
+        return $this->respondWithSuccess($user);
+    }
+
+    public function changePassword(ChangePasswordRequest $request): JsonResponse
+    {
+        $data = $request->validated();
+
+        $user = Auth::user();
+
+        if (!Hash::check($data['current_password'] . $user->salt, $user->password)) {
+            return $this->respondWithError(__('auth.failed'), __('app.register.failed'));
+        }
+
+        $newSalt = Str::random(12);
+
+        // Hash the new password with the new salt
+        $newHashedPassword = Hash::make($data['new_password'] . $newSalt);
+
+        // Update user's password and salt
+        $user->password = $newHashedPassword;
+        $user->salt = $newSalt;
+        $user->save();
+
+        return $this->respondWithSuccess(__('app.success'), 200);
+
+    }
+
 }

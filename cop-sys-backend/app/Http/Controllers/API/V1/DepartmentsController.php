@@ -7,6 +7,7 @@ use App\Http\Requests\API\V1\Department\CreateDepartmentRequest;
 use App\Http\Requests\API\V1\Department\UpdateDepartmentRequest;
 use App\Http\Resources\API\V1\DepartmentsResource;
 use App\Models\Departments;
+use App\Models\Equipment;
 use Illuminate\Http\JsonResponse;
 
 
@@ -29,13 +30,11 @@ class DepartmentsController extends APIController
         return $this->respondWithSuccess(DepartmentsResource::make($departmentData));
     }
 
-    public function updateDepartment(UpdateDepartmentRequest $request) : JsonResponse
+    public function updateDepartment(UpdateDepartmentRequest $request, Departments $department) : JsonResponse
     {
         $data = $request->validated();
 
-        $department = Departments::where('department_name', $data['department_name'])
-            ->where('hq_location', $data['hq_location'])
-            ->firstOrFail();
+        $department = Departments::find($department->department_id)->firstOrFail();
 
         $department->update($data);
 

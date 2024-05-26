@@ -17,7 +17,7 @@ class CreateEmergencyCallRequest extends APIRequest
             'caller_name' => 'required|string',
             'phone_number' => 'required|string',
             'incident_type' => 'required|string',
-            'location' => 'required|exists:locations,location_id',
+//            'location' => 'required|exists:locations,location_id',
             'time' => 'date',
             'responder' => 'required|exists:personnels,personnel_id',
         ];

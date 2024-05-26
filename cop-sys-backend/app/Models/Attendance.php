@@ -19,6 +19,9 @@ class Attendance extends Model
 //$table->boolean('missed_entry')->default('false');
 //$table->foreign('personnel_id')->references('personnel_id')->on('Personnels');
 
+    protected $primaryKey = 'attendance_id';
+
+    public $timestamps = false;
 
     protected $fillable = [
         'personnel_id',

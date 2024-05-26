@@ -8,6 +8,8 @@ use App\Http\Controllers\API\V1\DepartmentsController;
 use App\Http\Controllers\API\V1\VehiclesController;
 use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
+use App\Http\Controllers\API\V1\AttendanceController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -72,12 +74,21 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getAllLocations',[LocationController::class, 'getAllLocation']);
 
 
+    //Attendance API
+    Route::post('/addAttendance', [AttendanceController::class, 'addAttendance']);
+    Route::put('/updateAttendance/{attendance}', [AttendanceController::class, 'updateAttendance']);
+    Route::delete('/removeAttendance/{attendance}', [AttendanceController::class, 'removeAttendance']);
+    Route::get('/getAttendance/{attendance}',[AttendanceController::class, 'getAttendance']);
+    Route::get('.getAllAttendances',[AttendanceController::class, 'getAllAttendances']);
+  
+  
     //Cases API
     Route::post('/addCase', [CasesController::class, 'addCase']);
     Route::put('/updateCase/{case}', [CasesController::class, 'updateCase']);
     Route::delete('/removeCase/{case}', [CasesController::class, 'removeCase']);
     Route::get('/getCase/{case}',[CasesController::class, 'getCase']);
     Route::get('/getAllCases',[CasesController::class, 'getAllCases']);
+  
 
     //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);

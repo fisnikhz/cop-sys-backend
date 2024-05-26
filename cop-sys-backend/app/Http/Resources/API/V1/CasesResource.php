@@ -11,7 +11,7 @@ class CasesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'id' => $this->case_id,
             'status' => $this->status,
             'open_date' => $this->open_date,
             'close_date' => $this->close_date,

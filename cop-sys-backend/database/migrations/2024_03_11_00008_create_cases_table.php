@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('status');
             $table->datetime('open_date');
             $table->datetime('close_date')->nullable();
-            $table->foreignUuid('investigator_id')->constrained('Personnels','personnel_id');;
+            $table->foreignUuid('investigator_id')->constrained('Personnels','personnel_id');
             $table->json('incidents_id');
         });
     }

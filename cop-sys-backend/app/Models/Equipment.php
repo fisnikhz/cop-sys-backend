@@ -20,12 +20,12 @@ class Equipment extends Model
         'name',
         'quantity',
         'description',
-        'location_id',
+//        'location_id',
     ];
 
-    public function location(): HasOne
-    {
-        return $this->hasOne(Location::class, 'location_id', 'location');
-    }
+//    public function location(): HasOne
+//    {
+//        return $this->hasOne(Location::class, 'location_id', 'location');
+//    }
 
 }

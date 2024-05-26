@@ -17,7 +17,7 @@ class UpdateDepartmentRequest extends APIRequest
             'department_name' => 'string',
             'department_logo' => 'string',
             'description' => 'string',
-            'hq_location' => 'exists:locations,location_id',
+//            'hq_location' => 'exists:locations,location_id',
         ];
     }
 }

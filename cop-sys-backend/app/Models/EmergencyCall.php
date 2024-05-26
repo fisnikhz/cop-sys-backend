@@ -12,22 +12,22 @@ class EmergencyCall extends Model
     use HasFactory,HasUuids;
 
     protected $primaryKey = 'call_id';
-    
+
     public $timestamps = false;
 
     protected $fillable = [
         'caller_name',
         'phone_number',
         'incident_type',
-        'location',
+//        'location',
         'time',
         'responder'
     ];
 
-    public function location(): HasOne
-    {
-        return $this->hasOne(Location::class, 'location_id','location');
-    }
+//    public function location(): HasOne
+//    {
+//        return $this->hasOne(Location::class, 'location_id','location');
+//    }
     public function responder():HasOne{
         return $this->hasOne(Personnel::class, 'personnel_id','responder');
     }

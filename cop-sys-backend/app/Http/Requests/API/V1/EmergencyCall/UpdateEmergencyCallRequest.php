@@ -17,7 +17,7 @@ class UpdateEmergencyCallRequest extends APIRequest
             'caller_name' => 'required|string',
             'phone_number' => 'required|string',
             'incident_type' => 'required|string',
-            'location' => 'exists:locations,location_id|nullable',
+//            'location' => 'exists:locations,location_id|nullable',
             'time' => 'required|date',
             'responder' => 'exists:personnels,personnel_id|nullable'
         ];

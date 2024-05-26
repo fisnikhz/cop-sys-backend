@@ -23,7 +23,7 @@ class CreateVehicleRequest extends APIRequest
             'registration_date' => 'required|date',
             'designated_driver' => 'required|exists:personnels,personnel_id',
             'car_picture' => 'string',
-            'car_location' => 'exists:locations,location_id',
+//            'car_location' => 'exists:locations,location_id',
         ];
     }
 }

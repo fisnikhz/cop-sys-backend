@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\IncidentsController;
 use App\Http\Controllers\API\V1\PersonnelController;
 use App\Http\Controllers\API\V1\UserController;
 use App\Http\Controllers\API\V1\CasesController;
@@ -89,6 +90,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getCase/{case}',[CasesController::class, 'getCase']);
     Route::get('/getAllCases',[CasesController::class, 'getAllCases']);
   
+
+
+    //Incidents API
+    Route::post('/addIncident', [IncidentsController::class, 'addIncident']);
+    Route::put('/updateIncident/{incident}', [IncidentsController::class, 'updateIncident']);
+    Route::delete('/removeIncident/{incident}', [IncidentsController::class, 'removeIncident']);
+    Route::get('/getIncident/{incident}',[IncidentsController::class, 'getIncident']);
+    Route::get('/getAllIncidents',[IncidentsController::class, 'getAllIncidents']);
 
     //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);

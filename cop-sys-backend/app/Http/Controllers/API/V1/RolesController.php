@@ -39,9 +39,9 @@ class RolesController extends APIController
         return $this->respondWithSuccess(null, __('app.role.deleted'));
     }
 
-    public function getRole(Int $role): JsonResponse{
+    public function getRole(Role $role): JsonResponse{
 
-        return $this->respondWithSuccess(Role::find($role)->firstOrFail);
+        return $this->respondWithSuccess($role);
     }
     public function getAllRoles(): JsonResponse{
 

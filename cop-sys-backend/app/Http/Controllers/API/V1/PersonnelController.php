@@ -21,11 +21,11 @@ class PersonnelController extends APIController
         return $this->respondWithSuccess(PersonnelsResource::make($personnelData));
     }
 
-    public function updatePersonnel(UpdatePersonnelRequest $request, Personnel $personnel): JsonResponse
+    public function updatePersonnel(UpdatePersonnelRequest $request, $personnel): JsonResponse
     {
         $data = $request->validated();
 
-        $personnel = Personnel::find($personnel->personnel_id)->firstOrFail();
+        $personnel = Personnel::find($personnel);
 
         $personnel->update($data);
 
@@ -41,10 +41,14 @@ class PersonnelController extends APIController
 
     public function getPersonnel(Personnel $personnel): JsonResponse{
 
+        $personnel = Personnel::with('role')->findOrFail($personnel->personnel_id);
+
         return $this->respondWithSuccess($personnel);
     }
     public function getAllPersonnel(): JsonResponse{
 
-        return $this->respondWithSuccess(Personnel::all());
+        $personnel = Personnel::with('role')->get();
+
+        return $this->respondWithSuccess($personnel);
     }
 }

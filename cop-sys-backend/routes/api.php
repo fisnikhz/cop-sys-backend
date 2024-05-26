@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\API\V1\CampaignController;
+use App\Http\Controllers\API\V1\ConversationController;
 use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\MessageController;
 use App\Http\Controllers\API\V1\NewsController;
 use App\Http\Controllers\API\V1\IncidentsController;
 use App\Http\Controllers\API\V1\PersonnelController;
@@ -127,6 +129,13 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::put('campaigns/{campaign}', [CampaignController::class, 'updateCampaign']);
     Route::delete('campaigns/{campaign}', [CampaignController::class, 'removeCampaign']);
     Route::get('campaigns/{campaign}', [CampaignController::class, 'viewCampaign']);
+
+
+    //Conversation API
+
+    Route::get('/conversations/admin', [ConversationController::class, 'getAdminConversation']);
+    Route::get('/conversations/{conversation}/messages', [MessageController::class, 'index']);
+    Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store']);
 
 });
 

@@ -15,6 +15,7 @@ use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
 use App\Http\Controllers\API\V1\AttendanceController;
 use App\Http\Controllers\API\V1\RolesController;
+use App\Http\Controllers\API\V1\TicketsController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -136,6 +137,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/conversations/admin', [ConversationController::class, 'getAdminConversation']);
     Route::get('/conversations/{conversation}/messages', [MessageController::class, 'index']);
     Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store']);
+
+
+    //Tickets API
+    Route::post('/addTicket', [TicketsController::class, 'addTicket']);
+    Route::put('/updateTicket/{ticket}', [TicketsController::class, 'updateTicket']);
+    Route::delete('/removeTicket/{ticket}', [TicketsController::class, 'removeTicket']);
+    Route::get('/getTicket/{ticket}',[TicketsController::class, 'getTicket']);
+    Route::get('/getAllTickets',[TicketsController::class, 'getAllTickets']);
 
 });
 

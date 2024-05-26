@@ -11,17 +11,19 @@ class Message extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'message_id';
+    public $incrementing = false;
+    protected $keyType = 'uuid';
 
-    protected $fillable = [
-        'sender_id',
-        'content',
-        'type',
-    ];
-
-    public function sender(): HasOne
+    protected $guarded = [];
+    public function sender()
     {
-        return $this->hasOne(User::class, 'user_id','sender_id');
+        return $this->belongsTo(User::class, 'sender_id', 'user_id');
     }
 
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class, 'Conversation_Message', 'message_id', 'conversation_id');
+    }
 
 }

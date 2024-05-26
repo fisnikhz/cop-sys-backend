@@ -27,6 +27,10 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id','role');
     }
 
+    public function conversations()
+    {
+        return $this->belongsToMany(Conversation::class, 'Conversation_Users', 'sender_id', 'conversation_id');
+    }
 
 //    protected $hidden = [
 //        'password',

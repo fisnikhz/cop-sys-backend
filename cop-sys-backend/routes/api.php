@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\API\V1\CampaignController;
 use App\Http\Controllers\API\V1\EquipmentsController;
+use App\Http\Controllers\API\V1\NewsController;
 use App\Http\Controllers\API\V1\IncidentsController;
 use App\Http\Controllers\API\V1\PersonnelController;
 use App\Http\Controllers\API\V1\UserController;
@@ -100,10 +102,17 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getIncident/{incident}',[IncidentsController::class, 'getIncident']);
     Route::get('/getAllIncidents',[IncidentsController::class, 'getAllIncidents']);
 
+    
+    //News API
+    Route::post('news', [NewsController::class, 'addNews'])->name('news.add');
+    Route::put('news/{news}', [NewsController::class, 'updateNews'])->name('news.update');
+    Route::delete('news/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
+  
     //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);
     Route::get('/getUserProfile/{user}', [UserController::class, 'getUserProfile']);
     Route::post('/changePassword', [UserController::class, 'changePassword']);
+  
 
     //Roles API
     Route::post('/addRole', [RolesController::class, 'addRole']);
@@ -112,6 +121,12 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getRole/{role}',[RolesController::class, 'getRole']);
     Route::get('/getAllRoles',[RolesController::class, 'getAllRoles']);
 
+  
+    //Campaign API
+    Route::post('campaigns', [CampaignController::class, 'addCampaign']);
+    Route::put('campaigns/{campaign}', [CampaignController::class, 'updateCampaign']);
+    Route::delete('campaigns/{campaign}', [CampaignController::class, 'removeCampaign']);
+    Route::get('campaigns/{campaign}', [CampaignController::class, 'viewCampaign']);
 
 });
 
@@ -120,6 +135,15 @@ Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
     Route::post('/register', [UserController::class, 'register']);
 
     Route::post('/login', [UserController::class, 'login']);
+
+    Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
+    Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
+    Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
+    Route::get('campaigns', [CampaignController::class, 'allCampaigns']);
+
+
+
+
 
 });
 

@@ -9,22 +9,12 @@ use Spatie\MediaLibrary\HasMedia;
 use Spatie\MediaLibrary\InteractsWithMedia;
 use Spatie\MediaLibrary\MediaCollections\Models\Media;
 
-class News extends Model implements HasMedia
+class Campaign extends Model implements HasMedia
 {
-    use HasFactory,HasUuids, InteractsWithMedia;
+    use HasFactory, HasUuids, InteractsWithMedia;
 
-    protected $primaryKey = 'news_id';
+    protected $primaryKey = 'campaign_id';
 
     protected $guarded = [];
-
-    protected $casts = [
-        'tags' => 'array',
-    ];
-
-    public function registerMediaConversions(Media $media = null): void
-    {
-        $this->addMediaConversion('news');
-    }
-
 
 }

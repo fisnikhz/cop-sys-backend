@@ -25,9 +25,9 @@ class EmergencyCallController extends APIController
     {
         $data = $request->validated();
 
-        $emergencyCall = EmergencyCall::find($request->call_id);
+        $emergency = EmergencyCall::find($emergencyCall->call_id);
 
-        $emergencyCall->update($data);
+        $emergency->update($data);
 
         return $this->respondWithSuccess(EmergencyCallResource::make($emergencyCall));
     }

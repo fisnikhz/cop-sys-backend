@@ -10,11 +10,11 @@ class DepartmentsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->id,
+            'id' => $this->department_id,
             'department_name' => $this->department_name,
             'department_logo' => $this->department_logo,
             'description' => $this->description,
-            'hq_location' => $this->hq_location,
+//            'hq_location' => $this->hq_location,
         ];
     }
 }

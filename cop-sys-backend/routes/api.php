@@ -35,32 +35,33 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
     //Equipments API
     Route::post('/addEquipment', [EquipmentsController::class, 'addEquipment']);
-    Route::put('/updateEquipment', [EquipmentsController::class, 'updateEquipment']);
-    Route::delete('/removeEquipment', [EquipmentsController::class, 'removeEquipment']);
-    Route::get('/getEquipment', [EquipmentsController::class, 'getEquipment']);
+    Route::put('/updateEquipment/{equipment}', [EquipmentsController::class, 'updateEquipment']);
+    Route::delete('/removeEquipment/{equipment}', [EquipmentsController::class, 'removeEquipment']);
+    Route::get('/getEquipment/{equipment}', [EquipmentsController::class, 'getEquipment']);
     Route::get('/getAllEquipment', [EquipmentsController::class, 'getAllEquipment']);
 
     //Departments API
     Route::post('/addDepartment', [DepartmentsController::class, 'addDepartment']);
-    Route::put('/updateDepartment', [DepartmentsController::class, 'updateDepartment']);
-    Route::delete('/removeDepartment', [DepartmentsController::class, 'removeDepartment']);
-    Route::get('/getDepartment', [DepartmentsController::class, 'getDepartment']);
+    Route::put('/updateDepartment/{department}', [DepartmentsController::class, 'updateDepartment']);
+    Route::delete('/removeDepartment/{department}', [DepartmentsController::class, 'removeDepartment']);
+    Route::get('/getDepartment/{department}', [DepartmentsController::class, 'getDepartment']);
     Route::get('/getAllDepartments', [DepartmentsController::class, 'getAllDepartments']);
 
 
     //Vehicles API
     Route::post('/addVehicle', [VehiclesController::class, 'addVehicle']);
-    Route::put('/updateVehicle', [VehiclesController::class, 'updateVehicle']);
-    Route::delete('/removeVehicle', [VehiclesController::class, 'removeVehicle']);
-    Route::get('/getVehicle',[VehiclesController::class, 'getVehicle']);
-    Route::get('.getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
+    Route::put('/updateVehicle/{vehicle}', [VehiclesController::class, 'updateVehicle']);
+    Route::delete('/removeVehicle{vehicle}', [VehiclesController::class, 'removeVehicle']);
+    Route::get('/getVehicle/{vehicle}',[VehiclesController::class, 'getVehicle']);
+    Route::get('/getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
+
 
     //EmergencyCall API
     Route::post('/addEmergencyCall', [EmergencyCallController::class, 'addEmergencyCall']);
-    Route::put('/updateEmergencyCall', [EmergencyCallController::class, 'updateEmergencyCall']);
-    Route::delete('/removeEmergencyCall', [EmergencyCallController::class, 'removeEmergencyCall']);
-    Route::get('/getEmergencyCall',[EmergencyCallController::class, 'getEmergencyCall']);
-    Route::get('.getAllEmergencyCalls',[EmergencyCallController::class, 'getAllEmergencyCalls']);
+    Route::put('/updateEmergencyCall/{emergencyCall}', [EmergencyCallController::class, 'updateEmergencyCall']);
+    Route::delete('/removeEmergencyCall/{emergencyCall}', [EmergencyCallController::class, 'removeEmergencyCall']);
+    Route::get('/getEmergencyCall/{emergencyCall}',[EmergencyCallController::class, 'getEmergencyCall']);
+    Route::get('/getAllEmergencyCalls',[EmergencyCallController::class, 'getAllEmergencyCalls']);
 
 
     //Location API
@@ -68,18 +69,20 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::put('/updateLocation', [LocationController::class, 'updateLocation']);
     Route::delete('/removeLocation', [LocationController::class, 'removeLocation']);
     Route::get('/getLocation',[LocationController::class, 'getLocation']);
-    Route::get('.getAllLocations',[LocationController::class, 'getAllLocation']);
-  
+    Route::get('/getAllLocations',[LocationController::class, 'getAllLocation']);
+
+
     //Cases API
     Route::post('/addCase', [CasesController::class, 'addCase']);
-    Route::put('/updateCase', [CasesController::class, 'updateCase']);
-    Route::delete('/removeCase', [CasesController::class, 'removeCase']);
-    Route::get('/getCase',[CasesController::class, 'getCase']);
-    Route::get('.getAllCases',[CasesController::class, 'getAllCases']);
+    Route::put('/updateCase/{case}', [CasesController::class, 'updateCase']);
+    Route::delete('/removeCase/{case}', [CasesController::class, 'removeCase']);
+    Route::get('/getCase/{case}',[CasesController::class, 'getCase']);
+    Route::get('/getAllCases',[CasesController::class, 'getAllCases']);
 
-
-
+    //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);
+    Route::get('/getUserProfile/{user}', [UserController::class, 'getUserProfile']);
+    Route::post('/changePassword', [UserController::class, 'changePassword']);
 
 
 

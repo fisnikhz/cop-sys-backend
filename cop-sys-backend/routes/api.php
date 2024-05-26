@@ -15,6 +15,7 @@ use App\Http\Controllers\API\V1\EmergencyCallController;
 use App\Http\Controllers\API\V1\LocationController;
 use App\Http\Controllers\API\V1\AttendanceController;
 use App\Http\Controllers\API\V1\RolesController;
+use App\Http\Controllers\API\V1\PersonController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -136,6 +137,13 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/conversations/admin', [ConversationController::class, 'getAdminConversation']);
     Route::get('/conversations/{conversation}/messages', [MessageController::class, 'index']);
     Route::post('/conversations/{conversation}/messages', [MessageController::class, 'store']);
+
+      //Person API
+      Route::post('/addPerson', [PersonController::class, 'addPerson']);
+      Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
+      Route::delete('/removePerson/{person}', [PersonController::class, 'removePerson']);
+      Route::get('/getPerson/{person}',[PersonController::class, 'getPerson']);
+      Route::get('/getAllPersons',[PersonController::class, 'getAllPersons']);
 
 });
 

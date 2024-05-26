@@ -17,7 +17,7 @@ class CreateDepartmentRequest extends APIRequest
             'department_name' => 'required|string',
             'department_logo' => 'required|string',
             'description' => 'required|string',
-            'hq_location' => 'required|exists:locations,location_id',
+//            'hq_location' => 'required|exists:locations,location_id',
         ];
     }
 }

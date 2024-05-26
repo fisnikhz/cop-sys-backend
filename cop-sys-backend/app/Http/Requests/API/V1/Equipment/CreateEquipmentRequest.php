@@ -17,11 +17,11 @@ class CreateEquipmentRequest extends APIRequest
             'name' => 'required|string',
             'quantity' => 'required|int',
             'description' => 'string',
-            'location_id' => 'string',
-            'location_name' => 'string',
-            'longitude' => 'string',
-            'latitude' => 'string',
-            'radius' => 'int'
+//            'location_id' => 'string',
+//            'location_name' => 'string',
+//            'longitude' => 'string',
+//            'latitude' => 'string',
+//            'radius' => 'int'
         ];
     }
 }

@@ -9,6 +9,10 @@ class Role extends Model
 {
     use HasFactory;
 
+    
+    protected $primaryKey = 'role_id'; // Specify the primary key column
+    public $timestamps = false;
+
 
 
     protected $fillable = [

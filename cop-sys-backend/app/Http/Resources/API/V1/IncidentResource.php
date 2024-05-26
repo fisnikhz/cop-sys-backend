@@ -5,16 +5,17 @@ namespace App\Http\Resources\API\V1;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DepartmentsResource extends JsonResource
+class IncidentResource extends JsonResource
 {
+
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->department_id,
-            'department_name' => $this->department_name,
-            'department_logo' => $this->department_logo,
+            'id' => $this->incident_id,
+            'incident_type' => $this->incident_type,
             'description' => $this->description,
-//            'hq_location' => $this->hq_location,
+            'report_date_time' => $this->report_date_time,
+            'reporter_id' => $this->reporter_id,
         ];
     }
 }

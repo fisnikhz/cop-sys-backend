@@ -14,17 +14,17 @@ class Incident extends Model
     protected $fillable = [
         'incident_type',
         'description',
-        'location',
+//        'location',
         'report_date_time',
         'reporter_id',
         'participants_id',
         'vehicles_number'
     ];
 
-    public function location(): HasOne
-    {
-        return $this->hasOne(Location::class, 'location_id', 'location');
-    }
+//    public function location(): HasOne
+//    {
+//        return $this->hasOne(Location::class, 'location_id', 'location');
+//    }
     public function reporter(): HasOne
     {
         return $this->hasOne(Personnel::class, 'personnel_id', 'reporter_id');

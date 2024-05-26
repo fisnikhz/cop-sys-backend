@@ -18,10 +18,10 @@ class UpdateEquipmentRequest extends APIRequest
             'name' => 'string',
             'quantity' => 'int',
             'description' => 'string',
-            'location_id' => 'string',
-            'location_name' => 'string',
-            'longitude' => 'string',
-            'latitude' => 'string',
+//            'location_id' => 'string',
+//            'location_name' => 'string',
+//            'longitude' => 'string',
+//            'latitude' => 'string',
             'radius' => 'int'
         ];
     }

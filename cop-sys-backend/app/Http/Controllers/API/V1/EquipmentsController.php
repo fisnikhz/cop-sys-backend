@@ -26,7 +26,7 @@ class EquipmentsController extends APIController
     {
         $data = $request->validated();
 
-        $equipment = Equipment::find($equipment->id)->firstOrFail();
+        $equipment = Equipment::find($equipment->equipment_id)->firstOrFail();
 
         $equipment->update($data);
 

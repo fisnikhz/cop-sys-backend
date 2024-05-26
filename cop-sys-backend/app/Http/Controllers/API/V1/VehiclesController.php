@@ -25,7 +25,7 @@ class VehiclesController extends APIController
     {
         $data = $request->validated();
 
-        $vehicle = Vehicle::find($vehicle->id)->firstOrFail();
+        $vehicle = Vehicle::find($vehicle->vehicle_id)->firstOrFail();
 
         $vehicle->update($data);
 

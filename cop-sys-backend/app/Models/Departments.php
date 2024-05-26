@@ -19,12 +19,12 @@ class Departments extends Model
         'department_name',
         'department_logo',
         'description',
-        'hq_location',
+//        'hq_location',
     ];
 
-    public function location(): HasOne
-    {
-        return $this->hasOne(Location::class, 'location_id','hq_location');
-    }
+//    public function location(): HasOne
+//    {
+//        return $this->hasOne(Location::class, 'location_id','hq_location');
+//    }
 
 }

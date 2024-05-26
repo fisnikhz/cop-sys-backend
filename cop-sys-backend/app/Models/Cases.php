@@ -11,6 +11,14 @@ class Cases extends Model
 {
     use HasFactory,HasUuids;
 
+    use HasFactory, HasUuids;
+
+    protected $table = 'cases'; 
+
+    protected $primaryKey = 'case_id'; 
+
+    public $timestamps = false;
+
     protected $fillable = [
         'status',
         'open_date',

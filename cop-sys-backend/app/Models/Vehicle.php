@@ -26,13 +26,13 @@ class Vehicle extends Model
         'registration_date',
         'designated_driver',
         'car_picture',
-        'car_location',
+//        'car_location',
     ];
 
-    public function location(): HasOne
-    {
-        return $this->hasOne(Location::class, 'location_id','car_location');
-    }
+//    public function location(): HasOne
+//    {
+//        return $this->hasOne(Location::class, 'location_id','car_location');
+//    }
 
 
     public function driver(): HasOne

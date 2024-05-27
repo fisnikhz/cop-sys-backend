@@ -5,649 +5,707 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/addDepartment": {
+        "/api/v1/attendance": {
+            "get": {
+                "tags": [
+                    "Attendance"
+                ],
+                "summary": "Get all attendance records",
+                "operationId": "b65a5cec346959b371ff08e90b2d02d6",
+                "responses": {
+                    "200": {
+                        "description": "Attendance records list retrieved successfully"
+                    }
+                }
+            },
             "post": {
                 "tags": [
-                    "Departments"
+                    "Attendance"
                 ],
-                "summary": "Add a new department",
-                "description": "Add a new department.",
-                "operationId": "c5460ddf6320b6cad7f88958db89db32",
+                "summary": "Add a new attendance record",
+                "operationId": "acf3856200ddfb4ea10b4871842aade5",
                 "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "department_name": {
-                                        "type": "string"
-                                    },
-                                    "department_logo": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "hq_location": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "201": {
-                        "description": "Department added successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Department added successfully"
-                                        },
-                                        "department": {
-                                            "$ref": "#/components/schemas/Department"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error or server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: ..."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/updateDepartment": {
-            "put": {
-                "tags": [
-                    "Departments"
-                ],
-                "summary": "Update an existing department",
-                "description": "Update an existing department.",
-                "operationId": "5c79e952be15effa6a846af51aad7a16",
-                "requestBody": {
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "properties": {
-                                    "department_id": {
-                                        "type": "string",
-                                        "format": "uuid"
-                                    },
-                                    "department_name": {
-                                        "type": "string"
-                                    },
-                                    "department_logo": {
-                                        "type": "string"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "hq_location": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                    "required": true
                 },
                 "responses": {
                     "200": {
-                        "description": "Department updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Department updated successfully"
-                                        },
-                                        "department": {
-                                            "$ref": "#/components/schemas/Department"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Attendance record added successfully"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error or server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: ..."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         },
-        "/api/removeDepartment": {
-            "delete": {
+        "/api/v1/attendance/{attendance}": {
+            "get": {
                 "tags": [
-                    "Departments"
+                    "Attendance"
                 ],
-                "summary": "Remove a department",
-                "description": "Remove a department.",
-                "operationId": "27914b1b37ab9074bc9611cd0e96b0cc",
+                "summary": "Get an attendance record by ID",
+                "operationId": "e365e88f8a28897d3efad5c93a04e74f",
                 "parameters": [
                     {
-                        "name": "department_id",
-                        "in": "query",
-                        "description": "ID of the department to remove",
-                        "required": true,
-                        "schema": {
-                            "type": "string"
-                        }
+                        "name": "attendance",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Department removed successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Department removed successfully"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Attendance record retrieved successfully"
                     },
                     "404": {
-                        "description": "Department not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Department not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error or server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: ..."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Attendance record not found"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/addEquipment": {
-            "post": {
-                "tags": [
-                    "Equipment"
-                ],
-                "summary": "Add or update equipment",
-                "description": "Adds new equipment or updates existing equipment.",
-                "operationId": "addEquipment",
-                "requestBody": {
-                    "description": "Equipment details",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "name",
-                                    "quantity"
-                                ],
-                                "properties": {
-                                    "name": {
-                                        "type": "string"
-                                    },
-                                    "quantity": {
-                                        "type": "integer",
-                                        "format": "int32"
-                                    },
-                                    "description": {
-                                        "type": "string"
-                                    },
-                                    "location_id": {
-                                        "type": "string"
-                                    },
-                                    "location_name": {
-                                        "type": "string"
-                                    },
-                                    "longitude": {
-                                        "type": "string"
-                                    },
-                                    "latitude": {
-                                        "type": "string"
-                                    },
-                                    "radius": {
-                                        "type": "integer",
-                                        "format": "int32"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Equipment added or updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "name": {
-                                            "type": "string"
-                                        },
-                                        "quantity": {
-                                            "type": "integer",
-                                            "format": "int32"
-                                        },
-                                        "description": {
-                                            "type": "string"
-                                        },
-                                        "location_id": {
-                                            "type": "string"
-                                        },
-                                        "created_at": {
-                                            "type": "string",
-                                            "format": "date-time"
-                                        },
-                                        "updated_at": {
-                                            "type": "string",
-                                            "format": "date-time"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "error": {
-                                            "type": "string",
-                                            "example": "Database error: Something went wrong"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/updateEquipment": {
+                }
+            },
             "put": {
                 "tags": [
-                    "Equipment"
+                    "Attendance"
                 ],
-                "summary": "Update equipment",
-                "description": "Updates existing equipment with the provided data.",
-                "operationId": "updateEquipment",
-                "requestBody": {
-                    "description": "Equipment details to be updated",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "equipment_id"
-                                ],
-                                "properties": {
-                                    "equipment_id": {
-                                        "description": "ID of the equipment to update",
-                                        "type": "string"
-                                    },
-                                    "name": {
-                                        "description": "New name of the equipment",
-                                        "type": "string"
-                                    },
-                                    "quantity": {
-                                        "description": "New quantity of the equipment",
-                                        "type": "integer"
-                                    },
-                                    "description": {
-                                        "description": "New description of the equipment",
-                                        "type": "string"
-                                    },
-                                    "location_id": {
-                                        "description": "New location ID of the equipment",
-                                        "type": "string"
-                                    },
-                                    "location_name": {
-                                        "description": "New location name of the equipment",
-                                        "type": "string"
-                                    },
-                                    "longitude": {
-                                        "description": "New longitude of the equipment",
-                                        "type": "string"
-                                    },
-                                    "latitude": {
-                                        "description": "New latitude of the equipment",
-                                        "type": "string"
-                                    },
-                                    "radius": {
-                                        "description": "New radius of the equipment",
-                                        "type": "integer"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
-                },
-                "responses": {
-                    "200": {
-                        "description": "Equipment updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Equipment updated successfully"
-                                        },
-                                        "equipment": {
-                                            "properties": {
-                                                "name": {
-                                                    "description": "Updated name of the equipment",
-                                                    "type": "string"
-                                                },
-                                                "quantity": {
-                                                    "description": "Updated quantity of the equipment",
-                                                    "type": "integer"
-                                                },
-                                                "description": {
-                                                    "description": "Updated description of the equipment",
-                                                    "type": "string"
-                                                },
-                                                "location_id": {
-                                                    "description": "Updated location ID of the equipment",
-                                                    "type": "string"
-                                                },
-                                                "created_at": {
-                                                    "description": "Timestamp when the equipment was created",
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                },
-                                                "updated_at": {
-                                                    "description": "Timestamp when the equipment was last updated",
-                                                    "type": "string",
-                                                    "format": "date-time"
-                                                }
-                                            },
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "description": "Validation errors",
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: Something went wrong"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    }
-                },
-                "security": [
+                "summary": "Update an existing attendance record",
+                "operationId": "b0c19f19fe0e41f36d0e580f51ad4ed0",
+                "parameters": [
                     {
-                        "bearerAuth": []
+                        "name": "attendance",
+                        "in": "path",
+                        "required": true
                     }
-                ]
-            }
-        },
-        "/api/v1/removeEquipment": {
-            "delete": {
-                "tags": [
-                    "Equipment"
                 ],
-                "summary": "Remove equipment",
-                "description": "Removes the equipment with the provided ID.",
-                "operationId": "removeEquipment",
                 "requestBody": {
-                    "description": "ID of the equipment to remove",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "equipment_id"
-                                ],
-                                "properties": {
-                                    "equipment_id": {
-                                        "description": "ID of the equipment to remove",
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                    "required": true
                 },
                 "responses": {
                     "200": {
-                        "description": "Equipment removed successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Equipment removed successfully"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Attendance record updated successfully"
                     },
                     "404": {
-                        "description": "Equipment not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Equipment not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Attendance record not found"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "description": "Validation errors",
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Attendance"
+                ],
+                "summary": "Remove an attendance record",
+                "operationId": "38550844161b4e4c14b905554e9c5aa4",
+                "parameters": [
+                    {
+                        "name": "attendance",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Attendance record deleted successfully"
                     },
-                    "500": {
-                        "description": "Database error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: Something went wrong"
-                                        }
+                    "404": {
+                        "description": "Attendance record not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/campaign": {
+            "get": {
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Get all campaigns",
+                "operationId": "28fa18dd168398ce75daac6df74ed80e",
+                "responses": {
+                    "200": {
+                        "description": "Campaigns list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Add a new campaign",
+                "operationId": "36280386ac702397e9b011f677c8c2d4",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Campaign added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/campaign/{campaign}": {
+            "get": {
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "View a campaign by ID",
+                "operationId": "89791c657b3c9cbd324f8bcf35dd9555",
+                "parameters": [
+                    {
+                        "name": "campaign",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Campaign retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Campaign not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Update an existing campaign",
+                "operationId": "e707fb15ba01946bb9d12ba63a4c2452",
+                "parameters": [
+                    {
+                        "name": "campaign",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Campaign updated successfully"
+                    },
+                    "404": {
+                        "description": "Campaign not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Campaign"
+                ],
+                "summary": "Remove a campaign",
+                "operationId": "e69531335874faacdac440ed60217b24",
+                "parameters": [
+                    {
+                        "name": "campaign",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Campaign deleted successfully"
+                    },
+                    "404": {
+                        "description": "Campaign not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/case": {
+            "get": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Get all cases",
+                "operationId": "533fc7ed6ca8c332730e57c0ef4f470b",
+                "responses": {
+                    "200": {
+                        "description": "Cases list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Add a new case",
+                "operationId": "60314d946d91725582b5c6be8c37d5bf",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Case added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/case/{case}": {
+            "get": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Get a case by ID",
+                "operationId": "bf5cc293b1375c062bd8f2a1e6070bdd",
+                "parameters": [
+                    {
+                        "name": "case",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Case retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Case not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Update an existing case",
+                "operationId": "08f4a4a93e8b85e2bb6d712f8f2467ef",
+                "parameters": [
+                    {
+                        "name": "case",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Case updated successfully"
+                    },
+                    "404": {
+                        "description": "Case not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Remove a case",
+                "operationId": "659db5ec41158f47c334685dad2e7e1f",
+                "parameters": [
+                    {
+                        "name": "case",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Case deleted successfully"
+                    },
+                    "404": {
+                        "description": "Case not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/conversation/admin": {
+            "get": {
+                "tags": [
+                    "Conversation"
+                ],
+                "summary": "Get the conversation with admins",
+                "operationId": "bb65c663e2102ba417a23df6760f63ff",
+                "responses": {
+                    "200": {
+                        "description": "Admin conversation retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/departments": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Get all departments",
+                "operationId": "eb55065b55a962eac9a6ab1bb40c6c14",
+                "responses": {
+                    "200": {
+                        "description": "Departments list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Add a new department",
+                "operationId": "443173ba04fb50dfb133792ad4e6b9aa",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Department added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/departments/{department}": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Get a department by ID",
+                "operationId": "3ae38102a300241d936baf9f04f23280",
+                "parameters": [
+                    {
+                        "name": "department",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Department retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Department not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Update an existing department",
+                "operationId": "3f10db7abf89fcf21ad3b48e44339fd2",
+                "parameters": [
+                    {
+                        "name": "department",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Department updated successfully"
+                    },
+                    "404": {
+                        "description": "Department not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Remove a department",
+                "operationId": "dc46a21071a32d8a5edd848a841f0ea5",
+                "parameters": [
+                    {
+                        "name": "department",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Department deleted successfully"
+                    },
+                    "404": {
+                        "description": "Department not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/incident": {
+            "get": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Get all incidents",
+                "operationId": "1cdb6a26be5e4dd3aeed2eb623b0c65d",
+                "responses": {
+                    "200": {
+                        "description": "Incidents list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Add a new incident",
+                "operationId": "7cec8d625932531abb2156007c408a92",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Incident added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/incident/{incident}": {
+            "get": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Get an incident by ID",
+                "operationId": "b4da95be2ec9870c9133db534298c80a",
+                "parameters": [
+                    {
+                        "name": "incident",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Incident retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Incident not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Update an existing incident",
+                "operationId": "f8514609d3aaadca337e6399744f414d",
+                "parameters": [
+                    {
+                        "name": "incident",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Incident updated successfully"
+                    },
+                    "404": {
+                        "description": "Incident not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Incident"
+                ],
+                "summary": "Remove an incident",
+                "operationId": "7d7876343308995036e110c86ac12d20",
+                "parameters": [
+                    {
+                        "name": "incident",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Incident deleted successfully"
+                    },
+                    "404": {
+                        "description": "Incident not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/location": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get all locations",
+                "operationId": "27b3b420a9de6cd11a632f734f3c1303",
+                "responses": {
+                    "200": {
+                        "description": "Locations list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Add a new location",
+                "operationId": "9e848f799e339bc39d28539c7d2b7fe7",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Location added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/location/{location}": {
+            "get": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Get a location by ID",
+                "operationId": "22319a6c9e43027abecd7f7d2b1acfce",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Update an existing location",
+                "operationId": "62a803c10f5428e54260b5c057ede0af",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Location updated successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Location"
+                ],
+                "summary": "Remove a location",
+                "operationId": "2800f6d1ab08b9ec3fa522fb5bd736bd",
+                "parameters": [
+                    {
+                        "name": "location",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Location deleted successfully"
+                    },
+                    "404": {
+                        "description": "Location not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/news": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Get all news",
+                "operationId": "fd39ede69c0b1274926816b688caabb5",
+                "responses": {
+                    "200": {
+                        "description": "News list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Add a new news",
+                "operationId": "fd17a687a94e838e80b90c9c8dcba8fd",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
                                     },
-                                    "type": "object"
-                                }
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
                             }
                         }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "News added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
                     }
                 },
                 "security": [
@@ -657,347 +715,549 @@
                 ]
             }
         },
-        "/api/v1/addPersonnel": {
+        "/api/v1/news/{news}": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "View a news",
+                "operationId": "a304d3eb51eb97c3b07b712096f6625d",
+                "parameters": [
+                    {
+                        "name": "news",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "News retrieved successfully"
+                    },
+                    "404": {
+                        "description": "News not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Update an existing news",
+                "operationId": "f9050983af0129ca844f97e255a75bd6",
+                "parameters": [
+                    {
+                        "name": "news",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "title",
+                                    "content"
+                                ],
+                                "properties": {
+                                    "title": {
+                                        "type": "string"
+                                    },
+                                    "content": {
+                                        "type": "string"
+                                    },
+                                    "image": {
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "News updated successfully"
+                    },
+                    "404": {
+                        "description": "News not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Remove a news",
+                "operationId": "21265160c03885c12dc9b15f48c42c76",
+                "parameters": [
+                    {
+                        "name": "news",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "News deleted successfully"
+                    },
+                    "404": {
+                        "description": "News not found"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/news/top-viewed": {
+            "get": {
+                "tags": [
+                    "News"
+                ],
+                "summary": "Get top viewed news",
+                "operationId": "f191ce48e5404ad41e3dc6429bd9f401",
+                "responses": {
+                    "200": {
+                        "description": "Top viewed news retrieved successfully"
+                    }
+                }
+            }
+        },
+        "/api/v1/person": {
+            "get": {
+                "tags": [
+                    "Person"
+                ],
+                "summary": "Get all persons",
+                "operationId": "472d347a0c327cd94553298ad6a6019f",
+                "responses": {
+                    "200": {
+                        "description": "Persons list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Person"
+                ],
+                "summary": "Add a new person",
+                "operationId": "e7f28cb0ef5bb21f9b935f1535a4676f",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Person added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/person/{person}": {
+            "get": {
+                "tags": [
+                    "Person"
+                ],
+                "summary": "Get a person by personal number",
+                "operationId": "273a43a3e03c51526b3131c13b117f9b",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Person retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Person not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Person"
+                ],
+                "summary": "Update an existing person",
+                "operationId": "d82948b84c7e8e38f9cfc77273ebb526",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Person updated successfully"
+                    },
+                    "404": {
+                        "description": "Person not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Person"
+                ],
+                "summary": "Remove a person",
+                "operationId": "22a81ba088bff81be8dbe04582f0eeaf",
+                "parameters": [
+                    {
+                        "name": "person",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Person deleted successfully"
+                    },
+                    "404": {
+                        "description": "Person not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/personnel": {
+            "get": {
+                "tags": [
+                    "Personnel"
+                ],
+                "summary": "Get all personnel",
+                "operationId": "af4c7e551a8210377804f342429d0770",
+                "responses": {
+                    "200": {
+                        "description": "Personnel list retrieved successfully"
+                    }
+                }
+            },
             "post": {
                 "tags": [
                     "Personnel"
                 ],
                 "summary": "Add a new personnel",
-                "description": "Creates a new personnel record with the provided information.",
-                "operationId": "addPersonnel",
+                "operationId": "76f53db86b01c5dd1046e7a96e43ae7c",
                 "requestBody": {
-                    "description": "Personnel data",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "first_name",
-                                    "last_name",
-                                    "rank",
-                                    "badge_number",
-                                    "hire_date",
-                                    "role"
-                                ],
-                                "properties": {
-                                    "first_name": {
-                                        "type": "string",
-                                        "example": "John"
-                                    },
-                                    "last_name": {
-                                        "type": "string",
-                                        "example": "Doe"
-                                    },
-                                    "rank": {
-                                        "type": "string",
-                                        "example": "Sergeant"
-                                    },
-                                    "badge_number": {
-                                        "type": "string",
-                                        "example": "12345"
-                                    },
-                                    "hire_date": {
-                                        "type": "string",
-                                        "format": "date",
-                                        "example": "2022-03-20"
-                                    },
-                                    "profile_image": {
-                                        "type": "string",
-                                        "example": "http://example.com/profile.jpg"
-                                    },
-                                    "role": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
-                    }
+                    "required": true
                 },
                 "responses": {
-                    "201": {
-                        "description": "Personnel added successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Personnel added successfully"
-                                        },
-                                        "personnel": {
-                                            "$ref": "#/components/schemas/Personnel"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                    "200": {
+                        "description": "Personnel added successfully"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object",
-                                            "example": {
-                                                "first_name": [
-                                                    "The first name field is required."
-                                                ]
-                                            }
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "An error occurred: Database error"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
+                }
             }
         },
-        "/api/v1/updatePersonnel": {
+        "/api/v1/personnel/{id}": {
+            "get": {
+                "tags": [
+                    "Personnel"
+                ],
+                "summary": "Get a personnel by ID",
+                "operationId": "1eaac0702dc56a3eef78f0c7d1b55440",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personnel retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Personnel not found"
+                    }
+                }
+            },
             "put": {
                 "tags": [
                     "Personnel"
                 ],
-                "summary": "Update personnel details",
-                "description": "Updates the details of an existing personnel.",
-                "operationId": "updatePersonnel",
-                "requestBody": {
-                    "description": "Personnel details",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "personnel_id",
-                                    "first_name",
-                                    "last_name",
-                                    "rank",
-                                    "badge_number",
-                                    "hire_date",
-                                    "profile_image",
-                                    "role"
-                                ],
-                                "properties": {
-                                    "personnel_id": {
-                                        "type": "string",
-                                        "format": "uuid"
-                                    },
-                                    "first_name": {
-                                        "type": "string"
-                                    },
-                                    "last_name": {
-                                        "type": "string"
-                                    },
-                                    "rank": {
-                                        "type": "string"
-                                    },
-                                    "badge_number": {
-                                        "type": "string"
-                                    },
-                                    "hire_date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "profile_image": {
-                                        "type": "string",
-                                        "nullable": true
-                                    },
-                                    "role": {
-                                        "type": "integer",
-                                        "format": "int64"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
+                "summary": "Update an existing personnel",
+                "operationId": "ccd86a174fac8ae44f9ddd0d0dc2d479",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
+                ],
+                "requestBody": {
+                    "required": true
                 },
                 "responses": {
                     "200": {
-                        "description": "Personnel updated successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Personnel updated successfully"
-                                        },
-                                        "personnel": {
-                                            "$ref": "#/components/schemas/Personnel"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Personnel updated successfully"
+                    },
+                    "404": {
+                        "description": "Personnel not found"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: Something went wrong"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
                     }
-                },
-                "security": [
-                    {
-                        "bearerAuth": []
-                    }
-                ]
-            }
-        },
-        "/api/v1/removePersonnel": {
+                }
+            },
             "delete": {
                 "tags": [
                     "Personnel"
                 ],
-                "summary": "Remove personnel",
-                "description": "Removes a personnel entry based on first name and last name.",
-                "operationId": "removePersonnel",
-                "requestBody": {
-                    "description": "Personnel details",
-                    "required": true,
-                    "content": {
-                        "application/json": {
-                            "schema": {
-                                "required": [
-                                    "first_name",
-                                    "last_name"
-                                ],
-                                "properties": {
-                                    "first_name": {
-                                        "type": "string"
-                                    },
-                                    "last_name": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
-                            }
-                        }
+                "summary": "Remove a personnel",
+                "operationId": "40b49776f53d7a8af1029a38c5d2d862",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Personnel deleted successfully"
+                    },
+                    "404": {
+                        "description": "Personnel not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/role": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Get all roles",
+                "operationId": "1ab8531c84d4e272efb9c5e930f755b1",
+                "responses": {
+                    "200": {
+                        "description": "Role list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Add a new role",
+                "operationId": "2a6380b210e6b77f5e9a9e5367c1200c",
+                "requestBody": {
+                    "required": true
                 },
                 "responses": {
                     "200": {
-                        "description": "Personnel removed successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Personnel removed successfully"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "404": {
-                        "description": "Personnel not found",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Personnel not found"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Role added successfully"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Database error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: Something went wrong"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
                     }
-                },
-                "security": [
+                }
+            }
+        },
+        "/api/v1/role/{id}": {
+            "get": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Get a role by ID",
+                "operationId": "829b48c5f588b576f3acbba0bb7df0c1",
+                "parameters": [
                     {
-                        "bearerAuth": []
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
-                ]
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Role retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Role not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Update an existing role",
+                "operationId": "45c7c2c06095fd5349f231a5ee74cc6a",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Role updated successfully"
+                    },
+                    "404": {
+                        "description": "Role not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Role"
+                ],
+                "summary": "Remove a role",
+                "operationId": "5b73a204ab3eb7c8fbc7397e16f6bfcf",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Role deleted successfully"
+                    },
+                    "404": {
+                        "description": "Role not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/ticket": {
+            "get": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Get all tickets",
+                "operationId": "019c9295ecb992bc766ecad43c27d4d0",
+                "responses": {
+                    "200": {
+                        "description": "Ticket list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Add a new ticket",
+                "operationId": "4813345492de867acbdd49437518da17",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ticket added successfully"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/ticket/{id}": {
+            "get": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Get a ticket by ID",
+                "operationId": "e4668e305907d267bff671354a35ec00",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ticket retrieved successfully"
+                    },
+                    "404": {
+                        "description": "Ticket not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Update an existing ticket",
+                "operationId": "3dd05588adf4df00aa638c15d0d75a4b",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Ticket updated successfully"
+                    },
+                    "404": {
+                        "description": "Ticket not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Remove a ticket",
+                "operationId": "618d2ba51f78ab25d6c0c690ff6963ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Ticket deleted successfully"
+                    },
+                    "404": {
+                        "description": "Ticket not found"
+                    }
+                }
             }
         },
         "/api/v1/login": {
@@ -1006,10 +1266,8 @@
                     "Authentication"
                 ],
                 "summary": "User login",
-                "description": "Authenticate a user using username and password.",
-                "operationId": "loginUser",
+                "operationId": "08c879032e58cc16b6509b77870df223",
                 "requestBody": {
-                    "description": "User credentials",
                     "required": true,
                     "content": {
                         "application/json": {
@@ -1020,12 +1278,10 @@
                                 ],
                                 "properties": {
                                     "username": {
-                                        "type": "string",
-                                        "example": "john_doe"
+                                        "type": "string"
                                     },
                                     "password": {
-                                        "type": "string",
-                                        "example": "password123"
+                                        "type": "string"
                                     }
                                 },
                                 "type": "object"
@@ -1035,97 +1291,40 @@
                 },
                 "responses": {
                     "200": {
-                        "description": "Successful login",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "token": {
-                                            "description": "Access token",
-                                            "type": "string"
-                                        },
-                                        "user": {
-                                            "$ref": "#/components/schemas/User"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Login successful"
                     },
                     "401": {
-                        "description": "Unauthorized",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Invalid credentials"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "500": {
-                        "description": "Internal server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "An error occurred: User not found!"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Unauthorized"
                     }
                 }
             }
         },
-        "/api/v1/addUser": {
+        "/api/v1/register": {
             "post": {
                 "tags": [
                     "Authentication"
                 ],
-                "summary": "Signup",
-                "description": "Registers a new user with the provided details.",
-                "operationId": "addUser",
+                "summary": "User registration",
+                "operationId": "74dac5fd30b80731f986a678aa929cab",
                 "requestBody": {
-                    "description": "User details",
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
                                 "required": [
-                                    "name",
-                                    "email",
-                                    "password",
                                     "username",
-                                    "device_id"
+                                    "email",
+                                    "password"
                                 ],
                                 "properties": {
-                                    "name": {
+                                    "username": {
                                         "type": "string"
                                     },
                                     "email": {
                                         "type": "string"
                                     },
                                     "password": {
-                                        "type": "string",
-                                        "format": "password"
-                                    },
-                                    "username": {
                                         "type": "string"
-                                    },
-                                    "device_id": {
-                                        "type": "integer",
-                                        "format": "int32"
                                     }
                                 },
                                 "type": "object"
@@ -1135,110 +1334,58 @@
                 },
                 "responses": {
                     "201": {
-                        "description": "User registered successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User registered successfully"
-                                        },
-                                        "token": {
-                                            "type": "string",
-                                            "example": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
-                                        },
-                                        "user": {
-                                            "$ref": "#/components/schemas/User"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
-                    },
-                    "409": {
-                        "description": "User with the provided email or username already exists",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "User with the provided email or username already exists"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "User registered successfully"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
                     }
                 }
             }
         },
-        "/api/addVehicle": {
+        "/api/v1/user/profile": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get user profile",
+                "operationId": "14d9788b53669f46069581c9668911f4",
+                "responses": {
+                    "200": {
+                        "description": "User profile retrieved successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/user/change-password": {
             "post": {
                 "tags": [
-                    "Vehicles"
+                    "User"
                 ],
-                "summary": "Add a new vehicle",
-                "description": "Add a new vehicle.",
-                "operationId": "e252c925c312a3addee940003b10fd39",
+                "summary": "Change user password",
+                "operationId": "ae65e5257b879b95ed0222b8b78bbc48",
                 "requestBody": {
                     "required": true,
                     "content": {
                         "application/json": {
                             "schema": {
+                                "required": [
+                                    "current_password",
+                                    "new_password"
+                                ],
                                 "properties": {
-                                    "vehicle_registration": {
+                                    "current_password": {
                                         "type": "string"
                                     },
-                                    "manufacture_name": {
+                                    "new_password": {
                                         "type": "string"
-                                    },
-                                    "serie": {
-                                        "type": "string"
-                                    },
-                                    "type": {
-                                        "type": "string"
-                                    },
-                                    "produced_date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "purchased_date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "registration_date": {
-                                        "type": "string",
-                                        "format": "date"
-                                    },
-                                    "designated_driver": {
-                                        "type": "integer",
-                                        "example": "1"
-                                    },
-                                    "car_picture": {
-                                        "type": "string"
-                                    },
-                                    "car_location": {
-                                        "type": "integer",
-                                        "example": "1"
                                     }
                                 },
                                 "type": "object"
@@ -1247,244 +1394,128 @@
                     }
                 },
                 "responses": {
-                    "201": {
-                        "description": "Vehicle added successfully",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Vehicle added successfully"
-                                        },
-                                        "vehicle": {
-                                            "$ref": "#/components/schemas/Vehicle"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                    "200": {
+                        "description": "Password changed successfully"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/vehicle": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get all vehicles",
+                "operationId": "fa18afaebe8b92baae3eb839c6eaaaf9",
+                "responses": {
+                    "200": {
+                        "description": "Vehicle list retrieved successfully"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Add a new vehicle",
+                "operationId": "619b1a0b8d9126d899ffecd90fbb51fb",
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vehicle added successfully"
                     },
                     "422": {
-                        "description": "Validation error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "errors": {
-                                            "type": "object"
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/vehicle/{id}": {
+            "get": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Get a vehicle by ID",
+                "operationId": "bbd30c70d3f355409adc72420e4d8f31",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vehicle retrieved successfully"
                     },
-                    "500": {
-                        "description": "Database error or server error",
-                        "content": {
-                            "application/json": {
-                                "schema": {
-                                    "properties": {
-                                        "message": {
-                                            "type": "string",
-                                            "example": "Database error: ..."
-                                        }
-                                    },
-                                    "type": "object"
-                                }
-                            }
-                        }
+                    "404": {
+                        "description": "Vehicle not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Update an existing vehicle",
+                "operationId": "46ccfcd144c1a840c315686128b1690f",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "Vehicle updated successfully"
+                    },
+                    "404": {
+                        "description": "Vehicle not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Vehicle"
+                ],
+                "summary": "Remove a vehicle",
+                "operationId": "65adc93fff053cf2ba961c073fea3b07",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Vehicle deleted successfully"
+                    },
+                    "404": {
+                        "description": "Vehicle not found"
                     }
                 }
             }
         }
     },
     "components": {
-        "schemas": {
-            "Department": {
-                "title": "Department",
-                "description": "Department model",
-                "properties": {
-                    "department_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "123e4567-e89b-12d3-a456-426614174000"
-                    },
-                    "department_name": {
-                        "type": "string",
-                        "example": "Engineering"
-                    },
-                    "department_logo": {
-                        "type": "string",
-                        "example": "https://example.com/logo.png"
-                    },
-                    "description": {
-                        "type": "string",
-                        "example": "Responsible for development and maintenance of software systems."
-                    },
-                    "hq_location": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "123e4567-e89b-12d3-a456-426614174000"
-                    }
-                },
-                "type": "object"
-            },
-            "Personnel": {
-                "required": [
-                    "first_name",
-                    "last_name",
-                    "rank",
-                    "badge_number",
-                    "hire_date",
-                    "role"
-                ],
-                "properties": {
-                    "first_name": {
-                        "type": "string"
-                    },
-                    "last_name": {
-                        "type": "string"
-                    },
-                    "rank": {
-                        "type": "string"
-                    },
-                    "badge_number": {
-                        "type": "string"
-                    },
-                    "hire_date": {
-                        "type": "string",
-                        "format": "date"
-                    },
-                    "profile_image": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "role": {
-                        "type": "integer"
-                    }
-                },
-                "type": "object"
-            },
-            "User": {
-                "title": "User",
-                "required": [
-                    "name",
-                    "email",
-                    "password",
-                    "username",
-                    "device_id"
-                ],
-                "properties": {
-                    "user_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "8ec26c4e-af87-4e1c-a36d-8a02a4c56f59"
-                    },
-                    "name": {
-                        "type": "string"
-                    },
-                    "email": {
-                        "type": "string"
-                    },
-                    "password": {
-                        "type": "string"
-                    },
-                    "salt": {
-                        "type": "string"
-                    },
-                    "username": {
-                        "type": "string"
-                    },
-                    "device_id": {
-                        "type": "string"
-                    },
-                    "profile_image": {
-                        "type": "string",
-                        "nullable": true
-                    },
-                    "role": {
-                        "description": "Foreign key referencing the role of the user",
-                        "type": "integer",
-                        "nullable": true
-                    },
-                    "personnel_id": {
-                        "description": "Foreign key referencing the personnel associated with the user",
-                        "type": "string",
-                        "format": "uuid",
-                        "nullable": true
-                    },
-                    "created_at": {
-                        "type": "string",
-                        "format": "date-time"
-                    },
-                    "updated_at": {
-                        "type": "string",
-                        "format": "date-time"
-                    }
-                },
-                "type": "object"
-            },
-            "Vehicle": {
-                "title": "Vehicle",
-                "description": "Vehicle model",
-                "properties": {
-                    "vehicle_id": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "123e4567-e89b-12d3-a456-426614174000"
-                    },
-                    "vehicle_registration": {
-                        "type": "string",
-                        "example": "ABC123"
-                    },
-                    "manufacture_name": {
-                        "type": "string",
-                        "example": "Toyota"
-                    },
-                    "serie": {
-                        "type": "string",
-                        "example": "Corolla"
-                    },
-                    "type": {
-                        "type": "string",
-                        "example": "Sedan"
-                    },
-                    "produced_date": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2023-01-01"
-                    },
-                    "purchased_date": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2023-02-01"
-                    },
-                    "registration_date": {
-                        "type": "string",
-                        "format": "date",
-                        "example": "2023-03-01"
-                    },
-                    "designated_driver": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "123e4567-e89b-12d3-a456-426614174000"
-                    },
-                    "car_picture": {
-                        "type": "string",
-                        "example": "https://example.com/car.jpg"
-                    },
-                    "car_location": {
-                        "type": "string",
-                        "format": "uuid",
-                        "example": "123e4567-e89b-12d3-a456-426614174000"
-                    }
-                },
-                "type": "object"
-            }
-        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

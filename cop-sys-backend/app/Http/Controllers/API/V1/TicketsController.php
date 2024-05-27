@@ -12,6 +12,25 @@ use Illuminate\Http\JsonResponse;
 
 class TicketsController extends APIController
 {
+    /**
+     * @OA\Post(
+     *     path="/api/v1/ticket",
+     *     summary="Add a new ticket",
+     *     tags={"Ticket"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket added successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
+
     public function addTicket(CreateTicketRequest $request): JsonResponse
     {
         $data = $request->validated();
@@ -20,6 +39,34 @@ class TicketsController extends APIController
 
         return $this->respondWithSuccess(TicketsResource::make($ticketData));
     }
+
+    /**
+     * @OA\Put(
+     *     path="/api/v1/ticket/{id}",
+     *     summary="Update an existing ticket",
+     *     tags={"Ticket"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket updated successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Ticket not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
 
     public function updateTicket(UpdateTicketRequest $request, Ticket $ticket): JsonResponse
     {
@@ -32,6 +79,27 @@ class TicketsController extends APIController
         return $this->respondWithSuccess(TicketsResource::make($ticket));
     }
 
+     /**
+     * @OA\Delete(
+     *     path="/api/v1/ticket/{id}",
+     *     summary="Remove a ticket",
+     *     tags={"Ticket"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Ticket not found"
+     *     )
+     * )
+     */
+
     public function removeTicket(Ticket $ticket): JsonResponse
     {
         $ticket->delete();
@@ -39,10 +107,42 @@ class TicketsController extends APIController
         return $this->respondWithSuccess(null, __('app.ticket.deleted'));
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/ticket/{id}",
+     *     summary="Get a ticket by ID",
+     *     tags={"Ticket"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket retrieved successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Ticket not found"
+     *     )
+     * )
+     */
+
     public function getTicket(Int $ticket): JsonResponse{
 
         return $this->respondWithSuccess(Ticket::find($ticket)->firstOrFail);
     }
+    /**
+     * @OA\Get(
+     *     path="/api/v1/ticket",
+     *     summary="Get all tickets",
+     *     tags={"Ticket"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Ticket list retrieved successfully",
+     *     )
+     * )
+     */
     public function getAllTickets(): JsonResponse{
 
         return $this->respondWithSuccess(Ticket::all());

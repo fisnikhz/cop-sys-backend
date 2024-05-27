@@ -11,6 +11,32 @@ use Illuminate\Http\JsonResponse;
 
 class NewsController extends APIController
 {
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/news",
+     *     summary="Add a new news",
+     *     tags={"News"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"title", "content"},
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="content", type="string"),
+     *             @OA\Property(property="image", type="string", format="binary")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="News added successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
     public function addNews(CreateNewsRequest $request): JsonResponse
     {
         $data = $request->validated();
@@ -27,6 +53,41 @@ class NewsController extends APIController
         return $this->respondWithSuccess(new NewsResource($newsData));
     }
 
+    /**
+     * @OA\Put(
+     *     path="/api/v1/news/{news}",
+     *     summary="Update an existing news",
+     *     tags={"News"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="news",
+     *         in="path",
+     *         required=true,
+     *        
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"title", "content"},
+     *             @OA\Property(property="title", type="string"),
+     *             @OA\Property(property="content", type="string"),
+     *             @OA\Property(property="image", type="string", format="binary")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="News updated successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="News not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
     public function updateNews(UpdateNewsRequest $request, News $news): JsonResponse
     {
         $data = $request->validated();
@@ -43,12 +104,48 @@ class NewsController extends APIController
         return $this->respondWithSuccess(new NewsResource($news));
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/v1/news/{news}",
+     *     summary="Remove a news",
+     *     tags={"News"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Parameter(
+     *         name="news",
+     *         in="path",
+     *         required=true,
+     *        
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="News deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="News not found"
+     *     )
+     * )
+     */
+
     public function removeNews(News $news): JsonResponse
     {
         $news->delete();
 
         return $this->respondWithSuccess(null, __('app.news.deleted'));
     }
+
+    /**
+     * @OA\Get(
+     *     path="/api/v1/news",
+     *     summary="Get all news",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="News list retrieved successfully",
+     *         
+     *     )
+     * )
+     */
 
     public function allNews(): JsonResponse
     {
@@ -78,6 +175,29 @@ class NewsController extends APIController
 //        );
 //    }
 
+
+    /**
+     * @OA\Get(
+     *     path="/api/v1/news/{news}",
+     *     summary="View a news",
+     *     tags={"News"},
+     *     @OA\Parameter(
+     *         name="news",
+     *         in="path",
+     *         required=true,
+     *       
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="News retrieved successfully",
+     *         
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="News not found"
+     *     )
+     * )
+     */
     public function viewNews(News $news): JsonResponse
     {
         $news->increment('views');
@@ -87,6 +207,18 @@ class NewsController extends APIController
         return $this->respondWithSuccess(new NewsResource($news));
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/news/top-viewed",
+     *     summary="Get top viewed news",
+     *     tags={"News"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Top viewed news retrieved successfully",
+     *         
+     *     )
+     * )
+     */
     public function getTopViewedNews(): JsonResponse
     {
         $topNews = News::orderBy('views', 'desc')->take(3)->get();

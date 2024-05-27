@@ -15,6 +15,29 @@ use Illuminate\Support\Str;
 
 class UserController extends APIController
 {
+     /**
+     * @OA\Post(
+     *     path="/api/v1/login",
+     *     summary="User login",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"username", "password"},
+     *             @OA\Property(property="username", type="string"),
+     *             @OA\Property(property="password", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Login successful"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
     public function login(LoginRequest $request): JsonResponse
     {
         $user = User::query()->where('username', $request->username)->first();
@@ -30,6 +53,31 @@ class UserController extends APIController
 
         return $this->respondWithSuccess($response, __('app.login.success'));
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/register",
+     *     summary="User registration",
+     *     tags={"Authentication"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"username", "email", "password"},
+     *             @OA\Property(property="username", type="string"),
+     *             @OA\Property(property="email", type="string"),
+     *             @OA\Property(property="password", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=201,
+     *         description="User registered successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
 
     public function register(RegisterRequest $request): JsonResponse
     {
@@ -56,10 +104,51 @@ class UserController extends APIController
 
         return $this->respondWithSuccess($response, __('app.success'), 201);
     }
+    /**
+     * @OA\Get(
+     *     path="/api/v1/user/profile",
+     *     summary="Get user profile",
+     *     tags={"User"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\Response(
+     *         response=200,
+     *         description="User profile retrieved successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
     public function getUserProfile(User $user): JsonResponse
     {
         return $this->respondWithSuccess($user);
     }
+
+    /**
+     * @OA\Post(
+     *     path="/api/v1/user/change-password",
+     *     summary="Change user password",
+     *     tags={"User"},
+     *     security={{"bearerAuth":{}}},
+     *     @OA\RequestBody(
+     *         required=true,
+     *         @OA\JsonContent(
+     *             required={"current_password", "new_password"},
+     *             @OA\Property(property="current_password", type="string"),
+     *             @OA\Property(property="new_password", type="string")
+     *         )
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Password changed successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=401,
+     *         description="Unauthorized"
+     *     )
+     * )
+     */
 
     public function changePassword(ChangePasswordRequest $request): JsonResponse
     {

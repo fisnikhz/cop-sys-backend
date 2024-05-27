@@ -12,6 +12,24 @@ use Illuminate\Http\JsonResponse;
 
 class VehiclesController extends APIController
 {
+    /**
+     * @OA\Post(
+     *     path="/api/v1/vehicle",
+     *     summary="Add a new vehicle",
+     *     tags={"Vehicle"},
+     *     @OA\RequestBody(
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Vehicle added successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
     public function addVehicle(CreateVehicleRequest $request): JsonResponse
     {
         $data = $request->validated();
@@ -20,6 +38,34 @@ class VehiclesController extends APIController
 
         return $this->respondWithSuccess(VehiclesResource::make($vehicleData));
     }
+
+     /**
+     * @OA\Put(
+     *     path="/api/v1/vehicle/{id}",
+     *     summary="Update an existing vehicle",
+     *     tags={"Vehicle"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\RequestBody(
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Vehicle updated successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Vehicle not found"
+     *     ),
+     *     @OA\Response(
+     *         response=422,
+     *         description="Validation error"
+     *     )
+     * )
+     */
 
     public function updateVehicle(UpdateVehicleRequest $request, Vehicle $vehicle): JsonResponse
     {
@@ -32,6 +78,27 @@ class VehiclesController extends APIController
         return $this->respondWithSuccess(VehiclesResource::make($vehicle));
     }
 
+    /**
+     * @OA\Delete(
+     *     path="/api/v1/vehicle/{id}",
+     *     summary="Remove a vehicle",
+     *     tags={"Vehicle"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Vehicle deleted successfully"
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Vehicle not found"
+     *     )
+     * )
+     */
+
     public function removeVehicle(Vehicle $vehicle): JsonResponse
     {
         $vehicle->delete();
@@ -39,10 +106,43 @@ class VehiclesController extends APIController
         return $this->respondWithSuccess(null, __('app.vehicle.deleted'));
     }
 
+     /**
+     * @OA\Get(
+     *     path="/api/v1/vehicle/{id}",
+     *     summary="Get a vehicle by ID",
+     *     tags={"Vehicle"},
+     *     @OA\Parameter(
+     *         name="id",
+     *         in="path",
+     *         required=true,
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Vehicle retrieved successfully",
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Vehicle not found"
+     *     )
+     * )
+     */
+
     public function getVehicle(Int $vehicle): JsonResponse{
 
         return $this->respondWithSuccess(Vehicle::find($vehicle)->firstOrFail);
     }
+
+     /**
+     * @OA\Get(
+     *     path="/api/v1/vehicle",
+     *     summary="Get all vehicles",
+     *     tags={"Vehicle"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Vehicle list retrieved successfully",
+     *     )
+     * )
+     */
     public function getAllVehicles(): JsonResponse{
 
         return $this->respondWithSuccess(Vehicle::all());

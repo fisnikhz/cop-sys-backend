@@ -14,8 +14,10 @@ class TicketsResource extends JsonResource
             'ticket_id' => $this->ticket_id,
             'description' => $this->description,
             'title' => $this->title,
-            // 'vehicle' => $this->vehicle,
-            // 'person' => $this->person
+            'price' => $this->price,
+            'assigned_personnel' => $this->assigned_personnel,
+            'vehicle' => $this->vehicle,
+            'person' => $this->person,
         ];
     }
 }

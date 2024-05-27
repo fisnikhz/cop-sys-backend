@@ -27,8 +27,8 @@ class Cases extends Model
         'incidents_id'
     ];
 
-    public function investigator(): HasOne
+    public function investigator_id(): HasOne
     {
-        return $this->hasOne(Personnel::class, 'personnel_id','investigator_id');
+        return $this->hasOne(Personnel::class, 'investigator_id','personnel_id');
     }
 }

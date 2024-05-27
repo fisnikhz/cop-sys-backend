@@ -25,8 +25,9 @@ class Incident extends Model
 //    {
 //        return $this->hasOne(Location::class, 'location_id', 'location');
 //    }
-    public function reporter(): HasOne
+
+    public function assigning_personnel(): HasOne
     {
-        return $this->hasOne(Personnel::class, 'personnel_id', 'reporter_id');
+        return $this->hasOne(Personnel::class, 'reporter_id','personnel_id');
     }
 }

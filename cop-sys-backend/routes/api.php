@@ -157,6 +157,14 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
 
     //DepartmentPersonnel API
+    Route::get('departments/{department_id}/personnel', [DepartmentPersonnelController::class, 'getPersonnelByDepartment']);
+    Route::get('personnel/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentByPersonnel']);
+
+    //IncidentsReporter API
+    Route::get('/incidents/{personnel_id}/reporters', [IncidentsController::class, 'getIncidentsByReporter']);
+
+    //CasesReporter API
+    Route::get('/cases/{personnel_id}/investigators', [CasesController::class, 'getCasesByInvestigator']);
     Route::get('departments/{department_id}/personnels', [DepartmentPersonnelController::class, 'getPersonnelsByDepartment']);
     Route::get('personnels/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentsByPersonnel']);
 

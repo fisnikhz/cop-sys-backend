@@ -18,7 +18,7 @@ class CreateNewsRequest extends APIRequest
             'content' => 'required|string',
             'tags' => 'nullable|array',
             'tags.*' => 'string',
-            'created_by' => 'required|uuid|exists:users,user_id',
+            'created_by' => 'uuid|exists:users,user_id',
             'created_at' => 'date',
             'updated_at' => 'date',
             'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',

@@ -47,4 +47,15 @@ class TicketsController extends APIController
 
         return $this->respondWithSuccess(Ticket::all());
     }
+
+    public function getTicketsByPersonnel(string $personnel_id): JsonResponse
+    {
+        // Get tickets assigned to the given personnel
+        $tickets = Ticket::where('assigning_personnel', $personnel_id)
+            ->get();
+
+        // Return the collection of tickets
+        return response()->json(TicketsResource::collection($tickets), 200);
+    }
+
 }

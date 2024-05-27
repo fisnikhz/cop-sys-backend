@@ -15,8 +15,9 @@ return new class extends Migration
             $table->uuid('ticket_id')->primary();
             $table->text('description');
             $table->text('title');
-            $table->foreignUuid('vehicle')->nullable()->constrained('Vehicle','vehicle_id');
-            $table->foreignUuid('person')->nullable()->constrained('Person','person_id');
+            $table->foreignUuid('vehicle')->nullable()->constrained('Vehicles','vehicle_id');
+            $table->string('person')->nullable();
+            $table->foreign('person')->references('personnel_number')->on('Person');
             $table->timestamps();
         });
     }

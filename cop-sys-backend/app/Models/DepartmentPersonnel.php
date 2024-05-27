@@ -18,12 +18,12 @@ class DepartmentPersonnel extends Model
         'personnel_id',
     ];
 
-    public function personnel(): HasOne
+    public function personnels(): HasOne
     {
         return $this->hasOne(Personnel::class, 'personnel_id','personnel_id');
     }
     public function departments(): HasOne
     {
-        return $this->hasOne(Departments::class, 'department_id','department_id');
+        return $this->hasOne(Department::class, 'department_id','department_id');
     }
 }

@@ -13,7 +13,7 @@ class DepartmentPersonnelResource extends JsonResource
         return [
             'department_id' => $this->department_id,
             'personnel_id' => $this->personnel_id,
-            'personnel' => new PersonnelsResource($this->whenLoaded('personnel')),
+            'personnels' => new PersonnelsResource($this->whenLoaded('personnels')),
             'departments' => new DepartmentsResource($this->whenLoaded('departments')),
         ];
     }

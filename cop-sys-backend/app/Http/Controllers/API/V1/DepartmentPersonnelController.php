@@ -10,20 +10,20 @@ use Illuminate\Http\JsonResponse;
 
 class DepartmentPersonnelController extends APIController
 {
-    public function getPersonnelByDepartment(string $department_id): JsonResponse
+    public function getPersonnelsByDepartment(string $department_id): JsonResponse
     {
         $department_id = (int) $department_id;
 
         // Get personnel associated with the given department
-        $personnel = DepartmentPersonnel::where('department_id', $department_id)
-            ->with('personnel')
+        $personnels = DepartmentPersonnel::where('department_id', $department_id)
+            ->with('personnels')
             ->get();
 
         // Return the collection of personnel
-        return response()->json(DepartmentPersonnelResource::collection($personnel), 200);
+        return response()->json(DepartmentPersonnelResource::collection($personnels), 200);
     }
 
-    public function getDepartmentByPersonnel(string $personnel_id): JsonResponse
+    public function getDepartmentsByPersonnel(string $personnel_id): JsonResponse
     {
         $personnel_id = (int) $personnel_id;
 

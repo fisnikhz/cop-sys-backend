@@ -88,15 +88,15 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeAttendance/{attendance}', [AttendanceController::class, 'removeAttendance']);
     Route::get('/getAttendance/{attendance}',[AttendanceController::class, 'getAttendance']);
     Route::get('.getAllAttendances',[AttendanceController::class, 'getAllAttendances']);
-  
-  
+
+
     //Cases API
     Route::post('/addCase', [CasesController::class, 'addCase']);
     Route::put('/updateCase/{case}', [CasesController::class, 'updateCase']);
     Route::delete('/removeCase/{case}', [CasesController::class, 'removeCase']);
     Route::get('/getCase/{case}',[CasesController::class, 'getCase']);
     Route::get('/getAllCases',[CasesController::class, 'getAllCases']);
-  
+
 
 
     //Incidents API
@@ -106,17 +106,17 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getIncident/{incident}',[IncidentsController::class, 'getIncident']);
     Route::get('/getAllIncidents',[IncidentsController::class, 'getAllIncidents']);
 
-    
+
     //News API
     Route::post('news', [NewsController::class, 'addNews'])->name('news.add');
     Route::put('news/{news}', [NewsController::class, 'updateNews'])->name('news.update');
     Route::delete('news/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
-  
+
     //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);
     Route::get('/getUserProfile/{user}', [UserController::class, 'getUserProfile']);
     Route::post('/changePassword', [UserController::class, 'changePassword']);
-  
+
 
     //Roles API
     Route::post('/addRole', [RolesController::class, 'addRole']);
@@ -125,9 +125,9 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getRole/{role}',[RolesController::class, 'getRole']);
     Route::get('/getAllRoles',[RolesController::class, 'getAllRoles']);
 
-  
+
     //Campaign API
-    Route::post('campaigns', [CampaignController::class, 'addCampaign']);
+    Route::post('/addCampaigns', [CampaignController::class, 'addCampaign']);
     Route::put('campaigns/{campaign}', [CampaignController::class, 'updateCampaign']);
     Route::delete('campaigns/{campaign}', [CampaignController::class, 'removeCampaign']);
     Route::get('campaigns/{campaign}', [CampaignController::class, 'viewCampaign']);
@@ -146,8 +146,8 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeTicket/{ticket}', [TicketsController::class, 'removeTicket']);
     Route::get('/getTicket/{ticket}',[TicketsController::class, 'getTicket']);
     Route::get('/getAllTickets',[TicketsController::class, 'getAllTickets']);
-  
-  
+
+
     //Person API
     Route::post('/addPerson', [PersonController::class, 'addPerson']);
     Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
@@ -166,11 +166,7 @@ Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
     Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
     Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
     Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
-    Route::get('campaigns', [CampaignController::class, 'allCampaigns']);
-
-
-
-
+    Route::get('/getCampaigns', [CampaignController::class, 'allCampaigns']);
 
 });
 

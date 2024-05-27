@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Vehicle', function (Blueprint $table) {
+        Schema::table('Vehicles', function (Blueprint $table) {
             // Making the car_location column nullable
             $table->uuid('car_location')->nullable()->change();
         });

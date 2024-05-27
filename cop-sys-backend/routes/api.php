@@ -17,6 +17,7 @@ use App\Http\Controllers\API\V1\AttendanceController;
 use App\Http\Controllers\API\V1\RolesController;
 use App\Http\Controllers\API\V1\TicketsController;
 use App\Http\Controllers\API\V1\PersonController;
+use App\Http\Controllers\API\V1\DepartmentPersonnelController;
 
 
 use Illuminate\Support\Facades\Route;
@@ -146,8 +147,8 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::delete('/removeTicket/{ticket}', [TicketsController::class, 'removeTicket']);
     Route::get('/getTicket/{ticket}',[TicketsController::class, 'getTicket']);
     Route::get('/getAllTickets',[TicketsController::class, 'getAllTickets']);
-  
-  
+
+
     //Person API
     Route::post('/addPerson', [PersonController::class, 'addPerson']);
     Route::put('/updatePerson/{person}', [PersonController::class, 'updatePerson']);
@@ -155,6 +156,10 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::get('/getPerson/{person}',[PersonController::class, 'getPerson']);
     Route::get('/getAllPersons',[PersonController::class, 'getAllPersons']);
 
+
+    //DepartmentPersonnel API
+    Route::get('departments/{department_id}/personnel', [DepartmentPersonnelController::class, 'getPersonnelByDepartment']);
+    Route::get('personnel/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentByPersonnel']);
 });
 
 Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {

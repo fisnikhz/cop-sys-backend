@@ -36,7 +36,6 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
 
     //Personnel API
-    Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
     Route::put('/updatePersonnel/{personnel}', [PersonnelController::class, 'updatePersonnel']);
     Route::delete('/removePersonnel/{personnel}', [PersonnelController::class, 'removePersonnel']);
     Route::get('/getPersonnel/{personnel}', [PersonnelController::class, 'getPersonnel']);
@@ -167,6 +166,7 @@ Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
     Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
     Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
     Route::get('/getCampaigns', [CampaignController::class, 'allCampaigns']);
+    Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
 
 });
 

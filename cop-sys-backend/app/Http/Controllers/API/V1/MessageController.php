@@ -12,12 +12,14 @@ use Illuminate\Support\Facades\Auth;
 
 class MessageController extends APIController
 {
+    
     public function index(Conversation $conversation): JsonResponse
     {
         $messages = $conversation->messages()->with('sender')->get();
         return $this->respondWithSuccess(MessageResource::collection($messages));
     }
 
+    
     public function store(CreateMessageRequest $request, Conversation $conversation): JsonResponse
     {
         $message = $conversation->messages()->create([

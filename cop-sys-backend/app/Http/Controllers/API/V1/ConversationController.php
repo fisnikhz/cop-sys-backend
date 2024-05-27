@@ -11,6 +11,19 @@ use Illuminate\Support\Facades\Auth;
 
 class ConversationController extends APIController
 {
+    /**
+     * @OA\Get(
+     *     path="/api/v1/conversation/admin",
+     *     summary="Get the conversation with admins",
+     *     tags={"Conversation"},
+     *     @OA\Response(
+     *         response=200,
+     *         description="Admin conversation retrieved successfully"
+     *       
+     *         ),
+     *     ),
+     * )
+     */
     public function getAdminConversation(): JsonResponse
     {
         $adminIds = User::where('role', 1)->pluck('user_id');

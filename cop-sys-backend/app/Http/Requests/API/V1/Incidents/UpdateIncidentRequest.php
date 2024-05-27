@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests\API\V1\Case;
+namespace App\Http\Requests\API\V1\Incidents;
 
 use App\Http\Requests\API\APIRequest;
 

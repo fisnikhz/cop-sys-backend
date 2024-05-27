@@ -5,7 +5,7 @@ return [
     'documentations' => [
         'default' => [
             'api' => [
-                'title' => 'Cop-Sys Api Documentation',
+                'title' => 'L5 Swagger UI',
             ],
 
             'routes' => [

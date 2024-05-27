@@ -10,8 +10,11 @@ class DepartmentPersonnel extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
+
     protected $fillable = [
-        'conversation_id',
+        'department_id',
         'personnel_id',
     ];
 
@@ -19,8 +22,8 @@ class DepartmentPersonnel extends Model
     {
         return $this->hasOne(Personnel::class, 'personnel_id','personnel_id');
     }
-    public function conversation(): HasOne
+    public function departments(): HasOne
     {
-        return $this->hasOne(Conversation::class, 'conversation_id','conversation_id');
+        return $this->hasOne(Departments::class, 'department_id','department_id');
     }
 }

@@ -54,5 +54,11 @@ class IncidentsController extends APIController
     }
 
 
+    public function getIncidentsByReporter(string $personnel_id): JsonResponse
+    {
+        $incidents = Incident::where('reporter_id', $personnel_id)
+            ->get();
 
+        return response()->json(IncidentResource::collection($incidents), 200);
+    }
 }

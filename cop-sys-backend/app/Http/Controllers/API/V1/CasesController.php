@@ -49,6 +49,12 @@ class CasesController extends APIController
         return $this->respondWithSuccess(Cases::all());
     }
 
+    public function getCasesByInvestigator(string $personnel_id): JsonResponse
+    {
+        $cases = Cases::where('investigator_id', $personnel_id)
+            ->get();
 
+        return response()->json(CasesResource::collection($cases), 200);
+    }
 
 }

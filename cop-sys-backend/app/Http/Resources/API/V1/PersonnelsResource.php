@@ -11,7 +11,7 @@ class PersonnelsResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->personnel_id,
+            'personnel_id' => $this->personnel_id,
             'first_name' => $this->first_name,
             'last_name' => $this->last_name,
             'rank' => $this->rank,

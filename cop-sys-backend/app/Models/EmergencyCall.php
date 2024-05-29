@@ -19,7 +19,7 @@ class EmergencyCall extends Model
         'caller_name',
         'phone_number',
         'incident_type',
-//        'location',
+        'location',
         'time',
         'responder'
     ];

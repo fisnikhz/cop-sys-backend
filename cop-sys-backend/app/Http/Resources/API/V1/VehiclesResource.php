@@ -11,7 +11,7 @@ class VehiclesResource extends JsonResource
     public function toArray(Request $request): array
     {
         return [
-            'id' => $this->vehicle_id,
+            'vehicle_id' => $this->vehicle_id,
             'vehicle_registration' => $this->vehicle_registration,
             'manufacture_name' => $this->manufacture_name,
             'serie' => $this->serie,
@@ -21,7 +21,7 @@ class VehiclesResource extends JsonResource
             'registration_date' => $this->registration_date,
             'designated_driver' => $this->designated_driver,
             'car_picture' => $this->car_picture,
-//            'car_location' => $this->car_location
+            'car_location' => $this->car_location
         ];
     }
 }

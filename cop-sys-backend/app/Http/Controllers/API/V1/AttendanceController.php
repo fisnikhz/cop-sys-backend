@@ -73,7 +73,7 @@ class AttendanceController extends APIController
     {
         $data = $request->validated();
 
-        $attendance = Attendance::find($attendance->attendance_id)->firstOrFail();
+        $attendance = Attendance::find($attendance->attendance_id);
 
         $attendance->update($data);
 
@@ -130,9 +130,9 @@ class AttendanceController extends APIController
      *     )
      * )
      */
-    public function getAttendance(Int $attendance): JsonResponse{
+    public function getAttendance(Attendance $attendance): JsonResponse{
 
-        return $this->respondWithSuccess(Attendance::find($attendance)->firstOrFail);
+        return $this->respondWithSuccess($attendance);
     }
     /**
      * @OA\Get(

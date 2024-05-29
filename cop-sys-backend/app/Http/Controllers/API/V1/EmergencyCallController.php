@@ -29,7 +29,7 @@ class EmergencyCallController extends APIController
 
         $emergency->update($data);
 
-        return $this->respondWithSuccess(EmergencyCallResource::make($emergencyCall));
+        return $this->respondWithSuccess(EmergencyCallResource::make($emergency));
     }
 
     public function removeEmergencyCall(EmergencyCall $emergencyCall): JsonResponse

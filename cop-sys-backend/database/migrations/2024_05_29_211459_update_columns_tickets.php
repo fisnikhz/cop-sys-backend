@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Emergency_Calls', function (Blueprint $table) {
-
-            $table->text('caller_name')->nullable()->change();
-            $table->foreignUuid('location')->constrained('Locations','location_id')->nullable();
-            $table->datetime('time')->nullable();
-            $table->foreignUuid('responder')->constrained('Personnels','personnel_id');
+        Schema::table('Tickets', function (Blueprint $table) {
+            $table->text('price');
+            $table->foreignUuid('assigned_personnel')->nullable()->constrained('Personnels','personnel_id');
         });
+    
     }
 
     /**

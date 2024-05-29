@@ -26,7 +26,7 @@ class EquipmentsController extends APIController
     {
         $data = $request->validated();
 
-        $equipment = Equipment::find($equipment->equipment_id)->firstOrFail();
+        $equipment = Equipment::find($equipment->equipment_id);
 
         $equipment->update($data);
 
@@ -39,11 +39,17 @@ class EquipmentsController extends APIController
 
         return $this->respondWithSuccess(null, __('app.equipment.deleted'));
     }
+    
 
-    public function getEquipment(Int $equipment): JsonResponse{
+    public function getEquipment(Equipment $equipment): JsonResponse{
 
-        return $this->respondWithSuccess(Equipment::find($equipment)->firstOrFail);
+        $equipmentt = Equipment::findOrFail($equipment->equipment_id);
+
+        return $this->respondWithSuccess($equipmentt);
     }
+
+
+
     public function getAllEquipment(): JsonResponse{
 
         return $this->respondWithSuccess(Equipment::all());

@@ -71,7 +71,7 @@ class VehiclesController extends APIController
     {
         $data = $request->validated();
 
-        $vehicle = Vehicle::find($vehicle->vehicle_id)->firstOrFail();
+        $vehicle = Vehicle::find($vehicle->vehicle_id);
 
         $vehicle->update($data);
 
@@ -127,9 +127,11 @@ class VehiclesController extends APIController
      * )
      */
 
-    public function getVehicle(Int $vehicle): JsonResponse{
+    public function getVehicle(Vehicle $vehicle): JsonResponse{
+        // dd($vehicle);
+        // $vehiclee = Vehicle::findOrFail($vehicle->$vehicle_id);
 
-        return $this->respondWithSuccess(Vehicle::find($vehicle)->firstOrFail);
+        return $this->respondWithSuccess($vehicle);
     }
 
      /**

@@ -14,11 +14,11 @@ class CreateTicketRequest extends APIRequest
     public function rules(): array
     {
         return [
-            'description' => 'required|string',
-            'title' => 'required|string',
-            'price' => 'required|string',
-            'assigning_personnel' => 'required|exists:personnels,personnel_id',
-            'vehicle' => 'required|exists:vehicle,vehicle_id',
+            'description' => 'string',
+            'title' => 'string',
+            'price' => 'string',
+            'assigned_personnel' => 'required|exists:personnels,personnel_id',
+            'vehicle' => 'required|exists:vehicles,vehicle_id',
             'person' => 'required|exists:person,personal_number',
         ];
     }

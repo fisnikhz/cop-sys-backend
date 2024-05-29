@@ -73,7 +73,7 @@ class RolesController extends APIController
     {
         $data = $request->validated();
 
-        $role = Role::find($role->role_id)->firstOrFail();
+        $role = Role::find($role->role_id);
 
         $role->update($data);
 

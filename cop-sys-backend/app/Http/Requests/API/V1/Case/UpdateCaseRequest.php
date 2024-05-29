@@ -15,10 +15,10 @@ class UpdateCaseRequest extends APIRequest
     public function rules(): array
     {
         return [
-            'status' => 'required|string',
-            'open_date' => 'required|date',
+            'status' => 'string',
+            'open_date' => 'date',
             'close_date' => 'date',
-            'investigator_id' => 'string',
+            'investigator_id' => 'exists:personnels,personnel_id',
             'incidents_id' => 'string'
         ];
     }

@@ -11,6 +11,7 @@ class Person extends Model
 
     
     protected $primaryKey = 'personal_number'; // Specify the primary key column
+    protected $table = 'Person';
     public $timestamps = false;
 
 

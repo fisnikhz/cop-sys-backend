@@ -75,7 +75,7 @@ class PersonController extends APIController
     {
         $data = $request->validated();
 
-        $person = Person::find($person->personal_number)->firstOrFail();
+        $person = Person::find($person->personal_number);
 
         $person->update($data);
 
@@ -132,9 +132,9 @@ class PersonController extends APIController
      *     )
      * )
      */
-    public function getPerson(Int $person): JsonResponse{
+    public function getPerson(Person $person): JsonResponse{
 
-        return $this->respondWithSuccess(Person::find($person)->firstOrFail);
+        return $this->respondWithSuccess($person);
     }
 
     /**

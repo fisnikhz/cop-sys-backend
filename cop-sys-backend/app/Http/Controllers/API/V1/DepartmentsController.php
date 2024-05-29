@@ -25,7 +25,7 @@ class DepartmentsController extends APIController
     {
         $data = $request->validated();
 
-        $department = Department::find($department->department_id)->firstOrFail();
+        $department = Department::find($department->department_id);
 
         $department->update($data);
 
@@ -39,10 +39,12 @@ class DepartmentsController extends APIController
         return $this->respondWithSuccess(null, __('app.department.deleted'));
     }
 
-    public function getDepartment(Int $department): JsonResponse{
+    public function getDepartment(Department $department): JsonResponse{
 
-        return $this->respondWithSuccess(Department::find($department)->firstOrFail);
+        return $this->respondWithSuccess($department);
     }
+
+
     public function getAllDepartments(): JsonResponse{
 
         return $this->respondWithSuccess(Department::all());

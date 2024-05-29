@@ -14,11 +14,11 @@ class UpdateEmergencyCallRequest extends APIRequest
     public function rules(): array
     {
         return [
-            'caller_name' => 'required|string',
-            'phone_number' => 'required|string',
-            'incident_type' => 'required|string',
-//            'location' => 'exists:locations,location_id|nullable',
-            'time' => 'required|date',
+            'caller_name' => 'string',
+            'phone_number' => 'string',
+            'incident_type' => 'string',
+            'location' => 'exists:locations,location_id|nullable',
+            'time' => 'date',
             'responder' => 'exists:personnels,personnel_id|nullable'
         ];
     }

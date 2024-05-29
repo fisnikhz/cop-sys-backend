@@ -11,8 +11,9 @@ class Vehicle extends Model
 {
     use HasFactory, HasUuids;
 
-    protected $table = 'vehicle'; // Specify the correct table name
+    protected $table = 'Vehicles'; // Specify the correct table name
     protected $primaryKey = 'vehicle_id'; // Specify the primary key column
+
     public $timestamps = false;
 
 
@@ -26,13 +27,13 @@ class Vehicle extends Model
         'registration_date',
         'designated_driver',
         'car_picture',
-//        'car_location',
+        'car_location',
     ];
 
-//    public function location(): HasOne
-//    {
-//        return $this->hasOne(Location::class, 'location_id','car_location');
-//    }
+    public function location(): HasOne
+    {
+        return $this->hasOne(Location::class, 'location_id','car_location');
+    }
 
 
     public function driver(): HasOne

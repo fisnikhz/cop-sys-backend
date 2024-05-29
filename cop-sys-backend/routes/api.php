@@ -61,7 +61,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     //Vehicles API
     Route::post('/addVehicle', [VehiclesController::class, 'addVehicle']);
     Route::put('/updateVehicle/{vehicle}', [VehiclesController::class, 'updateVehicle']);
-    Route::delete('/removeVehicle{vehicle}', [VehiclesController::class, 'removeVehicle']);
+    Route::delete('/removeVehicle/{vehicle}', [VehiclesController::class, 'removeVehicle']);
     Route::get('/getVehicle/{vehicle}',[VehiclesController::class, 'getVehicle']);
     Route::get('/getAllVehicles',[VehiclesController::class, 'getAllVehicles']);
 
@@ -87,7 +87,7 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
     Route::put('/updateAttendance/{attendance}', [AttendanceController::class, 'updateAttendance']);
     Route::delete('/removeAttendance/{attendance}', [AttendanceController::class, 'removeAttendance']);
     Route::get('/getAttendance/{attendance}',[AttendanceController::class, 'getAttendance']);
-    Route::get('.getAllAttendances',[AttendanceController::class, 'getAllAttendances']);
+    Route::get('/getAllAttendances',[AttendanceController::class, 'getAllAttendances']);
 
 
     //Cases API
@@ -157,19 +157,17 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
 
     //DepartmentPersonnel API
-    Route::get('departments/{department_id}/personnel', [DepartmentPersonnelController::class, 'getPersonnelByDepartment']);
-    Route::get('personnel/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentByPersonnel']);
+    Route::get('department/{department_id}/personnels', [DepartmentPersonnelController::class, 'getPersonnelsByDepartment']);
+    Route::get('personnel/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentsByPersonnel']);
 
     //IncidentsReporter API
-    Route::get('/incidents/{personnel_id}/reporters', [IncidentsController::class, 'getIncidentsByReporter']);
+    Route::get('/reporter/{personnel_id}/incidents', [IncidentsController::class, 'getIncidentsByReporter']);
 
-    //CasesReporter API
-    Route::get('/cases/{personnel_id}/investigators', [CasesController::class, 'getCasesByInvestigator']);
-    Route::get('departments/{department_id}/personnels', [DepartmentPersonnelController::class, 'getPersonnelsByDepartment']);
-    Route::get('personnels/{personnel_id}/departments', [DepartmentPersonnelController::class, 'getDepartmentsByPersonnel']);
+    //CasesByInvestigator API
+    Route::get('/investigator/{personnel_id}/cases', [CasesController::class, 'getCasesByInvestigator']);
 
-    //TicketsPersonnel API
-    Route::get('/personnels/{personnel_id}/tickets', [TicketsController::class, 'getTicketsByPersonnel']);
+    //TicketsByPersonnel API
+    Route::get('/personnel/{personnel_id}/tickets', [TicketsController::class, 'getTicketsByPersonnel']);
 
 });
 

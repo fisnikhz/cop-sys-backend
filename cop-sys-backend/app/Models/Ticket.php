@@ -22,7 +22,7 @@ class Ticket extends Model
         'price',
         'vehicle',
         'person',
-        'assigning_personnel',
+        'assigned_personnel',
     ];
 
 
@@ -36,8 +36,8 @@ class Ticket extends Model
         return $this->hasOne(Person::class, 'person','personal_number');
     }
 
-    public function assigning_personnel(): HasOne
+    public function assigned_personnel(): HasOne
     {
-        return $this->hasOne(Personnel::class, 'assigning_personnel','personnel_id');
+        return $this->hasOne(Personnel::class, 'assigned_personnel','personnel_id');
     }
 }

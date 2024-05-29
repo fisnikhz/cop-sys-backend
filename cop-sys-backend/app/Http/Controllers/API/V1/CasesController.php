@@ -74,7 +74,7 @@ class CasesController extends APIController
     {
         $data = $request->validated();
 
-        $case = Cases::find($case->case_id)->firstOrFail();
+        $case = Cases::find($case->case_id);
 
         $case->update($data);
 
@@ -132,9 +132,9 @@ class CasesController extends APIController
      *     )
      * )
      */
-    public function getCase(Int $case): JsonResponse{
+    public function getCase(Cases $case): JsonResponse{
 
-        return $this->respondWithSuccess(Cases::find($case)->firstOrFail);
+        return $this->respondWithSuccess($case);
     }
 
     /**

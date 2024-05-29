@@ -14,12 +14,12 @@ class CreateEmergencyCallRequest extends APIRequest
     public function rules(): array
     {
         return [
-            'caller_name' => 'required|string',
-            'phone_number' => 'required|string',
-            'incident_type' => 'required|string',
-//            'location' => 'required|exists:locations,location_id',
+            'caller_name' => 'string',
+            'phone_number' => 'string',
+            'incident_type' => 'string',
+            'location' => 'exists:locations,location_id',
             'time' => 'date',
-            'responder' => 'required|exists:personnels,personnel_id',
+            'responder' => 'exists:personnels,personnel_id',
         ];
     }
 }

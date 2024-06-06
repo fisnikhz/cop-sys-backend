@@ -18,10 +18,13 @@ class ConversationController extends APIController
      *     tags={"Conversation"},
      *     @OA\Response(
      *         response=200,
-     *         description="Admin conversation retrieved successfully"
-     *       
-     *         ),
+     *         description="Admin conversation retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/ConversationResource")
      *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Admin conversation not found"
+     *     )
      * )
      */
     public function getAdminConversation(): JsonResponse

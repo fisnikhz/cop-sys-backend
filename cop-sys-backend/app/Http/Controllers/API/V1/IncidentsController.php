@@ -19,10 +19,12 @@ class IncidentsController extends APIController
      *     tags={"Incident"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateIncidentRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -48,16 +50,16 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateIncidentRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -89,7 +91,7 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -117,12 +119,12 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -143,7 +145,7 @@ class IncidentsController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Incidents list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/IncidentResource"))
      *     )
      * )
      */

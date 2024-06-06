@@ -20,12 +20,7 @@ class NewsController extends APIController
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"title", "content"},
-     *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="content", type="string"),
-     *             @OA\Property(property="image", type="string", format="binary")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/CreateNewsRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -63,16 +58,11 @@ class NewsController extends APIController
      *         name="news",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"title", "content"},
-     *             @OA\Property(property="title", type="string"),
-     *             @OA\Property(property="content", type="string"),
-     *             @OA\Property(property="image", type="string", format="binary")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateNewsRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -114,7 +104,7 @@ class NewsController extends APIController
      *         name="news",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -142,7 +132,7 @@ class NewsController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="News list retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/NewsResource")
      *     )
      * )
      */
@@ -185,12 +175,12 @@ class NewsController extends APIController
      *         name="news",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="News retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/NewsResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -215,7 +205,7 @@ class NewsController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Top viewed news retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/NewsResource")
      *     )
      * )
      */

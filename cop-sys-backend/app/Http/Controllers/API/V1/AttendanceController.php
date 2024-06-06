@@ -10,19 +10,22 @@ use App\Models\Attendance;
 use Faker\Provider\Person;
 use Illuminate\Http\JsonResponse;
 
+
 class AttendanceController extends APIController
 {
-     /**
+    /**
      * @OA\Post(
      *     path="/api/v1/attendance",
      *     summary="Add a new attendance record",
      *     tags={"Attendance"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateAttendanceRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Attendance record added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/AttendanceResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -48,16 +51,16 @@ class AttendanceController extends APIController
      *         name="attendance",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateAttendanceRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Attendance record updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/AttendanceResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -89,7 +92,7 @@ class AttendanceController extends APIController
      *         name="attendance",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -117,12 +120,12 @@ class AttendanceController extends APIController
      *         name="attendance",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Attendance record retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/AttendanceResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -142,7 +145,7 @@ class AttendanceController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Attendance records list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/AttendanceResource"))
      *     )
      * )
      */

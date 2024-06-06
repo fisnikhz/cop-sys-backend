@@ -9,20 +9,21 @@ use App\Http\Resources\API\V1\PersonnelsResource;
 use App\Models\Personnel;
 use Illuminate\Http\JsonResponse;
 
-
 class PersonnelController extends APIController
 {
-       /**
+    /**
      * @OA\Post(
      *     path="/api/v1/personnel",
      *     summary="Add a new personnel",
      *     tags={"Personnel"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreatePersonnelRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Personnel added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/PersonnelsResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -39,7 +40,7 @@ class PersonnelController extends APIController
         return $this->respondWithSuccess(PersonnelsResource::make($personnelData));
     }
 
-      /**
+    /**
      * @OA\Put(
      *     path="/api/v1/personnel/{id}",
      *     summary="Update an existing personnel",
@@ -48,16 +49,16 @@ class PersonnelController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdatePersonnelRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Personnel updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/PersonnelsResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -93,7 +94,7 @@ class PersonnelController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -121,12 +122,12 @@ class PersonnelController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Personnel retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/PersonnelsResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -149,7 +150,10 @@ class PersonnelController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Personnel list retrieved successfully",
-     *         
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/PersonnelsResource")
+     *         )
      *     )
      * )
      */

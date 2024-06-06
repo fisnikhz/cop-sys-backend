@@ -19,10 +19,12 @@ class LocationController extends APIController
      *     tags={"Location"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateLocationRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Location added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/LocationResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -48,16 +50,16 @@ class LocationController extends APIController
      *         name="location",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateLocationRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Location updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/LocationResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -90,7 +92,7 @@ class LocationController extends APIController
      *         name="location",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -118,12 +120,12 @@ class LocationController extends APIController
      *         name="location",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Location retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/LocationResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -143,7 +145,7 @@ class LocationController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Locations list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/LocationResource"))
      *     )
      * )
      */

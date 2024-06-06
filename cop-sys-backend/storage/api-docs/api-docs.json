@@ -14,7 +14,17 @@
                 "operationId": "b65a5cec346959b371ff08e90b2d02d6",
                 "responses": {
                     "200": {
-                        "description": "Attendance records list retrieved successfully"
+                        "description": "Attendance records list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/AttendanceResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -25,11 +35,25 @@
                 "summary": "Add a new attendance record",
                 "operationId": "acf3856200ddfb4ea10b4871842aade5",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateAttendanceRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Attendance record added successfully"
+                        "description": "Attendance record added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttendanceResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -48,12 +72,22 @@
                     {
                         "name": "attendance",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Attendance record retrieved successfully"
+                        "description": "Attendance record retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttendanceResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Attendance record not found"
@@ -70,15 +104,32 @@
                     {
                         "name": "attendance",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateAttendanceRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Attendance record updated successfully"
+                        "description": "Attendance record updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AttendanceResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Attendance record not found"
@@ -98,7 +149,10 @@
                     {
                         "name": "attendance",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -120,7 +174,17 @@
                 "operationId": "28fa18dd168398ce75daac6df74ed80e",
                 "responses": {
                     "200": {
-                        "description": "Campaigns list retrieved successfully"
+                        "description": "Campaigns list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CampaignResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -131,11 +195,25 @@
                 "summary": "Add a new campaign",
                 "operationId": "36280386ac702397e9b011f677c8c2d4",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCampaignRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Campaign added successfully"
+                        "description": "Campaign added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CampaignResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -154,12 +232,22 @@
                     {
                         "name": "campaign",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Campaign retrieved successfully"
+                        "description": "Campaign retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CampaignResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Campaign not found"
@@ -176,15 +264,32 @@
                     {
                         "name": "campaign",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCampaignRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Campaign updated successfully"
+                        "description": "Campaign updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CampaignResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Campaign not found"
@@ -204,7 +309,10 @@
                     {
                         "name": "campaign",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -226,7 +334,17 @@
                 "operationId": "533fc7ed6ca8c332730e57c0ef4f470b",
                 "responses": {
                     "200": {
-                        "description": "Cases list retrieved successfully"
+                        "description": "Cases list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CasesResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -237,11 +355,25 @@
                 "summary": "Add a new case",
                 "operationId": "60314d946d91725582b5c6be8c37d5bf",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCaseRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Case added successfully"
+                        "description": "Case added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CasesResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -254,18 +386,28 @@
                 "tags": [
                     "Case"
                 ],
-                "summary": "Get a case by ID",
+                "summary": "View a case by ID",
                 "operationId": "bf5cc293b1375c062bd8f2a1e6070bdd",
                 "parameters": [
                     {
                         "name": "case",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Case retrieved successfully"
+                        "description": "Case retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CasesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Case not found"
@@ -282,15 +424,32 @@
                     {
                         "name": "case",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCaseRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Case updated successfully"
+                        "description": "Case updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CasesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Case not found"
@@ -310,7 +469,10 @@
                     {
                         "name": "case",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -319,6 +481,43 @@
                     },
                     "404": {
                         "description": "Case not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/case/investigator/{personnel_id}": {
+            "get": {
+                "tags": [
+                    "Case"
+                ],
+                "summary": "Get cases by investigator ID",
+                "operationId": "0863267972f0b7cf481fee3f8ac93424",
+                "parameters": [
+                    {
+                        "name": "personnel_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Cases retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/CasesResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Cases not found"
                     }
                 }
             }
@@ -332,36 +531,122 @@
                 "operationId": "bb65c663e2102ba417a23df6760f63ff",
                 "responses": {
                     "200": {
-                        "description": "Admin conversation retrieved successfully"
+                        "description": "Admin conversation retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ConversationResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Admin conversation not found"
                     }
                 }
             }
         },
-        "/api/v1/departments": {
+        "/api/v1/department/{department_id}/personnels": {
             "get": {
                 "tags": [
-                    "Department"
+                    "Department Personnel"
                 ],
-                "summary": "Get all departments",
-                "operationId": "eb55065b55a962eac9a6ab1bb40c6c14",
+                "summary": "Get personnels by department",
+                "operationId": "8796ab7bed07e3d73fb4a8c7535cf9fb",
+                "parameters": [
+                    {
+                        "name": "department_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "Departments list retrieved successfully"
+                        "description": "Personnels retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DepartmentPersonnelResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Department not found"
                     }
                 }
-            },
+            }
+        },
+        "/api/v1/personnel/{personnel_id}/departments": {
+            "get": {
+                "tags": [
+                    "Department Personnel"
+                ],
+                "summary": "Get departments by personnel",
+                "operationId": "a557f705e71c067ec9b0373a17894699",
+                "parameters": [
+                    {
+                        "name": "personnel_id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Departments retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DepartmentPersonnelResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Personnel not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/department": {
             "post": {
                 "tags": [
                     "Department"
                 ],
                 "summary": "Add a new department",
-                "operationId": "443173ba04fb50dfb133792ad4e6b9aa",
+                "operationId": "355ead454e6307cbd2ec69db8d8ebb27",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateDepartmentRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Department added successfully"
+                        "description": "Department added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DepartmentsResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -369,23 +654,33 @@
                 }
             }
         },
-        "/api/v1/departments/{department}": {
+        "/api/v1/department/{department}": {
             "get": {
                 "tags": [
                     "Department"
                 ],
                 "summary": "Get a department by ID",
-                "operationId": "3ae38102a300241d936baf9f04f23280",
+                "operationId": "2a5510ab8e240bfd57e0d8cb8dfea659",
                 "parameters": [
                     {
                         "name": "department",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Department retrieved successfully"
+                        "description": "Department retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DepartmentsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Department not found"
@@ -397,20 +692,37 @@
                     "Department"
                 ],
                 "summary": "Update an existing department",
-                "operationId": "3f10db7abf89fcf21ad3b48e44339fd2",
+                "operationId": "15c11f6162de545878cb194a38d77a2d",
                 "parameters": [
                     {
                         "name": "department",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateDepartmentRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Department updated successfully"
+                        "description": "Department updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DepartmentsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Department not found"
@@ -425,12 +737,15 @@
                     "Department"
                 ],
                 "summary": "Remove a department",
-                "operationId": "dc46a21071a32d8a5edd848a841f0ea5",
+                "operationId": "1b906308f133bc3ad5d94df22d5974fb",
                 "parameters": [
                     {
                         "name": "department",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -439,6 +754,353 @@
                     },
                     "404": {
                         "description": "Department not found"
+                    }
+                }
+            }
+        },
+        "/api/v1/departments": {
+            "get": {
+                "tags": [
+                    "Department"
+                ],
+                "summary": "Get all departments",
+                "operationId": "eb55065b55a962eac9a6ab1bb40c6c14",
+                "responses": {
+                    "200": {
+                        "description": "Departments list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/DepartmentsResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/emergency-call": {
+            "post": {
+                "tags": [
+                    "Emergency Calls"
+                ],
+                "summary": "Add a new emergency call",
+                "operationId": "dac4d3956885f983a67a7165ebf6737f",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateEmergencyCallRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmergencyCallResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/emergency-call/{emergencyCall}": {
+            "get": {
+                "tags": [
+                    "Emergency Calls"
+                ],
+                "summary": "Get an emergency call by ID",
+                "operationId": "3b9f740cca2b080d92f9f959ad05b0d6",
+                "parameters": [
+                    {
+                        "name": "emergencyCall",
+                        "in": "path",
+                        "description": "ID of the emergency call",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmergencyCallResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Emergency Calls"
+                ],
+                "summary": "Update an existing emergency call",
+                "operationId": "7927f632d6bca18156563ec0570c65f2",
+                "parameters": [
+                    {
+                        "name": "emergencyCall",
+                        "in": "path",
+                        "description": "ID of the emergency call",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateEmergencyCallRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EmergencyCallResource"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Emergency Calls"
+                ],
+                "summary": "Remove an emergency call",
+                "operationId": "6cecec46cd2bd005a97ade815c40b0aa",
+                "parameters": [
+                    {
+                        "name": "emergencyCall",
+                        "in": "path",
+                        "description": "ID of the emergency call",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Emergency call deleted successfully"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/emergency-calls": {
+            "get": {
+                "tags": [
+                    "Emergency Calls"
+                ],
+                "summary": "Get all emergency calls",
+                "operationId": "e8ba3d320c918b85408d57460a7ec7e7",
+                "responses": {
+                    "200": {
+                        "description": "Successful operation",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EmergencyCallResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/equipment": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Get all equipment",
+                "operationId": "197bcfcae3e8e75c109a7d52c3b35faa",
+                "responses": {
+                    "200": {
+                        "description": "Equipments list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/EquipmentsResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Add a new equipment",
+                "operationId": "e0fc0ad9252b6a72249541042d967768",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateEquipmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Equipment added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentsResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            }
+        },
+        "/api/v1/equipment/{equipment}": {
+            "get": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Get an equipment by ID",
+                "operationId": "716a2624e922650b8e0e652ae98ea6e0",
+                "parameters": [
+                    {
+                        "name": "equipment",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Equipment retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentsResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Equipment not found"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Update an existing equipment",
+                "operationId": "825f0b3d2d88c59c65db358146a24a2a",
+                "parameters": [
+                    {
+                        "name": "equipment",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateEquipmentRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Equipment updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/EquipmentsResource"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Equipment not found"
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Equipment"
+                ],
+                "summary": "Remove an equipment",
+                "operationId": "9452e643b9cf83bf89c7098484a2f4c8",
+                "parameters": [
+                    {
+                        "name": "equipment",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Equipment deleted successfully"
+                    },
+                    "404": {
+                        "description": "Equipment not found"
                     }
                 }
             }
@@ -452,7 +1114,17 @@
                 "operationId": "1cdb6a26be5e4dd3aeed2eb623b0c65d",
                 "responses": {
                     "200": {
-                        "description": "Incidents list retrieved successfully"
+                        "description": "Incidents list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/IncidentResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -463,11 +1135,25 @@
                 "summary": "Add a new incident",
                 "operationId": "7cec8d625932531abb2156007c408a92",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateIncidentRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Incident added successfully"
+                        "description": "Incident added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -486,12 +1172,22 @@
                     {
                         "name": "incident",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Incident retrieved successfully"
+                        "description": "Incident retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Incident not found"
@@ -508,15 +1204,32 @@
                     {
                         "name": "incident",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateIncidentRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Incident updated successfully"
+                        "description": "Incident updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/IncidentResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Incident not found"
@@ -536,7 +1249,10 @@
                     {
                         "name": "incident",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -558,7 +1274,17 @@
                 "operationId": "27b3b420a9de6cd11a632f734f3c1303",
                 "responses": {
                     "200": {
-                        "description": "Locations list retrieved successfully"
+                        "description": "Locations list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/LocationResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -569,11 +1295,25 @@
                 "summary": "Add a new location",
                 "operationId": "9e848f799e339bc39d28539c7d2b7fe7",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateLocationRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Location added successfully"
+                        "description": "Location added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -592,12 +1332,22 @@
                     {
                         "name": "location",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Location retrieved successfully"
+                        "description": "Location retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Location not found"
@@ -614,15 +1364,32 @@
                     {
                         "name": "location",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateLocationRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Location updated successfully"
+                        "description": "Location updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/LocationResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Location not found"
@@ -642,7 +1409,10 @@
                     {
                         "name": "location",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -655,6 +1425,92 @@
                 }
             }
         },
+        "/api/v1/conversations/{conversation}/messages": {
+            "get": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "Get all messages in a conversation",
+                "operationId": "41a09aa1e41a345efa8953ed1f80dc25",
+                "parameters": [
+                    {
+                        "name": "conversation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Messages list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/MessageResource"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Messages"
+                ],
+                "summary": "Store a new message in a conversation",
+                "operationId": "227ee87ecacea1d33a346a712489efd7",
+                "parameters": [
+                    {
+                        "name": "conversation",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateMessageRequest"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Message stored successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/MessageResource"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Validation error"
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": []
+                    }
+                ]
+            }
+        },
         "/api/v1/news": {
             "get": {
                 "tags": [
@@ -664,7 +1520,14 @@
                 "operationId": "fd39ede69c0b1274926816b688caabb5",
                 "responses": {
                     "200": {
-                        "description": "News list retrieved successfully"
+                        "description": "News list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewsResource"
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -679,23 +1542,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "title",
-                                    "content"
-                                ],
-                                "properties": {
-                                    "title": {
-                                        "type": "string"
-                                    },
-                                    "content": {
-                                        "type": "string"
-                                    },
-                                    "image": {
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/CreateNewsRequest"
                             }
                         }
                     }
@@ -726,12 +1573,22 @@
                     {
                         "name": "news",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "News retrieved successfully"
+                        "description": "News retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "News not found"
@@ -748,7 +1605,10 @@
                     {
                         "name": "news",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
@@ -756,23 +1616,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "title",
-                                    "content"
-                                ],
-                                "properties": {
-                                    "title": {
-                                        "type": "string"
-                                    },
-                                    "content": {
-                                        "type": "string"
-                                    },
-                                    "image": {
-                                        "type": "string",
-                                        "format": "binary"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/UpdateNewsRequest"
                             }
                         }
                     }
@@ -804,7 +1648,10 @@
                     {
                         "name": "news",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -831,7 +1678,14 @@
                 "operationId": "f191ce48e5404ad41e3dc6429bd9f401",
                 "responses": {
                     "200": {
-                        "description": "Top viewed news retrieved successfully"
+                        "description": "Top viewed news retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/NewsResource"
+                                }
+                            }
+                        }
                     }
                 }
             }
@@ -845,7 +1699,17 @@
                 "operationId": "472d347a0c327cd94553298ad6a6019f",
                 "responses": {
                     "200": {
-                        "description": "Persons list retrieved successfully"
+                        "description": "Persons list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PersonResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -856,11 +1720,25 @@
                 "summary": "Add a new person",
                 "operationId": "e7f28cb0ef5bb21f9b935f1535a4676f",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreatePersonRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Person added successfully"
+                        "description": "Person added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -879,12 +1757,22 @@
                     {
                         "name": "person",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Person retrieved successfully"
+                        "description": "Person retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Person not found"
@@ -901,15 +1789,32 @@
                     {
                         "name": "person",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePersonRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Person updated successfully"
+                        "description": "Person updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Person not found"
@@ -929,7 +1834,10 @@
                     {
                         "name": "person",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -951,7 +1859,17 @@
                 "operationId": "af4c7e551a8210377804f342429d0770",
                 "responses": {
                     "200": {
-                        "description": "Personnel list retrieved successfully"
+                        "description": "Personnel list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/PersonnelsResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -962,11 +1880,25 @@
                 "summary": "Add a new personnel",
                 "operationId": "76f53db86b01c5dd1046e7a96e43ae7c",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreatePersonnelRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Personnel added successfully"
+                        "description": "Personnel added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonnelsResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -985,12 +1917,22 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Personnel retrieved successfully"
+                        "description": "Personnel retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonnelsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Personnel not found"
@@ -1007,15 +1949,32 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdatePersonnelRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Personnel updated successfully"
+                        "description": "Personnel updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PersonnelsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Personnel not found"
@@ -1035,7 +1994,10 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
                     }
                 ],
                 "responses": {
@@ -1057,7 +2019,17 @@
                 "operationId": "1ab8531c84d4e272efb9c5e930f755b1",
                 "responses": {
                     "200": {
-                        "description": "Role list retrieved successfully"
+                        "description": "Roles list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/RolesResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1068,11 +2040,25 @@
                 "summary": "Add a new role",
                 "operationId": "2a6380b210e6b77f5e9a9e5367c1200c",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateRoleRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Role added successfully"
+                        "description": "Role added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RolesResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -1091,12 +2077,23 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID of the role to retrieve",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Role retrieved successfully"
+                        "description": "Role retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RolesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Role not found"
@@ -1113,15 +2110,33 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID of the role to update",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateRoleRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Role updated successfully"
+                        "description": "Role updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/RolesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Role not found"
@@ -1141,7 +2156,11 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "description": "ID of the role to remove",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -1163,7 +2182,17 @@
                 "operationId": "019c9295ecb992bc766ecad43c27d4d0",
                 "responses": {
                     "200": {
-                        "description": "Ticket list retrieved successfully"
+                        "description": "Ticket list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TicketsResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1174,11 +2203,25 @@
                 "summary": "Add a new ticket",
                 "operationId": "4813345492de867acbdd49437518da17",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateTicketRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Ticket added successfully"
+                        "description": "Ticket added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TicketsResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -1202,7 +2245,14 @@
                 ],
                 "responses": {
                     "200": {
-                        "description": "Ticket retrieved successfully"
+                        "description": "Ticket retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TicketsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Ticket not found"
@@ -1223,11 +2273,25 @@
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateTicketRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Ticket updated successfully"
+                        "description": "Ticket updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/TicketsResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Ticket not found"
@@ -1260,6 +2324,40 @@
                 }
             }
         },
+        "/api/v1/ticket/personnel/{personnel_id}": {
+            "get": {
+                "tags": [
+                    "Ticket"
+                ],
+                "summary": "Get tickets assigned to a personnel",
+                "operationId": "b8f7b2f9cabfa50888e1f03cd6b74157",
+                "parameters": [
+                    {
+                        "name": "personnel_id",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Tickets retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/TicketsResource"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Personnel not found"
+                    }
+                }
+            }
+        },
         "/api/v1/login": {
             "post": {
                 "tags": [
@@ -1272,26 +2370,29 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "username",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "username": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/LoginRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "200": {
-                        "description": "Login successful"
+                        "description": "Login successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -1311,30 +2412,26 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "username",
-                                    "email",
-                                    "password"
-                                ],
-                                "properties": {
-                                    "username": {
-                                        "type": "string"
-                                    },
-                                    "email": {
-                                        "type": "string"
-                                    },
-                                    "password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/RegisterRequest"
                             }
                         }
                     }
                 },
                 "responses": {
                     "201": {
-                        "description": "User registered successfully"
+                        "description": "User registered successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "user": {
+                                            "$ref": "#/components/schemas/UserResource"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -1351,7 +2448,14 @@
                 "operationId": "14d9788b53669f46069581c9668911f4",
                 "responses": {
                     "200": {
-                        "description": "User profile retrieved successfully"
+                        "description": "User profile retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UserResource"
+                                }
+                            }
+                        }
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -1376,19 +2480,7 @@
                     "content": {
                         "application/json": {
                             "schema": {
-                                "required": [
-                                    "current_password",
-                                    "new_password"
-                                ],
-                                "properties": {
-                                    "current_password": {
-                                        "type": "string"
-                                    },
-                                    "new_password": {
-                                        "type": "string"
-                                    }
-                                },
-                                "type": "object"
+                                "$ref": "#/components/schemas/ChangePasswordRequest"
                             }
                         }
                     }
@@ -1417,7 +2509,17 @@
                 "operationId": "fa18afaebe8b92baae3eb839c6eaaaf9",
                 "responses": {
                     "200": {
-                        "description": "Vehicle list retrieved successfully"
+                        "description": "Vehicle list retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/VehiclesResource"
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             },
@@ -1428,11 +2530,25 @@
                 "summary": "Add a new vehicle",
                 "operationId": "619b1a0b8d9126d899ffecd90fbb51fb",
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateVehicleRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Vehicle added successfully"
+                        "description": "Vehicle added successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehiclesResource"
+                                }
+                            }
+                        }
                     },
                     "422": {
                         "description": "Validation error"
@@ -1451,12 +2567,22 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
                     "200": {
-                        "description": "Vehicle retrieved successfully"
+                        "description": "Vehicle retrieved successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehiclesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Vehicle not found"
@@ -1473,15 +2599,32 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "requestBody": {
-                    "required": true
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateVehicleRequest"
+                            }
+                        }
+                    }
                 },
                 "responses": {
                     "200": {
-                        "description": "Vehicle updated successfully"
+                        "description": "Vehicle updated successfully",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VehiclesResource"
+                                }
+                            }
+                        }
                     },
                     "404": {
                         "description": "Vehicle not found"
@@ -1501,7 +2644,10 @@
                     {
                         "name": "id",
                         "in": "path",
-                        "required": true
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        }
                     }
                 ],
                 "responses": {
@@ -1516,6 +2662,1194 @@
         }
     },
     "components": {
+        "schemas": {
+            "CreatePersonRequest": {
+                "required": [
+                    "personal_number",
+                    "full_name"
+                ],
+                "properties": {
+                    "personal_number": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdatePersonRequest": {
+                "properties": {
+                    "personal_number": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PersonResource": {
+                "properties": {
+                    "personal_number": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "picture": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreatePersonnelRequest": {
+                "required": [
+                    "first_name",
+                    "last_name",
+                    "badge_number",
+                    "hire_date",
+                    "role"
+                ],
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "badge_number": {
+                        "type": "string"
+                    },
+                    "hire_date": {
+                        "type": "string"
+                    },
+                    "profile_image": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdatePersonnelRequest": {
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "badge_number": {
+                        "type": "string"
+                    },
+                    "hire_date": {
+                        "type": "string"
+                    },
+                    "profile_image": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "PersonnelsResource": {
+                "properties": {
+                    "first_name": {
+                        "type": "string"
+                    },
+                    "last_name": {
+                        "type": "string"
+                    },
+                    "rank": {
+                        "type": "string"
+                    },
+                    "badge_number": {
+                        "type": "string"
+                    },
+                    "hire_date": {
+                        "type": "string"
+                    },
+                    "profile_image": {
+                        "type": "string"
+                    },
+                    "role": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateRoleRequest": {
+                "required": [
+                    "role_title"
+                ],
+                "properties": {
+                    "role_title": {
+                        "type": "string"
+                    },
+                    "role_description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateRoleRequest": {
+                "properties": {
+                    "role_title": {
+                        "type": "string"
+                    },
+                    "role_description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "RolesResource": {
+                "properties": {
+                    "role_title": {
+                        "type": "string"
+                    },
+                    "role_description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateTicketRequest": {
+                "required": [
+                    "description",
+                    "title",
+                    "price",
+                    "assigned_personnel",
+                    "vehicle",
+                    "person"
+                ],
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    },
+                    "assigned_personnel": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    },
+                    "person": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateTicketRequest": {
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    },
+                    "assigned_personnel": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    },
+                    "person": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "TicketsResource": {
+                "properties": {
+                    "description": {
+                        "type": "string"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "price": {
+                        "type": "string"
+                    },
+                    "assigned_personnel": {
+                        "type": "string"
+                    },
+                    "vehicle": {
+                        "type": "string"
+                    },
+                    "person": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "RegisterRequest": {
+                "required": [
+                    "username",
+                    "email",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "device_id": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "LoginRequest": {
+                "required": [
+                    "username",
+                    "password"
+                ],
+                "properties": {
+                    "username": {
+                        "type": "string"
+                    },
+                    "password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "ChangePasswordRequest": {
+                "required": [
+                    "current_password",
+                    "new_password"
+                ],
+                "properties": {
+                    "current_password": {
+                        "type": "string"
+                    },
+                    "new_password": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UserResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "username": {
+                        "type": "string"
+                    },
+                    "email": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateVehicleRequest": {
+                "required": [
+                    "vehicle_registration",
+                    "manufacture_name",
+                    "serie",
+                    "type",
+                    "produced_date",
+                    "purchased_date"
+                ],
+                "properties": {
+                    "vehicle_registration": {
+                        "type": "string"
+                    },
+                    "manufacture_name": {
+                        "type": "string"
+                    },
+                    "serie": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "produced_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "purchased_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "registration_date": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "designated_driver": {
+                        "description": "ID of the designated driver",
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "car_picture": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "car_location": {
+                        "description": "ID of the car location",
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateVehicleRequest": {
+                "properties": {
+                    "vehicle_registration": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "manufacture_name": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "serie": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "type": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "produced_date": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "purchased_date": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "registration_date": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "designated_driver": {
+                        "description": "ID of the designated driver",
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "car_picture": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "car_location": {
+                        "description": "ID of the car location",
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "VehiclesResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "vehicle_registration": {
+                        "type": "string"
+                    },
+                    "manufacture_name": {
+                        "type": "string"
+                    },
+                    "serie": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "produced_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "purchased_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "registration_date": {
+                        "type": "string",
+                        "format": "date",
+                        "nullable": true
+                    },
+                    "designated_driver": {
+                        "type": "integer",
+                        "nullable": true
+                    },
+                    "car_picture": {
+                        "type": "string",
+                        "nullable": true
+                    },
+                    "car_location": {
+                        "type": "integer",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "CreateNewsRequest": {
+                "required": [
+                    "title",
+                    "content"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "image": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateNewsRequest": {
+                "properties": {
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "image": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "type": "object"
+            },
+            "NewsResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "image_url": {
+                        "type": "string"
+                    },
+                    "views": {
+                        "type": "integer"
+                    },
+                    "created_by": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateMessageRequest": {
+                "required": [
+                    "content"
+                ],
+                "properties": {
+                    "content": {
+                        "type": "string",
+                        "maxLength": 5000
+                    }
+                },
+                "type": "object"
+            },
+            "MessageResource": {
+                "properties": {
+                    "message_id": {
+                        "type": "string"
+                    },
+                    "sender": {
+                        "$ref": "#/components/schemas/UserResource"
+                    },
+                    "content": {
+                        "type": "string"
+                    },
+                    "type": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateLocationRequest": {
+                "required": [
+                    "name",
+                    "address",
+                    "longitude",
+                    "latitude",
+                    "radius"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "integer"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    },
+                    "radius": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateLocationRequest": {
+                "properties": {
+                    "name": {
+                        "type": "integer"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    },
+                    "radius": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "LocationResource": {
+                "properties": {
+                    "id": {
+                        "type": "integer"
+                    },
+                    "name": {
+                        "type": "integer"
+                    },
+                    "address": {
+                        "type": "string"
+                    },
+                    "longitude": {
+                        "type": "string"
+                    },
+                    "latitude": {
+                        "type": "string"
+                    },
+                    "radius": {
+                        "type": "integer"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateIncidentRequest": {
+                "required": [
+                    "reporter_id"
+                ],
+                "properties": {
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "report_date_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "reporter_id": {
+                        "type": "string"
+                    },
+                    "participants_id": {
+                        "type": "string"
+                    },
+                    "vehicles_number": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateIncidentRequest": {
+                "properties": {
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "report_date_time": {
+                        "type": "string"
+                    },
+                    "reporter_id": {
+                        "type": "string"
+                    },
+                    "participants_id": {
+                        "type": "string"
+                    },
+                    "vehicles_number": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "IncidentResource": {
+                "properties": {
+                    "incident_id": {
+                        "type": "integer"
+                    },
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "string"
+                    },
+                    "report_date_time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "reporter_id": {
+                        "type": "string"
+                    },
+                    "participants_id": {
+                        "type": "string"
+                    },
+                    "vehicles_number": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateEquipmentRequest": {
+                "required": [
+                    "name",
+                    "quantity"
+                ],
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateEquipmentRequest": {
+                "properties": {
+                    "name": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "EquipmentsResource": {
+                "properties": {
+                    "equipment_id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "quantity": {
+                        "type": "integer"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateAttendanceRequest": {
+                "required": [
+                    "personnel_id",
+                    "attendance_date",
+                    "entry_time",
+                    "missed_entry"
+                ],
+                "properties": {
+                    "personnel_id": {
+                        "type": "integer"
+                    },
+                    "attendance_date": {
+                        "type": "string"
+                    },
+                    "entry_time": {
+                        "type": "string"
+                    },
+                    "missed_entry": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateAttendanceRequest": {
+                "properties": {
+                    "personnel_id": {
+                        "type": "integer"
+                    },
+                    "attendance_date": {
+                        "type": "string"
+                    },
+                    "entry_time": {
+                        "type": "string"
+                    },
+                    "missed_entry": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "AttendanceResource": {
+                "properties": {
+                    "attendance_id": {
+                        "type": "integer"
+                    },
+                    "personnel_id": {
+                        "type": "integer"
+                    },
+                    "attendance_date": {
+                        "type": "string"
+                    },
+                    "entry_time": {
+                        "type": "string"
+                    },
+                    "missed_entry": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateCampaignRequest": {
+                "required": [
+                    "title",
+                    "pdf"
+                ],
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "pdf": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateCampaignRequest": {
+                "properties": {
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "pdf": {
+                        "type": "string",
+                        "format": "binary"
+                    }
+                },
+                "type": "object"
+            },
+            "CampaignResource": {
+                "properties": {
+                    "campaign_id": {
+                        "type": "integer"
+                    },
+                    "title": {
+                        "type": "string",
+                        "maxLength": 255
+                    },
+                    "description": {
+                        "type": "string"
+                    },
+                    "pdf_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "thumbnail_url": {
+                        "type": "string",
+                        "format": "url"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "CreateCaseRequest": {
+                "required": [
+                    "status",
+                    "open_date",
+                    "investigator_id",
+                    "incidents_id"
+                ],
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "open_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "close_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "investigator_id": {
+                        "type": "string"
+                    },
+                    "incidents_id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateCaseRequest": {
+                "properties": {
+                    "status": {
+                        "type": "string"
+                    },
+                    "open_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "close_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "investigator_id": {
+                        "type": "string"
+                    },
+                    "incidents_id": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "CasesResource": {
+                "properties": {
+                    "case_id": {
+                        "type": "integer"
+                    },
+                    "status": {
+                        "type": "string"
+                    },
+                    "open_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "close_date": {
+                        "type": "string",
+                        "format": "date"
+                    },
+                    "investigator_id": {
+                        "type": "string"
+                    },
+                    "incidents_id": {
+                        "type": "string"
+                    },
+                    "created_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "updated_at": {
+                        "type": "string",
+                        "format": "date-time"
+                    }
+                },
+                "type": "object"
+            },
+            "ConversationResource": {
+                "properties": {
+                    "conversation_id": {
+                        "type": "string"
+                    },
+                    "conversation_name": {
+                        "type": "string"
+                    },
+                    "conversation_picture": {
+                        "type": "string"
+                    },
+                    "users": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/UserResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CreateDepartmentRequest": {
+                "required": [
+                    "department_name",
+                    "department_logo",
+                    "description"
+                ],
+                "properties": {
+                    "department_name": {
+                        "type": "string"
+                    },
+                    "department_logo": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateDepartmentRequest": {
+                "properties": {
+                    "department_name": {
+                        "type": "string"
+                    },
+                    "department_logo": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DepartmentsResource": {
+                "properties": {
+                    "department_id": {
+                        "type": "integer"
+                    },
+                    "department_name": {
+                        "type": "string"
+                    },
+                    "department_logo": {
+                        "type": "string"
+                    },
+                    "description": {
+                        "type": "string"
+                    }
+                },
+                "type": "object"
+            },
+            "DepartmentPersonnelResource": {
+                "properties": {
+                    "department_id": {
+                        "type": "integer"
+                    },
+                    "personnel_id": {
+                        "type": "integer"
+                    },
+                    "personnels": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/PersonnelsResource"
+                        }
+                    },
+                    "departments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/DepartmentsResource"
+                        }
+                    }
+                },
+                "type": "object"
+            },
+            "CreateEmergencyCallRequest": {
+                "required": [
+                    "caller_name",
+                    "phone_number",
+                    "incident_type",
+                    "location",
+                    "time",
+                    "responder"
+                ],
+                "properties": {
+                    "caller_name": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "responder": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "type": "object"
+            },
+            "UpdateEmergencyCallRequest": {
+                "properties": {
+                    "caller_name": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "integer",
+                        "format": "int64",
+                        "nullable": true
+                    },
+                    "time": {
+                        "type": "string",
+                        "format": "date-time",
+                        "nullable": true
+                    },
+                    "responder": {
+                        "type": "integer",
+                        "format": "int64",
+                        "nullable": true
+                    }
+                },
+                "type": "object"
+            },
+            "EmergencyCallResource": {
+                "properties": {
+                    "call_id": {
+                        "type": "integer"
+                    },
+                    "caller_name": {
+                        "type": "string"
+                    },
+                    "phone_number": {
+                        "type": "string"
+                    },
+                    "incident_type": {
+                        "type": "string"
+                    },
+                    "location": {
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    "time": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "responder": {
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                },
+                "type": "object"
+            }
+        },
         "securitySchemes": {
             "bearerAuth": {
                 "type": "http",

@@ -41,7 +41,7 @@ class UserController extends APIController
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $user = User::query()->where('username', $request->username)->first();
+        $user = User::with('role')->where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password . $user->salt, $user->password)) {
             return $this->respondWithError(__('auth.failed'), __('app.login.failed'));

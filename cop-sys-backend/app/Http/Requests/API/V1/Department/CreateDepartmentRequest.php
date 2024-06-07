@@ -15,7 +15,7 @@ class CreateDepartmentRequest extends APIRequest
     {
         return [
             'department_name' => 'required|string',
-            'department_logo' => 'required|string',
+            'department_logo' => 'string',
             'description' => 'required|string',
 //            'hq_location' => 'required|exists:locations,location_id',
         ];

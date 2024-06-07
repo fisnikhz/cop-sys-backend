@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::table('Emergency_Calls', function (Blueprint $table) {
 
             $table->text('caller_name')->nullable()->change();
-            $table->foreignUuid('location')->constrained('Locations','location_id')->nullable();
-            $table->datetime('time')->nullable();
-            $table->foreignUuid('responder')->constrained('Personnels','personnel_id');
+            $table->datetime('time')->nullable()->change();
+            $table->foreignUuid('responder')->nullable()->change();
         });
     }
 

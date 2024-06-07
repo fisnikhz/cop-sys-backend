@@ -7,7 +7,10 @@ use App\Http\Requests\API\V1\Personnel\CreatePersonnelRequest;
 use App\Http\Requests\API\V1\Personnel\UpdatePersonnelRequest;
 use App\Http\Resources\API\V1\PersonnelsResource;
 use App\Models\Personnel;
+use App\Models\User;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class PersonnelController extends APIController
 {
@@ -33,11 +36,35 @@ class PersonnelController extends APIController
      */
     public function addPersonnel(CreatePersonnelRequest $request): JsonResponse
     {
-        $data = $request->validated();
+        $personnelData = $request->validated();
 
-        $personnelData = Personnel::query()->create($data);
+        // Create personnel record
+        $personnel = Personnel::create($personnelData);
 
-        return $this->respondWithSuccess(PersonnelsResource::make($personnelData));
+        // Set the password as the badge number
+        $badgeNumber = $personnel->badge_number;
+        $password = $badgeNumber; // Set the password as the badge number
+
+        // Hash the password
+        $salt = Str::random(12); // Generate a random salt
+        $hashedPassword = Hash::make($password . $salt);
+
+        // Create a user record
+        $userData = [
+            'name' => $personnel->first_name . ' ' . $personnel->last_name,
+            'email' => $request->input('email'), // Assuming you pass email in the request
+            'password' => $hashedPassword, // Set the hashed password
+            'salt' => $salt, // Store the salt for verification
+            'username' => $request->input('username'), // Assuming you pass username in the request
+            'device_id' => '', // You may handle this according to your application logic
+            'profile_image' => $request->input('profile_image'), // Assuming you pass profile image in the request
+            'role' => $request->input('role'), // Assuming you pass role ID in the request
+            'personnel_id' => $personnel->personnel_id, // Associate the user with the personnel
+        ];
+
+        $user = User::create($userData);
+
+        return $this->respondWithSuccess(PersonnelsResource::make($personnel));
     }
 
     /**

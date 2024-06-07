@@ -18,7 +18,7 @@ class CreateTicketRequest extends APIRequest
             'title' => 'string',
             'price' => 'string',
             'assigned_personnel' => 'required|exists:personnels,personnel_id',
-            'vehicle' => 'required|exists:vehicles,vehicle_id',
+            'vehicle' => 'exists:vehicles,vehicle_id',
             'person' => 'required|exists:person,personal_number',
         ];
     }

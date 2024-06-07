@@ -36,9 +36,13 @@ class IncidentsController extends APIController
     {
         $data = $request->validated();
 
-        $incidentData = Incident::query()->create($data);
+            $incidentData = Incident::query()->create($data);
 
-        return $this->respondWithSuccess(IncidentResource::make($incidentData));
+            $incident = IncidentResource::make($incidentData);
+
+            return $this->respondWithSuccess($incident);
+
+
     }
 
     /**

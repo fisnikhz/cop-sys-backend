@@ -18,7 +18,7 @@ class UpdateIncidentRequest extends APIRequest
             'incident_type' => 'string',
             'description' => 'string',
             'location' => 'string',
-            'report_date_time' => 'date',
+            'reported_date' => 'date',
             'reporter_id' => 'required|exists:personnels,personnel_id',
             'participants_id' => 'string',
             'vehicles_number' => 'string',

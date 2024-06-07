@@ -6,6 +6,7 @@ use App\Http\Controllers\API\APIController;
 use App\Http\Requests\API\V1\Vehicle\CreateVehicleRequest;
 use App\Http\Requests\API\V1\Vehicle\UpdateVehicleRequest;
 use App\Http\Resources\API\V1\VehiclesResource;
+use App\Models\Ticket;
 use App\Models\Vehicle;
 use Illuminate\Http\JsonResponse;
 
@@ -138,7 +139,7 @@ class VehiclesController extends APIController
     public function getVehicle(Vehicle $vehicle): JsonResponse{
         // dd($vehicle);
         // $vehiclee = Vehicle::findOrFail($vehicle->$vehicle_id);
-
+        $vehicle = Vehicle::with('driver')->findOrFail($vehicle->vehicle_id);
         return $this->respondWithSuccess($vehicle);
     }
 

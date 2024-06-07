@@ -6,6 +6,7 @@ use App\Http\Controllers\API\APIController;
 use App\Http\Requests\API\V1\Ticket\CreateTicketRequest;
 use App\Http\Requests\API\V1\Ticket\UpdateTicketRequest;
 use App\Http\Resources\API\V1\TicketsResource;
+use App\Models\Personnel;
 use App\Models\Ticket;
 use Faker\Provider\Person;
 use Illuminate\Http\JsonResponse;
@@ -134,6 +135,9 @@ class TicketsController extends APIController
      */
 
     public function getTicket(Ticket $ticket): JsonResponse{
+
+        $ticket = Ticket::with('assigned_personnel')->with('person')->findOrFail($ticket->ticket_id);
+
 
         return $this->respondWithSuccess($ticket);
     }

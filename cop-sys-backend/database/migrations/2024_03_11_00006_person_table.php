@@ -11,7 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        DB::statement('ALTER TABLE Person CHANGE personnel_number personal_number VARCHAR(255)');
+        Schema::create('Person', function (Blueprint $table) {
+            $table->string('personal_number')->primary();
+            $table->text('full_name');
+            $table->text('picture')->nullable();
+            $table->text('vehicle')->nullable();
+            $table->timestamps();
+
+        });
     }
 
     /**
@@ -19,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        DB::statement('ALTER TABLE Person CHANGE personal_number personnel_number VARCHAR(255)');
+        Schema::dropIfExists('Person');
     }
 };

@@ -28,16 +28,16 @@ class Ticket extends Model
 
     public function vehicle(): HasOne
     {
-        return $this->hasOne(Vehicle::class, 'vehicle','vehicle_id');
+        return $this->hasOne(Vehicle::class, 'vehicle_id','vehicle');
     }
-    
+
     public function person(): HasOne
     {
-        return $this->hasOne(Person::class, 'person','personal_number');
+        return $this->hasOne(Person::class, 'personal_number','person');
     }
 
     public function assigned_personnel(): HasOne
     {
-        return $this->hasOne(Personnel::class, 'assigned_personnel','personnel_id');
+        return $this->hasOne(Personnel::class, 'personnel_id','assigned_personnel');
     }
 }

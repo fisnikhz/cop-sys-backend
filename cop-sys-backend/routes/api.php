@@ -108,9 +108,9 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
 
 
     //News API
-    Route::post('news', [NewsController::class, 'addNews'])->name('news.add');
-    Route::put('news/{news}', [NewsController::class, 'updateNews'])->name('news.update');
-    Route::delete('news/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
+    Route::post('addNews', [NewsController::class, 'addNews'])->name('news.add');
+    Route::put('editNews/{news}', [NewsController::class, 'updateNews'])->name('news.update');
+    Route::delete('removeNews/{news}', [NewsController::class, 'removeNews'])->name('news.remove');
 
     //User API
     Route::post('/addNewUser', [UserController::class, 'addUser']);

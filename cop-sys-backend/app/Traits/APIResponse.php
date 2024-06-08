@@ -14,12 +14,8 @@ trait APIResponse
             'status_code' => $statusCode,
         ];
 
-        if ($data instanceof LengthAwarePaginator) {
-            $response['data'] = $data->items();
-            $response['pagination'] = $this->paginator($data);
-        } else {
+
             $response['data'] = $data;
-        }
 
         return response()->json($response, $statusCode);
     }
@@ -34,15 +30,5 @@ trait APIResponse
         ];
 
         return response()->json($response, $statusCode);
-    }
-
-    private function paginator(LengthAwarePaginator $paginator): array
-    {
-        return [
-            'total' => $paginator->total(),
-            'current_page' => $paginator->currentPage(),
-            'items_per_page' => $paginator->perPage(),
-            'last_page' => $paginator->lastPage(),
-        ];
     }
 }

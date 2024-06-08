@@ -151,16 +151,17 @@ Route::group(['middleware' => ['auth:sanctum'], 'prefix' => '/v1/', 'as' => 'api
         //TicketsByPersonnel API
         Route::get('/personnel/{personnel_id}/tickets', [TicketsController::class, 'getTicketsByPersonnel']);
     });
+});
 
-    Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
-        Route::post('/register', [UserController::class, 'register']);
-        Route::post('/login', [UserController::class, 'login']);
-        Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
-        Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
-        Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
-        Route::get('/getCampaigns', [CampaignController::class, 'allCampaigns']);
-        Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
-    });
+Route::group(['prefix' => '/v1/', 'as' => 'api.'], function () {
+    Route::post('/register', [UserController::class, 'register']);
+    Route::post('/login', [UserController::class, 'login']);
+    Route::get('/getNews', [NewsController::class, 'allNews'])->name('news.all');
+    Route::get('/topViewedNews', [NewsController::class, 'getTopViewedNews']);
+    Route::get('news/{news}', [NewsController::class, 'viewNews'])->name('news.view');
+    Route::get('/getCampaigns', [CampaignController::class, 'allCampaigns']);
+    Route::post('/addPersonnel', [PersonnelController::class, 'addPersonnel']);
+
 });
 
 //Route::post('/login', [UserController::class, 'login'])->prefix('v1');

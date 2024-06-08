@@ -16,9 +16,7 @@ class CreatePersonRequest extends APIRequest
         return [
             'personal_number' => 'required|string',
             'full_name' => 'required|string',
-            'picture' => 'string',
-            'vehicle'=> 'string'
-            
+
         ];
     }
 }

@@ -20,10 +20,12 @@ class RolesController extends APIController
      *     tags={"Role"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateRoleRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Role added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/RolesResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -50,13 +52,17 @@ class RolesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         description="ID of the role to update",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateRoleRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Role updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/RolesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -73,7 +79,7 @@ class RolesController extends APIController
     {
         $data = $request->validated();
 
-        $role = Role::find($role->role_id)->firstOrFail();
+        $role = Role::find($role->role_id);
 
         $role->update($data);
 
@@ -89,6 +95,8 @@ class RolesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         description="ID of the role to remove",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -117,10 +125,13 @@ class RolesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         description="ID of the role to retrieve",
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Role retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/RolesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -141,7 +152,11 @@ class RolesController extends APIController
      *     tags={"Role"},
      *     @OA\Response(
      *         response=200,
-     *         description="Role list retrieved successfully",
+     *         description="Roles list retrieved successfully",
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/RolesResource")
+     *         )
      *     )
      * )
      */

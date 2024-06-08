@@ -20,7 +20,7 @@ return new class extends Migration
             $table->text('badge_number');
             $table->date('hire_date');
             $table->text('profile_image');
-            $table->foreignId('role')->constrained('Roles','role_id');
+            $table->foreignId('role')->nullable()->constrained('Roles','role_id')->nullOnDelete();
         });
     }
 

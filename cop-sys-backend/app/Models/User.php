@@ -32,6 +32,13 @@ class User extends Authenticatable
         return $this->belongsToMany(Conversation::class, 'Conversation_Users', 'sender_id', 'conversation_id');
     }
 
+
+
+    public function isOfficer()
+    {
+        return $this->role == 1;
+    }
+
 //    protected $hidden = [
 //        'password',
 //        'remember_token',

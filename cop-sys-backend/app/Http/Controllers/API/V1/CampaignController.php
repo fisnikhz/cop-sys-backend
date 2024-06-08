@@ -18,10 +18,12 @@ class CampaignController extends APIController
      *     tags={"Campaign"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateCampaignRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Campaign added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/CampaignResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -52,16 +54,16 @@ class CampaignController extends APIController
      *         name="campaign",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateCampaignRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Campaign updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/CampaignResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -101,7 +103,7 @@ class CampaignController extends APIController
      *         name="campaign",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -129,7 +131,7 @@ class CampaignController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Campaigns list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CampaignResource"))
      *     )
      * )
      */
@@ -149,12 +151,12 @@ class CampaignController extends APIController
      *         name="campaign",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Campaign retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/CampaignResource")
      *     ),
      *     @OA\Response(
      *         response=404,

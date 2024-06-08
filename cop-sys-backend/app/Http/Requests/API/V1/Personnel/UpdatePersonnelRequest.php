@@ -20,7 +20,7 @@ class UpdatePersonnelRequest extends APIRequest
             'badge_number' => 'string',
             'hire_date' => 'date',
             'profile_image' => 'nullable|string',
-            'role' => 'required|exists:roles,role_id',
+            'role' => 'exists:roles,role_id',
         ];
     }
 }

@@ -14,10 +14,15 @@ class CreateIncidentRequest extends APIRequest
     public function rules(): array
     {
         return [
-            'incident_type' => 'required|string',
-            'description' => 'required|string',
-            'report_date_time' => 'timestamp',
+            'title' => 'required|string',
+            'incident_cause' => 'string',
+            'incident_type' => 'string',
+            'description' => 'string',
+            'location' => 'string',
+            'reported_date' => 'date',
             'reporter_id' => 'required|exists:personnels,personnel_id',
+            'participants_id' => 'string',
+            'vehicles_number' => 'string',
         ];
     }
 }

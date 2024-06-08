@@ -2,12 +2,10 @@
 <module type="WEB_MODULE" version="4">
   <component name="NewModuleRootManager">
     <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/app" isTestSource="false" packagePrefix="App\" />
-      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/database/factories" isTestSource="false" packagePrefix="Database\Factories\" />
-      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/database/seeders" isTestSource="false" packagePrefix="Database\Seeders\" />
-      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/tests" isTestSource="true" packagePrefix="Tests\" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/tests/Feature" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/cop-sys-backend/tests/Unit" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/brick/math" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/carbonphp/carbon-doctrine-types" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/composer" />
@@ -122,6 +120,17 @@
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/webmozart/assert" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/setasign/fpdf" />
       <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/setasign/fpdi" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/darkaonline/l5-swagger" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/doctrine/annotations" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/maennchen/zipstream-php" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/psr/cache" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/spatie/image" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/spatie/image-optimizer" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/spatie/laravel-medialibrary" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/spatie/laravel-package-tools" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/spatie/temporary-directory" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/swagger-api/swagger-ui" />
+      <excludeFolder url="file://$MODULE_DIR$/cop-sys-backend/vendor/zircote/swagger-php" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

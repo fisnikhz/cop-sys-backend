@@ -19,10 +19,12 @@ class CasesController extends APIController
      *     tags={"Case"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateCaseRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Case added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/CasesResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -48,16 +50,16 @@ class CasesController extends APIController
      *         name="case",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateCaseRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Case updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/CasesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -74,7 +76,7 @@ class CasesController extends APIController
     {
         $data = $request->validated();
 
-        $case = Cases::find($case->case_id)->firstOrFail();
+        $case = Cases::find($case->case_id);
 
         $case->update($data);
 
@@ -90,7 +92,7 @@ class CasesController extends APIController
      *         name="case",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -113,18 +115,18 @@ class CasesController extends APIController
     /**
      * @OA\Get(
      *     path="/api/v1/case/{case}",
-     *     summary="Get a case by ID",
+     *     summary="View a case by ID",
      *     tags={"Case"},
      *     @OA\Parameter(
      *         name="case",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Case retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/CasesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -132,9 +134,9 @@ class CasesController extends APIController
      *     )
      * )
      */
-    public function getCase(Int $case): JsonResponse{
+    public function getCase(Cases $case): JsonResponse{
 
-        return $this->respondWithSuccess(Cases::find($case)->firstOrFail);
+        return $this->respondWithSuccess($case);
     }
 
     /**
@@ -145,7 +147,7 @@ class CasesController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Cases list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CasesResource"))
      *     )
      * )
      */
@@ -154,6 +156,28 @@ class CasesController extends APIController
         return $this->respondWithSuccess(Cases::all());
     }
 
+    /**
+     * @OA\Get(
+     *     path="/api/v1/case/investigator/{personnel_id}",
+     *     summary="Get cases by investigator ID",
+     *     tags={"Case"},
+     *     @OA\Parameter(
+     *         name="personnel_id",
+     *         in="path",
+     *         required=true,
+     *         @OA\Schema(type="string")
+     *     ),
+     *     @OA\Response(
+     *         response=200,
+     *         description="Cases retrieved successfully",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/CasesResource"))
+     *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Cases not found"
+     *     )
+     * )
+     */
     public function getCasesByInvestigator(string $personnel_id): JsonResponse
     {
         $cases = Cases::where('investigator_id', $personnel_id)

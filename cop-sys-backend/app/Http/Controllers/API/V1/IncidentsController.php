@@ -3,13 +3,9 @@
 namespace App\Http\Controllers\API\V1;
 
 use App\Http\Controllers\API\APIController;
-use App\Http\Requests\API\V1\Case\CreateCaseRequest;
-use App\Http\Requests\API\V1\Case\CreateIncidentRequest;
-use App\Http\Requests\API\V1\Case\UpdateCaseRequest;
-use App\Http\Requests\API\V1\Case\UpdateIncidentRequest;
-use App\Http\Resources\API\V1\CasesResource;
+use App\Http\Requests\API\V1\Incidents\CreateIncidentRequest;
+use App\Http\Requests\API\V1\Incidents\UpdateIncidentRequest;
 use App\Http\Resources\API\V1\IncidentResource;
-use App\Models\Cases;
 use App\Models\Incident;
 use Illuminate\Http\JsonResponse;
 
@@ -23,10 +19,12 @@ class IncidentsController extends APIController
      *     tags={"Incident"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateIncidentRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -38,9 +36,13 @@ class IncidentsController extends APIController
     {
         $data = $request->validated();
 
-        $incidentData = Incident::query()->create($data);
+            $incidentData = Incident::query()->create($data);
 
-        return $this->respondWithSuccess(IncidentResource::make($incidentData));
+            $incident = IncidentResource::make($incidentData);
+
+            return $this->respondWithSuccess($incident);
+
+
     }
 
     /**
@@ -52,16 +54,16 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateIncidentRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -77,7 +79,7 @@ class IncidentsController extends APIController
     {
         $data = $request->validated();
 
-        $incident = Incident::find($incident->incident_id)->firstOrFail();
+        $incident = Incident::find($incident->incident_id);
 
         $incident->update($data);
 
@@ -93,7 +95,7 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -109,7 +111,7 @@ class IncidentsController extends APIController
     {
         $incident->delete();
 
-        return $this->respondWithSuccess(null, __('app.case.deleted'));
+        return $this->respondWithSuccess(null, __('app.incident.deleted'));
     }
 
     /**
@@ -121,12 +123,12 @@ class IncidentsController extends APIController
      *         name="incident",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Incident retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/IncidentResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -134,9 +136,9 @@ class IncidentsController extends APIController
      *     )
      * )
      */
-    public function getIncident(Int $incident): JsonResponse{
+    public function getIncident(Incident $incident): JsonResponse{
 
-        return $this->respondWithSuccess(Cases::find($incident)->firstOrFail);
+        return $this->respondWithSuccess($incident);
     }
 
     /**
@@ -147,7 +149,7 @@ class IncidentsController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Incidents list retrieved successfully",
-     *         
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/IncidentResource"))
      *     )
      * )
      */

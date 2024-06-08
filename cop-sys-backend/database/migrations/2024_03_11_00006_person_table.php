@@ -11,11 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('Emergency_Calls', function (Blueprint $table) {
+        Schema::create('Person', function (Blueprint $table) {
+            $table->string('personal_number')->primary();
+            $table->text('full_name');
+            $table->text('picture')->nullable();
+            $table->text('vehicle')->nullable();
+            $table->timestamps();
 
-            $table->text('caller_name')->nullable()->change();
-            $table->datetime('time')->nullable()->change();
-            $table->foreignUuid('responder')->nullable()->change();
         });
     }
 
@@ -24,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        //
+        Schema::dropIfExists('Person');
     }
 };

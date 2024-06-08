@@ -9,8 +9,9 @@ class Person extends Model
 {
     use HasFactory;
 
-    
+
     protected $primaryKey = 'personal_number'; // Specify the primary key column
+    protected $table = 'Person';
     public $timestamps = false;
 
 
@@ -18,8 +19,5 @@ class Person extends Model
     protected $fillable = [
         'personal_number',
         'full_name',
-        'picture',
-        'vehicle',
-
     ];
 }

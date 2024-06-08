@@ -17,8 +17,8 @@ class UpdateTicketRequest extends APIRequest
             'description' => 'string',
             'title' => 'string',
             'price' => 'string',
-            'assigning_personnel' => 'exists:personnels,personnel_id',
-            'vehicle' => 'exists:vehicle,vehicle_id',
+            'assigned_personnel' => 'exists:personnels,personnel_id',
+            'vehicle' => 'exists:vehicles,vehicle_id',
             'person' => 'exists:person,person_id',
         ];
     }

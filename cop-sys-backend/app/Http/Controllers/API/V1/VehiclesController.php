@@ -6,6 +6,7 @@ use App\Http\Controllers\API\APIController;
 use App\Http\Requests\API\V1\Vehicle\CreateVehicleRequest;
 use App\Http\Requests\API\V1\Vehicle\UpdateVehicleRequest;
 use App\Http\Resources\API\V1\VehiclesResource;
+use App\Models\Ticket;
 use App\Models\Vehicle;
 use Illuminate\Http\JsonResponse;
 
@@ -19,10 +20,12 @@ class VehiclesController extends APIController
      *     tags={"Vehicle"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreateVehicleRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Vehicle added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/VehiclesResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -39,7 +42,7 @@ class VehiclesController extends APIController
         return $this->respondWithSuccess(VehiclesResource::make($vehicleData));
     }
 
-     /**
+    /**
      * @OA\Put(
      *     path="/api/v1/vehicle/{id}",
      *     summary="Update an existing vehicle",
@@ -48,13 +51,16 @@ class VehiclesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/UpdateVehicleRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Vehicle updated successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/VehiclesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -71,7 +77,7 @@ class VehiclesController extends APIController
     {
         $data = $request->validated();
 
-        $vehicle = Vehicle::find($vehicle->vehicle_id)->firstOrFail();
+        $vehicle = Vehicle::find($vehicle->vehicle_id);
 
         $vehicle->update($data);
 
@@ -87,6 +93,7 @@ class VehiclesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -106,7 +113,7 @@ class VehiclesController extends APIController
         return $this->respondWithSuccess(null, __('app.vehicle.deleted'));
     }
 
-     /**
+    /**
      * @OA\Get(
      *     path="/api/v1/vehicle/{id}",
      *     summary="Get a vehicle by ID",
@@ -115,10 +122,12 @@ class VehiclesController extends APIController
      *         name="id",
      *         in="path",
      *         required=true,
+     *         @OA\Schema(type="integer")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Vehicle retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/VehiclesResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -127,12 +136,14 @@ class VehiclesController extends APIController
      * )
      */
 
-    public function getVehicle(Int $vehicle): JsonResponse{
-
-        return $this->respondWithSuccess(Vehicle::find($vehicle)->firstOrFail);
+    public function getVehicle(Vehicle $vehicle): JsonResponse{
+        // dd($vehicle);
+        // $vehiclee = Vehicle::findOrFail($vehicle->$vehicle_id);
+        $vehicle = Vehicle::with('driver')->findOrFail($vehicle->vehicle_id);
+        return $this->respondWithSuccess($vehicle);
     }
 
-     /**
+    /**
      * @OA\Get(
      *     path="/api/v1/vehicle",
      *     summary="Get all vehicles",
@@ -140,6 +151,7 @@ class VehiclesController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Vehicle list retrieved successfully",
+     *         @OA\JsonContent(type="array", @OA\Items(ref="#/components/schemas/VehiclesResource"))
      *     )
      * )
      */

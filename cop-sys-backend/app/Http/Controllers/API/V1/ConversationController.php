@@ -18,10 +18,13 @@ class ConversationController extends APIController
      *     tags={"Conversation"},
      *     @OA\Response(
      *         response=200,
-     *         description="Admin conversation retrieved successfully"
-     *       
-     *         ),
+     *         description="Admin conversation retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/ConversationResource")
      *     ),
+     *     @OA\Response(
+     *         response=404,
+     *         description="Admin conversation not found"
+     *     )
      * )
      */
     public function getAdminConversation(): JsonResponse
@@ -36,7 +39,7 @@ class ConversationController extends APIController
         if (!$conversation) {
             $conversation = Conversation::create([
                 'conversation_id' => (string) \Illuminate\Support\Str::uuid(),
-                'conversation_name' => 'Chat with Admins',
+                'conversation_name' => auth()->user()->name,
                 'conversation_picture' => 'default_picture.jpg'
             ]);
 
@@ -45,5 +48,19 @@ class ConversationController extends APIController
         }
 
         return $this->respondWithSuccess(new ConversationResource($conversation));
+    }
+
+    public function getAllConversations(): JsonResponse
+    {
+        $userId = Auth::id();
+        $conversations = Conversation::whereHas('users', function($query) use ($userId) {
+            $query->where('user_id', $userId);
+        })->get();
+
+        if ($conversations->isEmpty()) {
+            return $this->respondWithError(['No conversations found']);
+        }
+
+        return $this->respondWithSuccess(ConversationResource::collection($conversations));
     }
 }

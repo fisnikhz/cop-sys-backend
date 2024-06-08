@@ -11,23 +11,32 @@ class Incident extends Model
 {
     use HasFactory,HasUuids;
 
+    protected $primaryKey = 'incident_id';
+
+    public $timestamps = false;
+
     protected $fillable = [
+        'title',
         'incident_type',
+        'incident_cause',
         'description',
-//        'location',
-        'report_date_time',
+        'reported_time',
         'reporter_id',
         'participants_id',
         'vehicles_number'
     ];
 
-//    public function location(): HasOne
-//    {
-//        return $this->hasOne(Location::class, 'location_id', 'location');
-//    }
 
-    public function assigning_personnel(): HasOne
+    // public function assigning_personnel(): HasOne
+    // {
+    //     return $this->hasOne(Personnel::class, 'reporter_id','personnel_id');
+    // }
+    public function person(): HasOne
     {
-        return $this->hasOne(Personnel::class, 'reporter_id','personnel_id');
+        return $this->hasOne(Person::class, 'personal_number','participants_id');
+    }
+    public function reporter(): HasOne
+    {
+        return $this->hasOne(Personnel::class, 'personnel_id','reporter_id');
     }
 }

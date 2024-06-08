@@ -9,7 +9,6 @@ use App\Http\Resources\API\V1\PersonResource;
 use App\Models\Person;
 use Illuminate\Http\JsonResponse;
 
-
 class PersonController extends APIController
 {
     /**
@@ -19,10 +18,12 @@ class PersonController extends APIController
      *     tags={"Person"},
      *     @OA\RequestBody(
      *         required=true,
+     *         @OA\JsonContent(ref="#/components/schemas/CreatePersonRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Person added successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/PersonResource")
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -39,8 +40,6 @@ class PersonController extends APIController
         return $this->respondWithSuccess(PersonResource::make($personData));
     }
 
-
-
     /**
      * @OA\Put(
      *     path="/api/v1/person/{person}",
@@ -50,16 +49,16 @@ class PersonController extends APIController
      *         name="person",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\RequestBody(
      *         required=true,
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/UpdatePersonRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Person updated successfully",
-     *        
+     *         @OA\JsonContent(ref="#/components/schemas/PersonResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -75,7 +74,7 @@ class PersonController extends APIController
     {
         $data = $request->validated();
 
-        $person = Person::find($person->personal_number)->firstOrFail();
+        $person = Person::find($person->personal_number);
 
         $person->update($data);
 
@@ -91,7 +90,7 @@ class PersonController extends APIController
      *         name="person",
      *         in="path",
      *         required=true,
-     *        
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
@@ -119,12 +118,12 @@ class PersonController extends APIController
      *         name="person",
      *         in="path",
      *         required=true,
-     *       
+     *         @OA\Schema(type="string")
      *     ),
      *     @OA\Response(
      *         response=200,
      *         description="Person retrieved successfully",
-     *         
+     *         @OA\JsonContent(ref="#/components/schemas/PersonResource")
      *     ),
      *     @OA\Response(
      *         response=404,
@@ -132,9 +131,9 @@ class PersonController extends APIController
      *     )
      * )
      */
-    public function getPerson(Int $person): JsonResponse{
-
-        return $this->respondWithSuccess(Person::find($person)->firstOrFail);
+    public function getPerson(Person $person): JsonResponse
+    {
+        return $this->respondWithSuccess($person);
     }
 
     /**
@@ -145,13 +144,15 @@ class PersonController extends APIController
      *     @OA\Response(
      *         response=200,
      *         description="Persons list retrieved successfully",
-     *         
+     *         @OA\JsonContent(
+     *             type="array",
+     *             @OA\Items(ref="#/components/schemas/PersonResource")
+     *         )
      *     )
      * )
      */
-    public function getAllPersons(): JsonResponse{
-
+    public function getAllPersons(): JsonResponse
+    {
         return $this->respondWithSuccess(Person::all());
     }
-
 }

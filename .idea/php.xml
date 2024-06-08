@@ -26,6 +26,7 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/polyfill-uuid" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/phpoption/phpoption" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/ralouphie/getallheaders" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/darkaonline/l5-swagger" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/sebastian/type" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/sebastian/diff" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/sebastian/lines-of-code" />
@@ -51,18 +52,27 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/sail" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/framework" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/nesbot/carbon" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/image-optimizer" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/sanctum" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/laravel-medialibrary" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/tinker" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/temporary-directory" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/serializable-closure" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/simple-cache" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/nikic/php-parser" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/image" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/laravel/pint" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/clock" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/laravel-package-tools" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/http-factory" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/container" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/zircote/swagger-php" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/maennchen/zipstream-php" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/http-client" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/http-message" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/setasign/fpdi" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/event-dispatcher" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/setasign/fpdf" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/log" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/league/config" />
@@ -83,9 +93,12 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/doctrine/lexer" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/doctrine/inflector" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/dflydev/dot-access-data" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/doctrine/annotations" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/filp/whoops" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/brick/math" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/phar-io/version" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/phar-io/manifest" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/swagger-api/swagger-ui" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/egulias/email-validator" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psy/psysh" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/ramsey/collection" />
@@ -103,6 +116,7 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/polyfill-intl-grapheme" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/dragonmantank/cron-expression" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/css-selector" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/carbonphp/carbon-doctrine-types" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/polyfill-intl-normalizer" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/polyfill-php80" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/mailer" />
@@ -119,6 +133,8 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/composer" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/http-foundation" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/uid" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/fruitcake/php-cors" />
+      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/cache" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/http-kernel" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/translation-contracts" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/guzzlehttp/uri-template" />
@@ -126,22 +142,6 @@
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/monolog/monolog" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/symfony/service-contracts" />
       <path value="$PROJECT_DIR$/cop-sys-backend/vendor/guzzlehttp/psr7" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/doctrine/annotations" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/darkaonline/l5-swagger" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/swagger-api/swagger-ui" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/psr/cache" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/zircote/swagger-php" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/image-optimizer" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/laravel-medialibrary" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/temporary-directory" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/image" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/spatie/laravel-package-tools" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/maennchen/zipstream-php" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/carbonphp/carbon-doctrine-types" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/brick/math" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/fruitcake/php-cors" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/setasign/fpdi" />
-      <path value="$PROJECT_DIR$/cop-sys-backend/vendor/setasign/fpdf" />
     </include_path>
   </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="8.1" />

@@ -15,22 +15,23 @@ use Illuminate\Support\Str;
 
 class UserController extends APIController
 {
-     /**
+    /**
      * @OA\Post(
      *     path="/api/v1/login",
      *     summary="User login",
      *     tags={"Authentication"},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"username", "password"},
-     *             @OA\Property(property="username", type="string"),
-     *             @OA\Property(property="password", type="string")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/LoginRequest")
      *     ),
      *     @OA\Response(
      *         response=200,
-     *         description="Login successful"
+     *         description="Login successful",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="token", type="string"),
+     *             @OA\Property(property="user", ref="#/components/schemas/UserResource")
+     *         )
      *     ),
      *     @OA\Response(
      *         response=401,
@@ -40,7 +41,7 @@ class UserController extends APIController
      */
     public function login(LoginRequest $request): JsonResponse
     {
-        $user = User::query()->where('username', $request->username)->first();
+        $user = User::with('role')->where('username', $request->username)->first();
 
         if (!$user || !Hash::check($request->password . $user->salt, $user->password)) {
             return $this->respondWithError(__('auth.failed'), __('app.login.failed'));
@@ -61,16 +62,15 @@ class UserController extends APIController
      *     tags={"Authentication"},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"username", "email", "password"},
-     *             @OA\Property(property="username", type="string"),
-     *             @OA\Property(property="email", type="string"),
-     *             @OA\Property(property="password", type="string")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/RegisterRequest")
      *     ),
      *     @OA\Response(
      *         response=201,
-     *         description="User registered successfully"
+     *         description="User registered successfully",
+     *         @OA\JsonContent(
+     *             type="object",
+     *             @OA\Property(property="user", ref="#/components/schemas/UserResource")
+     *         )
      *     ),
      *     @OA\Response(
      *         response=422,
@@ -112,7 +112,8 @@ class UserController extends APIController
      *     security={{"bearerAuth":{}}},
      *     @OA\Response(
      *         response=200,
-     *         description="User profile retrieved successfully"
+     *         description="User profile retrieved successfully",
+     *         @OA\JsonContent(ref="#/components/schemas/UserResource")
      *     ),
      *     @OA\Response(
      *         response=401,
@@ -133,11 +134,7 @@ class UserController extends APIController
      *     security={{"bearerAuth":{}}},
      *     @OA\RequestBody(
      *         required=true,
-     *         @OA\JsonContent(
-     *             required={"current_password", "new_password"},
-     *             @OA\Property(property="current_password", type="string"),
-     *             @OA\Property(property="new_password", type="string")
-     *         )
+     *         @OA\JsonContent(ref="#/components/schemas/ChangePasswordRequest")
      *     ),
      *     @OA\Response(
      *         response=200,

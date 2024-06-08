@@ -23,7 +23,7 @@ class UpdateVehicleRequest extends APIRequest
             'registration_date' => 'date',
             'designated_driver' => 'exists:personnels,personnel_id',
             'car_picture' => 'string',
-//            'car_location' => 'exists:locations,location_id',
+            'car_location' => 'exists:locations,location_id',
         ];
     }
 }
